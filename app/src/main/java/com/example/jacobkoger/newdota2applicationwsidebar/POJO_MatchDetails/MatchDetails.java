@@ -7,26 +7,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class MatchDetails {
 
-    @SerializedName("result")
-    @Expose
     private Result result;
 
-    /**
-     *
-     * @return
-     * The result
-     */
     public Result getResult() {
         return result;
     }
 
-    /**
-     *
-     * @param result
-     * The result
-     */
-    public void setResult(Result result) {
-        this.result = result;
+    @Override
+    public String toString() {
+        return "MatchDetails{" +
+                "result=" + result +
+                '}';
     }
 
 }

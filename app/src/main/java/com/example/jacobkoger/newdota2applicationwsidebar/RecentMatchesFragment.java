@@ -5,13 +5,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.example.jacobkoger.newdota2applicationwsidebar.POJO_MatchHistory.MatchHistory;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -27,17 +31,17 @@ public class RecentMatchesFragment extends android.support.v4.app.Fragment {
     String url = "https://api.steampowered.com";
     private RecyclerView recyclerView;
     private ArrayList<MatchHistory> data;
-    private RecyclerAdapter adapter=new RecyclerAdapter();
+    private RecyclerAdapter adapter = new RecyclerAdapter();
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.recycler_view, container, false);
-        recyclerView = (RecyclerView)v.findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         initViews();
         return recyclerView;
     }
 
-    public void initViews(){
+    public void initViews() {
         Context context = getContext();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -53,7 +57,7 @@ public class RecentMatchesFragment extends android.support.v4.app.Fragment {
                 final Request orig = chain.request();
                 HttpUrl origUrl = orig.url();
                 return chain.proceed(orig.newBuilder()
-                        .url(origUrl.newBuilder().addQueryParameter("key",BuildConfig.API_KEY)
+                        .url(origUrl.newBuilder().addQueryParameter("key", BuildConfig.API_KEY)
                                 .build())
                         .build());
             }
@@ -68,7 +72,6 @@ public class RecentMatchesFragment extends android.support.v4.app.Fragment {
             @Override
             public void onResponse(Call<MatchHistory> call, Response<MatchHistory> response) {
                 MatchHistory matchHistory = response.body();
-
                 data = new ArrayList<>(Collections.singletonList(matchHistory));
                 adapter.addData(matchHistory.getResult().getMatches());
             }

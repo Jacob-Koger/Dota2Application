@@ -2,6 +2,7 @@ package com.example.jacobkoger.newdota2applicationwsidebar;
 
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,7 +10,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
@@ -35,11 +35,14 @@ public class MainActivity extends AppCompatActivity
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerToggle = setupDrawerToggle();
 
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.flContent, new RecentMatchesFragment())
+                .commit();
 
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {
-        return new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open,  R.string.drawer_close);
+        return new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.drawer_open, R.string.drawer_close);
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -50,13 +53,16 @@ public class MainActivity extends AppCompatActivity
                         selectDrawerItem(menuItem);
                         return true;
                     }
-                });
+
+                }
+        );
+
     }
 
     public void selectDrawerItem(MenuItem menuItem) {
         Fragment fragment = null;
         Class fragmentClass;
-        switch(menuItem.getItemId()) {
+        switch (menuItem.getItemId()) {
             case R.id.nav_RecentMatches_fragment:
                 fragmentClass = RecentMatchesFragment.class;
                 break;
@@ -66,8 +72,6 @@ public class MainActivity extends AppCompatActivity
             default:
                 fragmentClass = RecentMatchesFragment.class;
         }
-
-
 
         try {
             fragment = (Fragment) fragmentClass.newInstance();
@@ -88,8 +92,8 @@ public class MainActivity extends AppCompatActivity
                 mDrawer.openDrawer(GravityCompat.START);
                 return true;
         }
-        return drawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
 
+        return drawerToggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -107,14 +111,15 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onMatchSelected(String matchId) {
-         getSupportFragmentManager().beginTransaction()
-        .replace(R.id.flContent, DisplayMatchDetailsFragment.newInstance(matchId))
-        .addToBackStack(null)
-        .commit();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.flContent, DisplayMatchDetailsFragment.newInstance(matchId))
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
+
 }

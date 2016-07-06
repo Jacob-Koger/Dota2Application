@@ -36,7 +36,6 @@ public class InputMatchIDFragment extends android.support.v4.app.Fragment {
             @Override
             public void onClick(View view) {
                 onButtonPressed(String.valueOf(matchInput.getText()));
-
             }
         });
     }
