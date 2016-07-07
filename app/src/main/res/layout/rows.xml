@@ -92,8 +92,8 @@
     </RelativeLayout>
 
     <ImageView
-        android:layout_width="148dp"
-        android:layout_height="74dp"
+        android:layout_width="94dp"
+        android:layout_height="47dp"
         android:id="@+id/imageViewBottle"
         android:layout_gravity="left|center_vertical" />
 
