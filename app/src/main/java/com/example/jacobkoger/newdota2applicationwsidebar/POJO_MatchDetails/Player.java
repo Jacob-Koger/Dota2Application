@@ -12,7 +12,7 @@ public class Player {
 
     @SerializedName("account_id")
     @Expose
-    private Integer accountId;
+    private double accountId;
     @SerializedName("player_slot")
     @Expose
     private Integer playerSlot;
@@ -88,7 +88,7 @@ public class Player {
      * @return
      * The accountId
      */
-    public Integer getAccountId() {
+    public double getAccountId() {
         return accountId;
     }
 
@@ -97,7 +97,7 @@ public class Player {
      * @param accountId
      * The account_id
      */
-    public void setAccountId(Integer accountId) {
+    public void setAccountId(double accountId) {
         this.accountId = accountId;
     }
 

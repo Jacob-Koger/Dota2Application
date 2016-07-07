@@ -77,8 +77,6 @@
             android:layout_below="@+id/direTeamId"
             android:layout_alignParentEnd="true" />
 
-
-
         <TextView
             android:id="@+id/matchSeqNum"
             android:layout_width="wrap_content"
@@ -86,8 +84,10 @@
             android:text="Match Seq. Num.: "
             android:textSize="14sp"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/playerCount"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/playerCount" />
+
+
 
     </RelativeLayout>
 

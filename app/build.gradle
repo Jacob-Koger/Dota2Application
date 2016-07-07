@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 24
     buildToolsVersion "24.0.0"
 
     defaultConfig {
         applicationId "com.example.jacobkoger.newdota2applicationwsidebar"
         minSdkVersion 19
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
@@ -43,4 +43,8 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.blunderer:materialdesignlibrary:2.0.4'
     compile 'com.android.support:support-v4:24.0.0'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile ('net.minidev:json-smart:2.1.0'){
+        exclude module : 'asm' //asm is already include in android
+    }
 }

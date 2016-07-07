@@ -1,9 +1,9 @@
-package com.example.jacobkoger.newdota2applicationwsidebar.POJO_Heros;
+package com.example.jacobkoger.newdota2applicationwsidebar.POJO_Heroes;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Heros {
+public class Hero {
 
     @SerializedName("name")
     @Expose

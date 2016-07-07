@@ -1,4 +1,4 @@
-package com.example.jacobkoger.newdota2applicationwsidebar.POJO_Heros;
+package com.example.jacobkoger.newdota2applicationwsidebar.POJO_Heroes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,18 +6,18 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class HerosList {
+public class HeroesList {
 
     @SerializedName("heroes")
     @Expose
-    private List heroes = new ArrayList<>();
+    private List<Hero> heroes = new ArrayList<>();
 
     /**
      *
      * @return
      * The heroes
      */
-    public List getHeroes() {
+    public List<Hero> getHeroes() {
         return heroes;
     }
 
@@ -26,7 +26,7 @@ public class HerosList {
      * @param heroes
      * The heroes
      */
-    public void setHeroes(List heroes) {
+    public void setHeroes(List<Hero> heroes) {
         this.heroes = heroes;
     }
 

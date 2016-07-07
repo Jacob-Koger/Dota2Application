@@ -9,10 +9,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.jacobkoger.newdota2applicationwsidebar.POJO_MatchDetails.MatchDetails;
+import com.example.jacobkoger.newdota2applicationwsidebar.POJO_MatchDetails.Player;
 
 import java.io.IOException;
 
@@ -31,9 +32,13 @@ public class DisplayMatchDetailsFragment extends Fragment {
 
     private static final String TAG = DisplayMatchDetailsFragment.class.getSimpleName();
     private static final String KEY_MATCH_ID = TAG + ":matchId";
+
+    public boolean didRadiantWin;
+
     String url = "https://api.steampowered.com";
-    TextView DireKillsTextView, RadiantKillsTextView, MatchIDTextView;
-    ProgressBar KillsProgressBar;
+    TextView MatchIDTextView, WinningTeamTextView;
+    LinearLayout mProgressContainer;
+
     private OnFragmentInteractionListener mListener;
 
     public DisplayMatchDetailsFragment() {
@@ -58,10 +63,9 @@ public class DisplayMatchDetailsFragment extends Fragment {
 
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        DireKillsTextView = (TextView) view.findViewById(R.id.direKillsTextView);
-        RadiantKillsTextView = (TextView) view.findViewById(R.id.radiantKillsTextView);
         MatchIDTextView = (TextView) view.findViewById(R.id.MatchIDTextView);
-        KillsProgressBar = (ProgressBar) view.findViewById(R.id.progressBarKills);
+        WinningTeamTextView = (TextView) view.findViewById(R.id.WinningTeamTextView);
+        mProgressContainer = (LinearLayout) view.findViewById(R.id.progressContainer);
         getResult();
     }
 
@@ -100,7 +104,7 @@ public class DisplayMatchDetailsFragment extends Fragment {
             }
         });
 
-        Retrofit retrofit = new Retrofit.Builder()
+        final Retrofit retrofit = new Retrofit.Builder()
                 .client(builder.build())
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -111,9 +115,59 @@ public class DisplayMatchDetailsFragment extends Fragment {
             @Override
             public void onResponse(Call<MatchDetails> call, Response<MatchDetails> response) {
                 MatchDetails result = response.body();
-                DireKillsTextView.setText("Dire Kills: " + result.getResult().getDireScore());
-                RadiantKillsTextView.setText("Radiant Kills:" + result.getResult().getRadiantScore());
                 MatchIDTextView.setText(result.getResult().getMatchId());
+                didRadiantWin = result.getResult().getRadiantWin();
+                if (didRadiantWin) {
+                    WinningTeamTextView.setText("Radiant Won!");
+                } else {
+                    WinningTeamTextView.setText("Dire Won!");
+                }
+
+                int radiantXp = 0;
+                int direXp = 0;
+                for (Player player : result.getResult().getPlayers()) {
+                    final int currXpm = player.getXpPerMin();
+                    if (player.getPlayerSlot() <= 4) {
+                        radiantXp += currXpm;
+                    } else {
+                        direXp += currXpm;
+                    }
+                }
+                int radiantGpm = 0;
+                int direGpm = 0;
+                for (Player player : result.getResult().getPlayers()) {
+                    final int currGpm = player.getGoldPerMin();
+                    if (player.getPlayerSlot() <= 4) {
+                        radiantGpm += currGpm;
+                    } else {
+                        direGpm += currGpm;
+                    }
+                }
+                int radiantGoldSpent = 0;
+                int direGoldSpent = 0;
+                for (Player player : result.getResult().getPlayers()) {
+                    final int currGoldSpent = player.getGoldSpent();
+                    if (player.getPlayerSlot() <= 4) {
+                        radiantGoldSpent += currGoldSpent;
+                    } else {
+                        direGoldSpent += currGoldSpent;
+                    }
+                }
+                final MatchProgressView killProgress = inflateProgressView();
+                killProgress.bindKills(result.getResult());
+                mProgressContainer.addView(killProgress);
+
+                final MatchProgressView xpProgress = inflateProgressView();
+                xpProgress.bindXpmAverage(radiantXp, direXp);
+                mProgressContainer.addView(xpProgress);
+
+                final MatchProgressView GpmProgress = inflateProgressView();
+                GpmProgress.bindGpmAverage(radiantGpm, direGpm);
+                mProgressContainer.addView(GpmProgress);
+
+                final MatchProgressView GoldSpentProgress = inflateProgressView();
+                GoldSpentProgress.bindGoldSpent(radiantGoldSpent, direGoldSpent);
+                mProgressContainer.addView(GoldSpentProgress);
             }
 
             @Override
@@ -123,6 +177,11 @@ public class DisplayMatchDetailsFragment extends Fragment {
 
         });
 
+    }
+
+    private MatchProgressView inflateProgressView() {
+        final LayoutInflater inflater = LayoutInflater.from(getContext());
+        return (MatchProgressView) inflater.inflate(R.layout.progressbar, mProgressContainer, false);
     }
 
     public interface OnFragmentInteractionListener {

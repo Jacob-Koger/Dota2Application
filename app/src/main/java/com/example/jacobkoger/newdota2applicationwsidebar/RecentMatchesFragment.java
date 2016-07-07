@@ -31,7 +31,13 @@ public class RecentMatchesFragment extends android.support.v4.app.Fragment {
     String url = "https://api.steampowered.com";
     private RecyclerView recyclerView;
     private ArrayList<MatchHistory> data;
-    private RecyclerAdapter adapter = new RecyclerAdapter();
+    private RecyclerAdapter adapter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        adapter = new RecyclerAdapter(getContext());
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

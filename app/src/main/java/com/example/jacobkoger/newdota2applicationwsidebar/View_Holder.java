@@ -11,6 +11,7 @@ public class View_Holder extends RecyclerView.ViewHolder {
     TextView textView_MatchNumber, textView_StartTime, textView_LobbyType,
             textView_RadiantID, textView_DireID, textView_Players, matchID_View;
     ImageView imageViewBottle;
+    MatchProgressView matchProgressView;
 
     View_Holder(View itemView) {
         super(itemView);
