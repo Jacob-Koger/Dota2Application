@@ -1,52 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"  android:layout_height="48dp"
+<com.example.jacobkoger.newdota2applicationwsidebar.MatchProgressView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
     android:layout_marginBottom="36dp">
 
-<com.example.jacobkoger.newdota2applicationwsidebar.MatchProgressView
-    android:id="@+id/whatever"
-    android:layout_width="match_parent"
-    android:layout_marginBottom="36dp"
-    android:layout_height="48dp">
+    <TextView
+        android:id="@+id/radiantKillsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/progressBarKills"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="start|center_vertical"
+        android:text="Radiant:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <ProgressBar
+        android:id="@+id/progressBarKills"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/progressBarKills"
-        android:indeterminate="false"
-        android:progressDrawable="@drawable/progressbar"
+        android:layout_alignEnd="@+id/direKillsTextView"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/direKillsTextView" />
+        android:layout_gravity="center_horizontal|bottom"
+        android:indeterminate="false"
+        android:progressDrawable="@drawable/progressbar" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Kills"
-        android:id="@+id/progressBarLabelTextView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Radiant:"
-        android:id="@+id/radiantKillsTextView"
-        android:layout_above="@+id/progressBarKills"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Dire:"
         android:id="@+id/direKillsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/progressBarKills"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="right|center_vertical"
+        android:text="Dire:"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/progressBarLabelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal|top"
+        android:text="Kills"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </com.example.jacobkoger.newdota2applicationwsidebar.MatchProgressView>
-
-</FrameLayout>

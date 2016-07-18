@@ -13,6 +13,6 @@
         android:layout_height="wrap_content"
         android:text="Dota 2"
         android:textColor="@android:color/white"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>

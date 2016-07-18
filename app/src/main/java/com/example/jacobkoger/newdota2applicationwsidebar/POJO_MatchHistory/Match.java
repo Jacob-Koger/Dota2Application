@@ -2,6 +2,7 @@ package com.example.jacobkoger.newdota2applicationwsidebar.POJO_MatchHistory;
 
 
 import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,17 +35,24 @@ public class Match {
     public String getMatchSeqNum() {
         return matchSeqNum;
     }
+
     public String getStartTime() {
         return startTime;
     }
-    public String getLobbyType(){
+
+    public String getLobbyType() {
         return lobbyType;
     }
-    public String getRadiantTeamId(){
+
+    public String getRadiantTeamId() {
         return radiantTeamId;
     }
-    public String getDireTeamId(){
+
+    public String getDireTeamId() {
         return direTeamId;
     }
-    public List<Player> getPlayers() {return players;}
+
+    public List<Player> getPlayers() {
+        return players;
+    }
 }

@@ -17,54 +17,42 @@ public class Player {
     private long heroId;
 
     /**
-     *
-     * @return
-     * The accountId
+     * @return The accountId
      */
     public long getAccountId() {
         return accountId;
     }
 
     /**
-     *
-     * @param accountId
-     * The account_id
+     * @param accountId The account_id
      */
     public void setAccountId(Integer accountId) {
         this.accountId = accountId;
     }
 
     /**
-     *
-     * @return
-     * The playerSlot
+     * @return The playerSlot
      */
     public long getPlayerSlot() {
         return playerSlot;
     }
 
     /**
-     *
-     * @param playerSlot
-     * The player_slot
+     * @param playerSlot The player_slot
      */
     public void setPlayerSlot(Integer playerSlot) {
         this.playerSlot = playerSlot;
     }
 
     /**
-     *
-     * @return
-     * The heroId
+     * @return The heroId
      */
     public long getHeroId() {
         return heroId;
     }
 
     /**
-     *
-     * @param heroId
-     * The hero_id
+     * @param heroId The hero_id
      */
     public void setHeroId(Integer heroId) {
         this.heroId = heroId;

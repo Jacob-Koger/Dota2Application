@@ -2,4 +2,6 @@
     <string name="app_name">NewDota2ApplicationWSidebar</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="radiantWin">Radiant Won!</string>
+    <string name="direWin">Dire Won!</string>
 </resources>

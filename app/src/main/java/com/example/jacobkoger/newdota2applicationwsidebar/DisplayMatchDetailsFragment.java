@@ -65,7 +65,7 @@ public class DisplayMatchDetailsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         MatchIDTextView = (TextView) view.findViewById(R.id.MatchIDTextView);
         WinningTeamTextView = (TextView) view.findViewById(R.id.WinningTeamTextView);
-        mProgressContainer = (LinearLayout) view.findViewById(R.id.progressContainer);
+        mProgressContainer = (LinearLayout) view.findViewById(R.id.progressbarLLContainer);
         getResult();
     }
 
@@ -118,9 +118,9 @@ public class DisplayMatchDetailsFragment extends Fragment {
                 MatchIDTextView.setText(result.getResult().getMatchId());
                 didRadiantWin = result.getResult().getRadiantWin();
                 if (didRadiantWin) {
-                    WinningTeamTextView.setText("Radiant Won!");
+                    WinningTeamTextView.setText(R.string.radiantWin);
                 } else {
-                    WinningTeamTextView.setText("Dire Won!");
+                    WinningTeamTextView.setText(R.string.direWin);
                 }
 
                 int radiantXp = 0;

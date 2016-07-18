@@ -17,54 +17,42 @@ public class AbilityUpgrade {
     private Integer level;
 
     /**
-     *
-     * @return
-     * The ability
+     * @return The ability
      */
     public Integer getAbility() {
         return ability;
     }
 
     /**
-     *
-     * @param ability
-     * The ability
+     * @param ability The ability
      */
     public void setAbility(Integer ability) {
         this.ability = ability;
     }
 
     /**
-     *
-     * @return
-     * The time
+     * @return The time
      */
     public Integer getTime() {
         return time;
     }
 
     /**
-     *
-     * @param time
-     * The time
+     * @param time The time
      */
     public void setTime(Integer time) {
         this.time = time;
     }
 
     /**
-     *
-     * @return
-     * The level
+     * @return The level
      */
     public Integer getLevel() {
         return level;
     }
 
     /**
-     *
-     * @param level
-     * The level
+     * @param level The level
      */
     public void setLevel(Integer level) {
         this.level = level;

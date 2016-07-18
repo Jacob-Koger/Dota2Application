@@ -33,11 +33,13 @@ public class MatchProgressView extends RelativeLayout {
         final int direAveXpm = direXp / 5;
         bindData(radiantAveXpm + direAveXpm, radiantAveXpm, "Dire XPM: " + direAveXpm, "Radiant XPM:" + radiantAveXpm, "Team XPM");
     }
+
     public void bindGpmAverage(int radiantGpm, int direGpm) {
         final int radiantAveGpm = radiantGpm / 5;
         final int direAveGpm = direGpm / 5;
         bindData(radiantAveGpm + direAveGpm, radiantAveGpm, "Dire GPM: " + direAveGpm, "Radiant XPM:" + radiantAveGpm, "Team GPM");
     }
+
     public void bindGoldSpent(int radiantGoldSpent, int direGoldSpent) {
         bindData(radiantGoldSpent + direGoldSpent, radiantGoldSpent, "Dire Gold Spent: " + direGoldSpent, "Radiant Gold Spent:" + radiantGoldSpent, "Gold Spent");
     }
@@ -49,14 +51,13 @@ public class MatchProgressView extends RelativeLayout {
     }
 
 
-    private void bindData(int max, int currProg, String dire, String rad, String label){
+    private void bindData(int max, int currProg, String dire, String rad, String label) {
         mProgress.setMax(max);
         mProgress.setProgress(currProg);
         mDireKill.setText(dire);
         mRadiantKill.setText(rad);
         ProgressBarLabel.setText(label);
     }
-
 
 
 }

@@ -84,432 +84,336 @@ public class Player {
     private List<AbilityUpgrade> abilityUpgrades = new ArrayList<AbilityUpgrade>();
 
     /**
-     *
-     * @return
-     * The accountId
+     * @return The accountId
      */
     public double getAccountId() {
         return accountId;
     }
 
     /**
-     *
-     * @param accountId
-     * The account_id
+     * @param accountId The account_id
      */
     public void setAccountId(double accountId) {
         this.accountId = accountId;
     }
 
     /**
-     *
-     * @return
-     * The playerSlot
+     * @return The playerSlot
      */
     public Integer getPlayerSlot() {
         return playerSlot;
     }
 
     /**
-     *
-     * @param playerSlot
-     * The player_slot
+     * @param playerSlot The player_slot
      */
     public void setPlayerSlot(Integer playerSlot) {
         this.playerSlot = playerSlot;
     }
 
     /**
-     *
-     * @return
-     * The heroId
+     * @return The heroId
      */
     public Integer getHeroId() {
         return heroId;
     }
 
     /**
-     *
-     * @param heroId
-     * The hero_id
+     * @param heroId The hero_id
      */
     public void setHeroId(Integer heroId) {
         this.heroId = heroId;
     }
 
     /**
-     *
-     * @return
-     * The item0
+     * @return The item0
      */
     public Integer getItem0() {
         return item0;
     }
 
     /**
-     *
-     * @param item0
-     * The item_0
+     * @param item0 The item_0
      */
     public void setItem0(Integer item0) {
         this.item0 = item0;
     }
 
     /**
-     *
-     * @return
-     * The item1
+     * @return The item1
      */
     public Integer getItem1() {
         return item1;
     }
 
     /**
-     *
-     * @param item1
-     * The item_1
+     * @param item1 The item_1
      */
     public void setItem1(Integer item1) {
         this.item1 = item1;
     }
 
     /**
-     *
-     * @return
-     * The item2
+     * @return The item2
      */
     public Integer getItem2() {
         return item2;
     }
 
     /**
-     *
-     * @param item2
-     * The item_2
+     * @param item2 The item_2
      */
     public void setItem2(Integer item2) {
         this.item2 = item2;
     }
 
     /**
-     *
-     * @return
-     * The item3
+     * @return The item3
      */
     public Integer getItem3() {
         return item3;
     }
 
     /**
-     *
-     * @param item3
-     * The item_3
+     * @param item3 The item_3
      */
     public void setItem3(Integer item3) {
         this.item3 = item3;
     }
 
     /**
-     *
-     * @return
-     * The item4
+     * @return The item4
      */
     public Integer getItem4() {
         return item4;
     }
 
     /**
-     *
-     * @param item4
-     * The item_4
+     * @param item4 The item_4
      */
     public void setItem4(Integer item4) {
         this.item4 = item4;
     }
 
     /**
-     *
-     * @return
-     * The item5
+     * @return The item5
      */
     public Integer getItem5() {
         return item5;
     }
 
     /**
-     *
-     * @param item5
-     * The item_5
+     * @param item5 The item_5
      */
     public void setItem5(Integer item5) {
         this.item5 = item5;
     }
 
     /**
-     *
-     * @return
-     * The kills
+     * @return The kills
      */
     public Integer getKills() {
         return kills;
     }
 
     /**
-     *
-     * @param kills
-     * The kills
+     * @param kills The kills
      */
     public void setKills(Integer kills) {
         this.kills = kills;
     }
 
     /**
-     *
-     * @return
-     * The deaths
+     * @return The deaths
      */
     public Integer getDeaths() {
         return deaths;
     }
 
     /**
-     *
-     * @param deaths
-     * The deaths
+     * @param deaths The deaths
      */
     public void setDeaths(Integer deaths) {
         this.deaths = deaths;
     }
 
     /**
-     *
-     * @return
-     * The assists
+     * @return The assists
      */
     public Integer getAssists() {
         return assists;
     }
 
     /**
-     *
-     * @param assists
-     * The assists
+     * @param assists The assists
      */
     public void setAssists(Integer assists) {
         this.assists = assists;
     }
 
     /**
-     *
-     * @return
-     * The leaverStatus
+     * @return The leaverStatus
      */
     public Integer getLeaverStatus() {
         return leaverStatus;
     }
 
     /**
-     *
-     * @param leaverStatus
-     * The leaver_status
+     * @param leaverStatus The leaver_status
      */
     public void setLeaverStatus(Integer leaverStatus) {
         this.leaverStatus = leaverStatus;
     }
 
     /**
-     *
-     * @return
-     * The lastHits
+     * @return The lastHits
      */
     public Integer getLastHits() {
         return lastHits;
     }
 
     /**
-     *
-     * @param lastHits
-     * The last_hits
+     * @param lastHits The last_hits
      */
     public void setLastHits(Integer lastHits) {
         this.lastHits = lastHits;
     }
 
     /**
-     *
-     * @return
-     * The denies
+     * @return The denies
      */
     public Integer getDenies() {
         return denies;
     }
 
     /**
-     *
-     * @param denies
-     * The denies
+     * @param denies The denies
      */
     public void setDenies(Integer denies) {
         this.denies = denies;
     }
 
     /**
-     *
-     * @return
-     * The goldPerMin
+     * @return The goldPerMin
      */
     public Integer getGoldPerMin() {
         return goldPerMin;
     }
 
     /**
-     *
-     * @param goldPerMin
-     * The gold_per_min
+     * @param goldPerMin The gold_per_min
      */
     public void setGoldPerMin(Integer goldPerMin) {
         this.goldPerMin = goldPerMin;
     }
 
     /**
-     *
-     * @return
-     * The xpPerMin
+     * @return The xpPerMin
      */
     public Integer getXpPerMin() {
         return xpPerMin;
     }
 
     /**
-     *
-     * @param xpPerMin
-     * The xp_per_min
+     * @param xpPerMin The xp_per_min
      */
     public void setXpPerMin(Integer xpPerMin) {
         this.xpPerMin = xpPerMin;
     }
 
     /**
-     *
-     * @return
-     * The level
+     * @return The level
      */
     public Integer getLevel() {
         return level;
     }
 
     /**
-     *
-     * @param level
-     * The level
+     * @param level The level
      */
     public void setLevel(Integer level) {
         this.level = level;
     }
 
     /**
-     *
-     * @return
-     * The gold
+     * @return The gold
      */
     public Integer getGold() {
         return gold;
     }
 
     /**
-     *
-     * @param gold
-     * The gold
+     * @param gold The gold
      */
     public void setGold(Integer gold) {
         this.gold = gold;
     }
 
     /**
-     *
-     * @return
-     * The goldSpent
+     * @return The goldSpent
      */
     public Integer getGoldSpent() {
         return goldSpent;
     }
 
     /**
-     *
-     * @param goldSpent
-     * The gold_spent
+     * @param goldSpent The gold_spent
      */
     public void setGoldSpent(Integer goldSpent) {
         this.goldSpent = goldSpent;
     }
 
     /**
-     *
-     * @return
-     * The heroDamage
+     * @return The heroDamage
      */
     public Integer getHeroDamage() {
         return heroDamage;
     }
 
     /**
-     *
-     * @param heroDamage
-     * The hero_damage
+     * @param heroDamage The hero_damage
      */
     public void setHeroDamage(Integer heroDamage) {
         this.heroDamage = heroDamage;
     }
 
     /**
-     *
-     * @return
-     * The towerDamage
+     * @return The towerDamage
      */
     public Integer getTowerDamage() {
         return towerDamage;
     }
 
     /**
-     *
-     * @param towerDamage
-     * The tower_damage
+     * @param towerDamage The tower_damage
      */
     public void setTowerDamage(Integer towerDamage) {
         this.towerDamage = towerDamage;
     }
 
     /**
-     *
-     * @return
-     * The heroHealing
+     * @return The heroHealing
      */
     public Integer getHeroHealing() {
         return heroHealing;
     }
 
     /**
-     *
-     * @param heroHealing
-     * The hero_healing
+     * @param heroHealing The hero_healing
      */
     public void setHeroHealing(Integer heroHealing) {
         this.heroHealing = heroHealing;
     }
 
     /**
-     *
-     * @return
-     * The abilityUpgrades
+     * @return The abilityUpgrades
      */
     public List<AbilityUpgrade> getAbilityUpgrades() {
         return abilityUpgrades;
     }
 
     /**
-     *
-     * @param abilityUpgrades
-     * The ability_upgrades
+     * @param abilityUpgrades The ability_upgrades
      */
     public void setAbilityUpgrades(List<AbilityUpgrade> abilityUpgrades) {
         this.abilityUpgrades = abilityUpgrades;

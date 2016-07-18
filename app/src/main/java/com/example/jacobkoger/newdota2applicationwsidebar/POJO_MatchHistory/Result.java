@@ -13,90 +13,70 @@ public class Result {
     private List<Match> matches = new ArrayList<>();
 
     /**
-     *
-     * @return
-     * The status
+     * @return The status
      */
     public long getStatus() {
         return status;
     }
 
     /**
-     *
-     * @param status
-     * The status
+     * @param status The status
      */
     public void setStatus(int status) {
         this.status = status;
     }
 
     /**
-     *
-     * @return
-     * The numResults
+     * @return The numResults
      */
     public long getNumResults() {
         return numResults;
     }
 
     /**
-     *
-     * @param numResults
-     * The num_results
+     * @param numResults The num_results
      */
     public void setNumResults(int numResults) {
         this.numResults = numResults;
     }
 
     /**
-     *
-     * @return
-     * The totalResults
+     * @return The totalResults
      */
     public long getTotalResults() {
         return totalResults;
     }
 
     /**
-     *
-     * @param totalResults
-     * The total_results
+     * @param totalResults The total_results
      */
     public void setTotalResults(int totalResults) {
         this.totalResults = totalResults;
     }
 
     /**
-     *
-     * @return
-     * The resultsRemaining
+     * @return The resultsRemaining
      */
     public long getResultsRemaining() {
         return resultsRemaining;
     }
 
     /**
-     *
-     * @param resultsRemaining
-     * The results_remaining
+     * @param resultsRemaining The results_remaining
      */
     public void setResultsRemaining(int resultsRemaining) {
         this.resultsRemaining = resultsRemaining;
     }
 
     /**
-     *
-     * @return
-     * The matches
+     * @return The matches
      */
     public List<Match> getMatches() {
         return matches;
     }
 
     /**
-     *
-     * @param matches
-     * The matches
+     * @param matches The matches
      */
     public void setMatches(List<Match> matches) {
         this.matches = matches;
