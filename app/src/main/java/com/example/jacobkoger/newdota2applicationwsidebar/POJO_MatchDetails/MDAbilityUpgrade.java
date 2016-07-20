@@ -4,7 +4,7 @@ package com.example.jacobkoger.newdota2applicationwsidebar.POJO_MatchDetails;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class AbilityUpgrade {
+public class MDAbilityUpgrade {
 
     @SerializedName("ability")
     @Expose

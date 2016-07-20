@@ -6,11 +6,11 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Result {
+public class MDResult {
 
-    @SerializedName("players")
+    @SerializedName("player")
     @Expose
-    private List<Player> players = new ArrayList<>();
+    private List<MDPlayer> MDPlayers = new ArrayList<>();
     @SerializedName("radiant_win")
     @Expose
     private Boolean radiantWin;
@@ -79,12 +79,12 @@ public class Result {
     private int direScore;
 
 
-    public List<Player> getPlayers() {
-        return players;
+    public List<MDPlayer> getMDPlayers() {
+        return MDPlayers;
     }
 
-    public void setPlayers(List<Player> players) {
-        this.players = players;
+    public void setMDPlayers(List<MDPlayer> MDPlayers) {
+        this.MDPlayers = MDPlayers;
     }
 
     public Boolean getRadiantWin() {

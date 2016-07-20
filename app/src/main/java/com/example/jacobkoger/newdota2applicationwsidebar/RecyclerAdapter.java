@@ -2,15 +2,20 @@ package com.example.jacobkoger.newdota2applicationwsidebar;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.jacobkoger.newdota2applicationwsidebar.POJO_Heroes.Hero;
 import com.example.jacobkoger.newdota2applicationwsidebar.POJO_Heroes.HeroesList;
-import com.example.jacobkoger.newdota2applicationwsidebar.POJO_MatchHistory.Match;
+import com.example.jacobkoger.newdota2applicationwsidebar.POJO_MatchHistory.MHMatch;
+import com.example.jacobkoger.newdota2applicationwsidebar.POJO_MatchHistory.MHPlayer;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -22,13 +27,15 @@ import java.util.List;
 public class RecyclerAdapter extends android.support.v7.widget.RecyclerView.Adapter<View_Holder> {
 
     private final static int FADE_DURATION = 250;
-    public final List<Match> result = new ArrayList<>();
+    public final List<MHMatch> result = new ArrayList<>();
     public final List<Hero> mHeroes = new ArrayList<>();
     private Context mContext;
+    private Integer heroID;
+    private int playerslot;
 
     public RecyclerAdapter(Context context) {
         mContext = context;
-
+        mContext = context;
 
         final Gson gson = new Gson();
         final AssetManager am = context.getAssets();
@@ -51,25 +58,32 @@ public class RecyclerAdapter extends android.support.v7.widget.RecyclerView.Adap
         }
     }
 
-    void addData(List<Match> matchHistory) {
-        result.clear();
-        result.addAll(matchHistory);
-        notifyDataSetChanged();
+    void addData(List<MHMatch> MHMatchHistory) {
+        for (MHMatch count : MHMatchHistory)
+            if (10 == (count.getMHPlayers().size())) {
+                final List<MHMatch> history = new ArrayList<>();
+                for (MHMatch match : MHMatchHistory) {
+                    if (!"8".equals(match.getLobbyType())) {
+                        history.add(match);
+                    }
+                }
+                Log.d("count", String.valueOf(count.getMHPlayers().size()));
+                result.clear();
+                result.addAll(history);
+                notifyDataSetChanged();
+            }
     }
 
     @Override
     public View_Holder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rows, parent, false);
-        View expandedView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.expanded_row, parent, false);
-        final View_Holder holder = new View_Holder(view);
-        return holder;
+        return new View_Holder(view);
     }
-
 
     @Override
     public void onBindViewHolder(final View_Holder holder, int position) {
-        final Match match = result.get(holder.getAdapterPosition());
+        final MHMatch MHMatch = result.get(holder.getAdapterPosition());
+
         setFadeAnimation(holder.textView_LobbyType);
         setFadeAnimation(holder.textView_StartTime);
         setFadeAnimation(holder.textView_RadiantID);
@@ -77,13 +91,31 @@ public class RecyclerAdapter extends android.support.v7.widget.RecyclerView.Adap
         setFadeAnimation(holder.textView_MatchNumber);
         setFadeAnimation(holder.matchID_View);
 //        setFadeAnimation(holder.textView_Players);
-        holder.textView_LobbyType.setText("Lobby Type:  " + match.getLobbyType());
-        holder.textView_StartTime.setText("Start Time:  " + match.getStartTime());
-        holder.textView_RadiantID.setText("Radiant ID: " + match.getRadiantTeamId());
-        holder.textView_DireID.setText("Dire ID " + match.getDireTeamId());
-//        holder.textView_Players.setText("Player Count: " + match.getPlayers());
-        holder.textView_MatchNumber.setText("Match Number: " + match.getMatchSeqNum());
 
+        holder.textView_LobbyType.setText("Lobby Type:  " + MHMatch.getLobbyType());
+        holder.textView_StartTime.setText("Start Time:  " + MHMatch.getStartTime());
+        holder.textView_RadiantID.setText("Radiant ID: " + MHMatch.getRadiantTeamId());
+        holder.textView_DireID.setText("Dire ID " + MHMatch.getDireTeamId());
+//        holder.textView_Players.setText("MDPlayer Count: " + MHMatch.getMDPlayers());
+        holder.textView_MatchNumber.setText("MHMatch Number: " + MHMatch.getMatchSeqNum());
+
+        setImages(holder);
+    }
+
+    private void setImages(final View_Holder holder) {
+        final Resources res = mContext.getResources();
+
+        final MHMatch MHMatch = result.get(holder.getAdapterPosition());
+        for (final MHPlayer mhPlayer : MHMatch.getMHPlayers()) {
+            for (final Hero hero : mHeroes) {
+                if (mhPlayer.getHeroId() == hero.getId()) {
+                    final String heroName = hero.getName();
+                    final int heroId = res.getIdentifier(heroName, "drawable", mContext.getPackageName());
+                    final ImageView iv = holder.getSlotView((int) mhPlayer.getPlayerSlot());
+                    Glide.with(mContext).load(heroId).fitCenter().crossFade().into(iv);
+                }
+            }
+        }
     }
 
     private void setFadeAnimation(View view) {
@@ -100,8 +132,5 @@ public class RecyclerAdapter extends android.support.v7.widget.RecyclerView.Adap
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-
     }
-
-
 }

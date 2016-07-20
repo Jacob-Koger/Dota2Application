@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Match {
+public class MHMatch {
 
     @SerializedName("match_seq_num")
     private String matchSeqNum;
@@ -18,17 +18,18 @@ public class Match {
     private String radiantTeamId;
     @SerializedName("dire_team_id")
     private String direTeamId;
-    private List<Player> players = new ArrayList<>();
+    @SerializedName("players")
+    private List<MHPlayer> MHPlayers = new ArrayList<>();
 
     @Override
     public String toString() {
-        return "Match{" +
+        return "MHMatch{" +
                 "matchSeqNum='" + matchSeqNum + '\'' +
                 ", startTime=" + startTime +
                 ", lobbyType=" + lobbyType +
                 ", radiantTeamId=" + radiantTeamId +
                 ", direTeamId=" + direTeamId +
-                ", players=" + players +
+                ", MHPlayers=" + MHPlayers +
                 '}';
     }
 
@@ -52,7 +53,7 @@ public class Match {
         return direTeamId;
     }
 
-    public List<Player> getPlayers() {
-        return players;
+    public List<MHPlayer> getMHPlayers() {
+        return MHPlayers;
     }
 }

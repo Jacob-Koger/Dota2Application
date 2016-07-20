@@ -3,136 +3,188 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/activity_vertical_margin"
     app:cardCornerRadius="@dimen/activity_vertical_margin"
     app:cardElevation="@dimen/activity_vertical_margin">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <FrameLayout
-        android:id="@+id/shownFrameLayout"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="303dp"
+        <FrameLayout
+            android:id="@+id/shownFrameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|top"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/matchID_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="MatchID: "
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/startTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/matchID_view"
+                    android:text="Start Time(Unix): "
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/lobbyType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/startTime"
+                    android:text="Lobby Type: "
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/radiantTeamId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/lobbyType"
+                    android:text="Radiant Team ID: "
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/direTeamId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/radiantTeamId"
+                    android:text="Dire Team ID:"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/matchSeqNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/direTeamId"
+                    android:text="Match Seq. Num.: "
+                    android:textSize="14sp" />
+
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/hiddenFrameLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left|top"
-            android:padding="16dp">
+            android:layout_below="@+id/shownFrameLayout"
+            android:visibility="visible">
 
-            <TextView
-                android:id="@+id/matchID_view"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:text="MatchID: "
-                android:textSize="14sp" />
+                android:layout_gravity="center"
+                android:paddingBottom="16dp">
 
-            <TextView
-                android:id="@+id/startTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/matchID_view"
-                android:text="Start Time(Unix): "
-                android:textSize="14sp" />
+                <ImageView
+                    android:id="@+id/rHeroImageView0"
+                    android:layout_width="64dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/blankhero"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true" />
 
-            <TextView
-                android:id="@+id/lobbyType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/startTime"
-                android:text="Lobby Type: "
-                android:textSize="14sp" />
+                <ImageView
+                    android:id="@+id/rHeroImageView1"
+                    android:layout_width="64dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/blankhero"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/rHeroImageView0" />
 
-            <TextView
-                android:id="@+id/radiantTeamId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/lobbyType"
-                android:text="Radiant Team ID: "
-                android:textSize="14sp" />
+                <ImageView
+                    android:id="@+id/rHeroImageView2"
+                    android:layout_width="64dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/blankhero"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/rHeroImageView1" />
 
-            <TextView
-                android:id="@+id/direTeamId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/radiantTeamId"
-                android:text="Dire Team ID:"
-                android:textSize="14sp" />
+                <ImageView
+                    android:id="@+id/rHeroImageView3"
+                    android:layout_width="64dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/blankhero"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/rHeroImageView2" />
 
-            <TextView
-                android:id="@+id/matchSeqNum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/direTeamId"
-                android:text="Match Seq. Num.: "
-                android:textSize="14sp" />
+                <ImageView
+                    android:id="@+id/rHeroImageView4"
+                    android:layout_width="64dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/blankhero"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/rHeroImageView3" />
 
+                <ImageView
+                    android:id="@+id/dHeroImageView128"
+                    android:layout_width="64dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/blankhero"
+                    android:layout_alignTop="@+id/dHeroImageView129"
+                    android:layout_alignParentStart="true" />
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/dHeroImageView129"
+                    android:layout_width="64dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/blankhero"
+                    android:layout_below="@+id/rHeroImageView0"
+                    android:layout_toEndOf="@+id/rHeroImageView0" />
 
-    </FrameLayout>
+                <ImageView
+                    android:id="@+id/dHeroImageView130"
+                    android:layout_width="64dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/blankhero"
+                    android:layout_below="@+id/rHeroImageView1"
+                    android:layout_toEndOf="@+id/rHeroImageView1" />
 
-    <FrameLayout
-        android:id="@+id/hiddenFrameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/shownFrameLayout">
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/blankhero"
+                    android:id="@+id/dHeroImageView131"
+                    android:layout_below="@+id/rHeroImageView2"
+                    android:layout_toEndOf="@+id/rHeroImageView2" />
 
-        <RelativeLayout
-            android:layout_width="303dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left|top"
-            android:padding="16dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/blankhero.png"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/imageView4" />
+                <ImageView
+                    android:id="@+id/dHeroImageView132"
+                    android:layout_width="64dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/blankhero"
+                    android:layout_below="@+id/rHeroImageView3"
+                    android:layout_toEndOf="@+id/rHeroImageView3" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/abaddon"
-                android:id="@+id/imageView"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/imageView4" />
+            </RelativeLayout>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/abaddon"
-                android:id="@+id/imageView2"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/imageView3" />
+        </FrameLayout>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/abaddon"
-                android:id="@+id/imageView3"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/imageView"
-                android:layout_alignParentBottom="true" />
-        </RelativeLayout>
-
-    </FrameLayout>
-
-</RelativeLayout>
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Player {
+public class MDPlayer {
 
     @SerializedName("account_id")
     @Expose
@@ -81,7 +81,7 @@ public class Player {
     private Integer heroHealing;
     @SerializedName("ability_upgrades")
     @Expose
-    private List<AbilityUpgrade> abilityUpgrades = new ArrayList<AbilityUpgrade>();
+    private List<MDAbilityUpgrade> abilityUpgrades = new ArrayList<MDAbilityUpgrade>();
 
     /**
      * @return The accountId
@@ -408,14 +408,14 @@ public class Player {
     /**
      * @return The abilityUpgrades
      */
-    public List<AbilityUpgrade> getAbilityUpgrades() {
+    public List<MDAbilityUpgrade> getAbilityUpgrades() {
         return abilityUpgrades;
     }
 
     /**
      * @param abilityUpgrades The ability_upgrades
      */
-    public void setAbilityUpgrades(List<AbilityUpgrade> abilityUpgrades) {
+    public void setAbilityUpgrades(List<MDAbilityUpgrade> abilityUpgrades) {
         this.abilityUpgrades = abilityUpgrades;
     }
 

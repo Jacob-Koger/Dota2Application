@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Player {
+public class MHPlayer {
 
     @SerializedName("account_id")
     @Expose
@@ -61,7 +61,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
+        return "MDPlayer{" +
                 "accountId=" + accountId +
                 ", playerSlot=" + playerSlot +
                 ", heroId=" + heroId +

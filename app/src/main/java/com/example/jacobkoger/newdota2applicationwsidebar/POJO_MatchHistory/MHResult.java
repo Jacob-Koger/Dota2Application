@@ -1,16 +1,19 @@
 package com.example.jacobkoger.newdota2applicationwsidebar.POJO_MatchHistory;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Result {
+public class MHResult {
 
     private long status;
     private long numResults;
     private long totalResults;
     private long resultsRemaining;
-    private List<Match> matches = new ArrayList<>();
+    @SerializedName("matches")
+    private List<MHMatch> MHMatches = new ArrayList<>();
 
     /**
      * @return The status
@@ -69,27 +72,27 @@ public class Result {
     }
 
     /**
-     * @return The matches
+     * @return The MHMatches
      */
-    public List<Match> getMatches() {
-        return matches;
+    public List<MHMatch> getMHMatches() {
+        return MHMatches;
     }
 
     /**
-     * @param matches The matches
+     * @param MHMatches The MHMatches
      */
-    public void setMatches(List<Match> matches) {
-        this.matches = matches;
+    public void setMHMatches(List<MHMatch> MHMatches) {
+        this.MHMatches = MHMatches;
     }
 
     @Override
     public String toString() {
-        return "Result{" +
+        return "MDResult{" +
                 "status=" + status +
                 ", numResults=" + numResults +
                 ", totalResults=" + totalResults +
                 ", resultsRemaining=" + resultsRemaining +
-                ", matches=" + matches +
+                ", MHMatches=" + MHMatches +
                 '}';
     }
 

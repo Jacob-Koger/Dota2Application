@@ -5,11 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.jacobkoger.newdota2applicationwsidebar.POJO_MatchHistory.MatchHistory;
+import com.example.jacobkoger.newdota2applicationwsidebar.POJO_MatchHistory.MHMatchHistory;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RecentMatchesFragment extends android.support.v4.app.Fragment {
     String url = "https://api.steampowered.com";
     private RecyclerView recyclerView;
-    private ArrayList<MatchHistory> data;
+    private ArrayList<MHMatchHistory> data;
     private RecyclerAdapter adapter;
 
     @Override
@@ -51,7 +52,6 @@ public class RecentMatchesFragment extends android.support.v4.app.Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(adapter);
-
         getResult();
     }
 
@@ -73,17 +73,19 @@ public class RecentMatchesFragment extends android.support.v4.app.Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         API_Interface service = retrofit.create(API_Interface.class);
-        Call<MatchHistory> callMH = service.getMatchHistory();
-        callMH.enqueue(new Callback<MatchHistory>() {
+        Call<MHMatchHistory> callMH = service.getMatchHistory();
+        callMH.enqueue(new Callback<MHMatchHistory>() {
             @Override
-            public void onResponse(Call<MatchHistory> call, Response<MatchHistory> response) {
-                MatchHistory matchHistory = response.body();
-                data = new ArrayList<>(Collections.singletonList(matchHistory));
-                adapter.addData(matchHistory.getResult().getMatches());
+            public void onResponse(Call<MHMatchHistory> call, Response<MHMatchHistory> response) {
+                Log.d("things", response.body().getMHResult().toString());
+                MHMatchHistory MHMatchHistory = response.body();
+                data = new ArrayList<>(Collections.singletonList(MHMatchHistory));
+                adapter.addData(MHMatchHistory.getMHResult().getMHMatches());
             }
 
             @Override
-            public void onFailure(Call<MatchHistory> call, Throwable t) {
+            public void onFailure(Call<MHMatchHistory> call, Throwable t) {
+                Log.d("fail", t.toString());
             }
         });
     }

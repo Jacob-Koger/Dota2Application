@@ -1,7 +1,6 @@
 package com.example.jacobkoger.newdota2applicationwsidebar;
 
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -18,7 +17,6 @@ public class MainActivity extends AppCompatActivity
 
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
-    private NavigationView nvDrawer;
     private ActionBarDrawerToggle drawerToggle;
 
     @Override
@@ -28,7 +26,7 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        nvDrawer = (NavigationView) findViewById(R.id.nvView);
+        NavigationView nvDrawer = (NavigationView) findViewById(R.id.nvView);
         setupDrawerContent(nvDrawer);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity
         drawerToggle = setupDrawerToggle();
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.flContent, new RecentMatchesFragment())
+                .replace(R.id.flContent, new InputMatchIDFragment())
                 .commit();
 
     }
@@ -63,14 +61,15 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = null;
         Class fragmentClass;
         switch (menuItem.getItemId()) {
-            case R.id.nav_RecentMatches_fragment:
-                fragmentClass = RecentMatchesFragment.class;
-                break;
             case R.id.nav_InputMatchID_fragment:
                 fragmentClass = InputMatchIDFragment.class;
                 break;
-            default:
+            case R.id.nav_RecentMatches_fragment:
                 fragmentClass = RecentMatchesFragment.class;
+                break;
+
+            default:
+                fragmentClass = InputMatchIDFragment.class;
         }
 
         try {
@@ -105,7 +104,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        // Pass any configuration change to the drawer toggles
         drawerToggle.onConfigurationChanged(newConfig);
     }
 
@@ -115,11 +113,6 @@ public class MainActivity extends AppCompatActivity
                 .replace(R.id.flContent, DisplayMatchDetailsFragment.newInstance(matchId))
                 .addToBackStack(null)
                 .commit();
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 
 }

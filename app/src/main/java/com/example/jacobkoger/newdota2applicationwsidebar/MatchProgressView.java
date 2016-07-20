@@ -1,12 +1,14 @@
 package com.example.jacobkoger.newdota2applicationwsidebar;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.jacobkoger.newdota2applicationwsidebar.POJO_MatchDetails.Result;
+import com.example.jacobkoger.newdota2applicationwsidebar.POJO_MatchDetails.MDResult;
 
 public class MatchProgressView extends RelativeLayout {
 
@@ -19,6 +21,7 @@ public class MatchProgressView extends RelativeLayout {
         super(context, attrs);
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
@@ -44,9 +47,9 @@ public class MatchProgressView extends RelativeLayout {
         bindData(radiantGoldSpent + direGoldSpent, radiantGoldSpent, "Dire Gold Spent: " + direGoldSpent, "Radiant Gold Spent:" + radiantGoldSpent, "Gold Spent");
     }
 
-    public void bindKills(Result result) {
-        final int direScore = result.getDireScore();
-        final int radiantScore = result.getRadiantScore();
+    public void bindKills(MDResult MDResult) {
+        final int direScore = MDResult.getDireScore();
+        final int radiantScore = MDResult.getRadiantScore();
         bindData(radiantScore + direScore, radiantScore, "Dire Kills: " + direScore, "Radiant Kills:" + radiantScore, "Kills");
     }
 
