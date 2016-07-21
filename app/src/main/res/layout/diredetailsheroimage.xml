@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/direHeroImages"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
+    android:layout_below="@+id/openRadiantTeamDetails"
+    android:layout_marginStart="16dp"
+    android:visibility="gone">
+
+    <ImageView
+        android:id="@+id/direHeroImageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/blankhero" />
+
+    <ImageView
+        android:id="@+id/direHeroImageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/direHeroImageView1"
+        android:layout_marginBottom="14dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/blankhero" />
+
+    <ImageView
+        android:id="@+id/direHeroImageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/direHeroImageView2"
+        android:layout_marginBottom="14dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/blankhero" />
+
+    <ImageView
+        android:id="@+id/direHeroImageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/direHeroImageView3"
+        android:layout_marginBottom="14dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/blankhero" />
+
+    <ImageView
+        android:id="@+id/direHeroImageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/direHeroImageView4"
+        android:layout_marginBottom="14dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/blankhero" />
+</RelativeLayout>

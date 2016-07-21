@@ -35,7 +35,6 @@ public class RecyclerAdapter extends android.support.v7.widget.RecyclerView.Adap
 
     public RecyclerAdapter(Context context) {
         mContext = context;
-        mContext = context;
 
         final Gson gson = new Gson();
         final AssetManager am = context.getAssets();

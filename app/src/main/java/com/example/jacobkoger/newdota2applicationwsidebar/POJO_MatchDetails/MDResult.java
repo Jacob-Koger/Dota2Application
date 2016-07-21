@@ -8,7 +8,7 @@ import java.util.List;
 
 public class MDResult {
 
-    @SerializedName("player")
+    @SerializedName("players")
     @Expose
     private List<MDPlayer> MDPlayers = new ArrayList<>();
     @SerializedName("radiant_win")

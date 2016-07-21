@@ -3,6 +3,8 @@ package com.example.jacobkoger.newdota2applicationwsidebar;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,13 +13,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.jacobkoger.newdota2applicationwsidebar.POJO_Heroes.Hero;
+import com.example.jacobkoger.newdota2applicationwsidebar.POJO_Heroes.HeroesList;
 import com.example.jacobkoger.newdota2applicationwsidebar.POJO_MatchDetails.MDMatchDetails;
 import com.example.jacobkoger.newdota2applicationwsidebar.POJO_MatchDetails.MDPlayer;
+import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
@@ -33,11 +44,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class DisplayMatchDetailsFragment extends Fragment {
     private static final String TAG = DisplayMatchDetailsFragment.class.getSimpleName();
     private static final String KEY_MATCH_ID = TAG + ":matchId";
+    public final List<Hero> mHeroes = new ArrayList<>();
     public boolean didRadiantWin;
     String url = "https://api.steampowered.com";
-    TextView MatchIDTextView, WinningTeamTextView, DireTeamDetailsTextView, RadiantTeamDetailsTextView;
+    TextView MatchIDTextView, WinningTeamTextView, DireTeamDetailsTextView, RadiantTeamDetailsTextView,
+            DireTeamHeroName1, DireTeamHeroName2, DireTeamHeroName3, DireTeamHeroName4, DireTeamHeroName5,
+            RadiantTeamHeroName1, RadiantTeamHeroName2, RadiantTeamHeroName3, RadiantTeamHeroName4, RadiantTeamHeroName5;
     LinearLayout mProgressContainer, direDetails, radiantDetails;
+    RelativeLayout direHeroImages, radiantHeroImages;
     ImageButton OpenDireTeamDetailsButton, OpenRadiantTeamDetailsButton;
+    ImageView DireHeroImageView1, DireHeroImageView2, DireHeroImageView3, DireHeroImageView4, DireHeroImageView5,
+            RadiantHeroImageView1, RadiantHeroImageView2, RadiantHeroImageView3, RadiantHeroImageView4, RadiantHeroImageView5;
     Boolean isDireDetailsVisible = false, isRadiantDetailsVisible = false;
 
     public DisplayMatchDetailsFragment() {
@@ -55,6 +72,27 @@ public class DisplayMatchDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Context context = getContext();
+
+        final Gson gson = new Gson();
+        final AssetManager am = context.getAssets();
+
+        InputStream in = null;
+        try {
+            in = am.open("Heroes.json");
+            final HeroesList hl = gson.fromJson(new InputStreamReader(in), HeroesList.class);
+            mHeroes.addAll(hl.getHeroes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         return inflater.inflate(R.layout.fragment_display_match_details, container, false);
     }
 
@@ -66,12 +104,39 @@ public class DisplayMatchDetailsFragment extends Fragment {
         DireTeamDetailsTextView = (TextView) view.findViewById(R.id.direTeamDetailsTextView);
         RadiantTeamDetailsTextView = (TextView) view.findViewById(R.id.radiantTeamDetailsTextView);
 
+        DireTeamHeroName1 = (TextView) view.findViewById(R.id.direHeroName1);
+        DireTeamHeroName2 = (TextView) view.findViewById(R.id.direHeroName2);
+        DireTeamHeroName3 = (TextView) view.findViewById(R.id.direHeroName3);
+        DireTeamHeroName4 = (TextView) view.findViewById(R.id.direHeroName4);
+        DireTeamHeroName5 = (TextView) view.findViewById(R.id.direHeroName5);
+
+        RadiantTeamHeroName1 = (TextView) view.findViewById(R.id.radiantHeroName1);
+        RadiantTeamHeroName2 = (TextView) view.findViewById(R.id.radiantHeroName2);
+        RadiantTeamHeroName3 = (TextView) view.findViewById(R.id.radiantHeroName3);
+        RadiantTeamHeroName4 = (TextView) view.findViewById(R.id.radiantHeroName4);
+        RadiantTeamHeroName5 = (TextView) view.findViewById(R.id.radiantHeroName5);
+
+        DireHeroImageView1 = (ImageView) view.findViewById(R.id.direHeroImageView1);
+        DireHeroImageView2 = (ImageView) view.findViewById(R.id.direHeroImageView2);
+        DireHeroImageView3 = (ImageView) view.findViewById(R.id.direHeroImageView3);
+        DireHeroImageView4 = (ImageView) view.findViewById(R.id.direHeroImageView4);
+        DireHeroImageView5 = (ImageView) view.findViewById(R.id.direHeroImageView5);
+
+        RadiantHeroImageView1 = (ImageView) view.findViewById(R.id.radiantHeroImageView1);
+        RadiantHeroImageView2 = (ImageView) view.findViewById(R.id.radiantHeroImageView2);
+        RadiantHeroImageView3 = (ImageView) view.findViewById(R.id.radiantHeroImageView3);
+        RadiantHeroImageView4 = (ImageView) view.findViewById(R.id.radiantHeroImageView4);
+        RadiantHeroImageView5 = (ImageView) view.findViewById(R.id.radiantHeroImageView5);
+
         OpenDireTeamDetailsButton = (ImageButton) view.findViewById(R.id.openDireTeamDetails);
         OpenRadiantTeamDetailsButton = (ImageButton) view.findViewById(R.id.openRadiantTeamDetails);
 
         mProgressContainer = (LinearLayout) view.findViewById(R.id.progressbarLLContainer);
         direDetails = (LinearLayout) view.findViewById(R.id.direTeamDetailsView);
         radiantDetails = (LinearLayout) view.findViewById(R.id.radiantTeamDetailsView);
+
+        direHeroImages = (RelativeLayout) view.findViewById(R.id.direHeroImages);
+        radiantHeroImages = (RelativeLayout) view.findViewById(R.id.radiantHeroImages);
 
         setOnClickListenersDire();
         setOnClickListenersRadiant();
@@ -85,18 +150,31 @@ public class DisplayMatchDetailsFragment extends Fragment {
             public void onClick(View view) {
                 if (isRadiantDetailsVisible == false && isDireDetailsVisible == false) {
                     radiantDetails.setVisibility(View.VISIBLE);
+                    radiantHeroImages.setVisibility(View.VISIBLE);
                     isRadiantDetailsVisible = true;
                     isDireDetailsVisible = false;
                 } else if (isRadiantDetailsVisible == true && isDireDetailsVisible == false) {
                     radiantDetails.setVisibility(View.GONE);
+                    radiantHeroImages.setVisibility(View.GONE);
                     isRadiantDetailsVisible = false;
                     isDireDetailsVisible = false;
                 } else if (isRadiantDetailsVisible == false && isDireDetailsVisible == true) {
                     direDetails.setVisibility(View.GONE);
+                    direHeroImages.setVisibility(View.GONE);
                     radiantDetails.setVisibility(View.VISIBLE);
+                    radiantHeroImages.setVisibility(View.VISIBLE);
                     isRadiantDetailsVisible = true;
                     isDireDetailsVisible = false;
                 }
+
+                ObjectAnimator.ofFloat(OpenDireTeamDetailsButton, "rotation",
+                        isDireDetailsVisible ? 180 : 0)
+                        .setDuration(500)
+                        .start();
+                ObjectAnimator.ofFloat(OpenRadiantTeamDetailsButton, "rotation",
+                        isRadiantDetailsVisible ? 180 : 0)
+                        .setDuration(500)
+                        .start();
             }
         });
     }
@@ -107,18 +185,32 @@ public class DisplayMatchDetailsFragment extends Fragment {
             public void onClick(View view) {
                 if (isDireDetailsVisible == false && isRadiantDetailsVisible == false) {
                     direDetails.setVisibility(View.VISIBLE);
+                    direHeroImages.setVisibility(View.VISIBLE);
                     isDireDetailsVisible = true;
                     isRadiantDetailsVisible = false;
                 } else if (isDireDetailsVisible == true && isRadiantDetailsVisible == false) {
                     direDetails.setVisibility(View.GONE);
+                    direHeroImages.setVisibility(View.GONE);
                     isDireDetailsVisible = false;
                     isRadiantDetailsVisible = false;
                 } else if (isDireDetailsVisible == false && isRadiantDetailsVisible == true) {
                     radiantDetails.setVisibility(View.GONE);
+                    radiantHeroImages.setVisibility(View.GONE);
                     direDetails.setVisibility(View.VISIBLE);
+                    direHeroImages.setVisibility(View.VISIBLE);
+
                     isDireDetailsVisible = true;
                     isRadiantDetailsVisible = false;
                 }
+
+                ObjectAnimator.ofFloat(OpenDireTeamDetailsButton, "rotation",
+                        isDireDetailsVisible ? 180 : 0)
+                        .setDuration(500)
+                        .start();
+                ObjectAnimator.ofFloat(OpenRadiantTeamDetailsButton, "rotation",
+                        isRadiantDetailsVisible ? 180 : 0)
+                        .setDuration(500)
+                        .start();
             }
         });
     }
@@ -156,15 +248,13 @@ public class DisplayMatchDetailsFragment extends Fragment {
 
         final AnimatorSet mAnimationSet = new AnimatorSet();
 
-        mAnimationSet.play(fadeInDTV).with(fadeInDButton).with(fadeInRButton).with(fadeInRTV).after(1000);
+        mAnimationSet.play(fadeInDTV).with(fadeInDButton).with(fadeInRButton).with(fadeInRTV).after(500);
 
         mAnimationSet.start();
     }
 
     public void getResult() {
         final String matchId = getArguments().getString(KEY_MATCH_ID);
-        Log.d("blah", matchId);
-
         final OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.interceptors().add(new Interceptor() {
             @Override
@@ -186,15 +276,88 @@ public class DisplayMatchDetailsFragment extends Fragment {
         MatchDetailsInterface service = retrofit.create(MatchDetailsInterface.class);
         Call<MDMatchDetails> callMH = service.getMatchDetails(matchId);
         callMH.enqueue(new Callback<MDMatchDetails>() {
+
             @Override
             public void onResponse(Call<MDMatchDetails> call, Response<MDMatchDetails> response) {
                 MDMatchDetails result = response.body();
+                MDPlayer players = result.getMDResult().getMDPlayers().get(0);
                 MatchIDTextView.setText(result.getMDResult().getMatchId());
                 didRadiantWin = result.getMDResult().getRadiantWin();
                 if (didRadiantWin) {
                     WinningTeamTextView.setText(R.string.radiantWin);
                 } else {
                     WinningTeamTextView.setText(R.string.direWin);
+                }
+                final Resources res = getContext().getResources();
+                for (final MDPlayer MDPlayer : result.getMDResult().getMDPlayers()) {
+//                    Log.d("result", MDPlayer.getHeroId().toString() + " " + MDPlayer.getPlayerSlot());
+                    Log.d("players", String.valueOf(result.getMDResult().getMDPlayers().size()));
+
+                    for (final Hero hero : mHeroes) {
+//                        Log.d("result", MDPlayer.getHeroId().toString() + " " + MDPlayer.getPlayerSlot());
+                        Log.d("Heros", hero.getId().toString());
+
+                        if (MDPlayer.getHeroId() == hero.getId()) {
+                            Log.d("result", MDPlayer.getHeroId().toString() + " " + MDPlayer.getPlayerSlot());
+
+                            if (MDPlayer.getPlayerSlot() > 4) {
+                                Log.d("playerSlot", MDPlayer.getPlayerSlot().toString());
+                                if (MDPlayer.getPlayerSlot() == 128) {
+                                    DireTeamHeroName1.setText("1. " + hero.getLocalizedName());
+                                    final String heroName = hero.getName();
+                                    final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
+                                    DireHeroImageView1.setImageResource(heroId);
+
+                                } else if (MDPlayer.getPlayerSlot() == 129) {
+                                    DireTeamHeroName2.setText("2. " + hero.getLocalizedName());
+                                    final String heroName = hero.getName();
+                                    final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
+                                    DireHeroImageView2.setImageResource(heroId);
+
+                                } else if (MDPlayer.getPlayerSlot() == 130) {
+                                    DireTeamHeroName3.setText("3. " + hero.getLocalizedName());
+                                    final String heroName = hero.getName();
+                                    final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
+                                    DireHeroImageView3.setImageResource(heroId);
+                                } else if (MDPlayer.getPlayerSlot() == 131) {
+                                    DireTeamHeroName4.setText("4. " + hero.getLocalizedName());
+                                    final String heroName = hero.getName();
+                                    final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
+                                    DireHeroImageView4.setImageResource(heroId);
+                                } else if (MDPlayer.getPlayerSlot() == 132)
+                                    DireTeamHeroName5.setText("5. " + hero.getLocalizedName());
+                                final String heroName = hero.getName();
+                                final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
+                                DireHeroImageView5.setImageResource(heroId);
+                            } else {
+                                if (MDPlayer.getPlayerSlot() == 0) {
+                                    RadiantTeamHeroName1.setText("1. " + hero.getLocalizedName());
+                                    final String heroName = hero.getName();
+                                    final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
+                                    RadiantHeroImageView1.setImageResource(heroId);
+                                } else if (MDPlayer.getPlayerSlot() == 1) {
+                                    RadiantTeamHeroName2.setText("2. " + hero.getLocalizedName());
+                                    final String heroName = hero.getName();
+                                    final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
+                                    RadiantHeroImageView2.setImageResource(heroId);
+                                } else if (MDPlayer.getPlayerSlot() == 2) {
+                                    RadiantTeamHeroName3.setText("3. " + hero.getLocalizedName());
+                                    final String heroName = hero.getName();
+                                    final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
+                                    RadiantHeroImageView3.setImageResource(heroId);
+                                } else if (MDPlayer.getPlayerSlot() == 3) {
+                                    RadiantTeamHeroName4.setText("4. " + hero.getLocalizedName());
+                                    final String heroName = hero.getName();
+                                    final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
+                                    RadiantHeroImageView4.setImageResource(heroId);
+                                } else if (MDPlayer.getPlayerSlot() == 4)
+                                    RadiantTeamHeroName5.setText("5. " + hero.getLocalizedName());
+                                final String heroName = hero.getName();
+                                final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
+                                RadiantHeroImageView5.setImageResource(heroId);
+                            }
+                        }
+                    }
                 }
 
                 int radiantXp = 0;
@@ -242,11 +405,14 @@ public class DisplayMatchDetailsFragment extends Fragment {
                 final MatchProgressView GoldSpentProgress = inflateProgressView();
                 GoldSpentProgress.bindGoldSpent(radiantGoldSpent, direGoldSpent);
                 mProgressContainer.addView(GoldSpentProgress);
+
+
             }
 
             @Override
             public void onFailure(Call<MDMatchDetails> call, Throwable t) {
-                Log.e("blah", "fail", t);
+                Log.d("result", "fail", t);
+
             }
 
         });
