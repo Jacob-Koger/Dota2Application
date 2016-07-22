@@ -3,11 +3,13 @@
     android:id="@+id/radiantHeroImages"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
     android:layout_below="@+id/openRadiantTeamDetails"
     android:layout_marginStart="16dp"
-    android:layout_marginTop="18dp">
+    android:layout_marginTop="18dp"
+    android:layout_marginEnd="6dp">
 
-    <ImageView
+<ImageView
         android:id="@+id/radiantHeroImageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

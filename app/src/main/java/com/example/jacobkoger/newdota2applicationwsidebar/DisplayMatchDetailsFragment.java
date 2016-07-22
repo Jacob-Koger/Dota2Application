@@ -50,9 +50,19 @@ public class DisplayMatchDetailsFragment extends Fragment {
     TextView MatchIDTextView, WinningTeamTextView, DireTeamDetailsTextView, RadiantTeamDetailsTextView,
             DireTeamHeroName1, DireTeamHeroName2, DireTeamHeroName3, DireTeamHeroName4, DireTeamHeroName5,
             RadiantTeamHeroName1, RadiantTeamHeroName2, RadiantTeamHeroName3, RadiantTeamHeroName4, RadiantTeamHeroName5,
+            Dire1GPM, Dire2GPM, Dire3GPM, Dire4GPM, Dire5GPM,
+            Dire1XPM, Dire2XPM, Dire3XPM, Dire4XPM, Dire5XPM,
+            Dire1HDMG, Dire2HDMG, Dire3HDMG, Dire4HDMG, Dire5HDMG,
+            Dire1TDMG, Dire2TDMG, Dire3TDMG, Dire4TDMG, Dire5TDMG,
+            Radiant1GPM, Radiant2GPM, Radiant3GPM, Radiant4GPM, Radiant5GPM,
+            Radiant1XPM, Radiant2XPM, Radiant3XPM, Radiant4XPM, Radiant5XPM,
+            Radiant1HDMG, Radiant2HDMG, Radiant3HDMG, Radiant4HDMG, Radiant5HDMG,
+            Radiant1TDMG, Radiant2TDMG, Radiant3TDMG, Radiant4TDMG, Radiant5TDMG,
+            Dire1Level, Dire2Level, Dire3Level, Dire4Level, Dire5Level,
             Dire1Kills, Dire2Kills, Dire3Kills, Dire4Kills, Dire5Kills,
             Dire1Deaths, Dire2Deaths, Dire3Deaths, Dire4Deaths, Dire5Deaths,
             Dire1Assists, Dire2Assists, Dire3Assists, Dire4Assists, Dire5Assists,
+            Radiant1Level, Radiant2Level, Radiant3Level, Radiant4Level, Radiant5Level,
             Radiant1Kills, Radiant2Kills, Radiant3Kills, Radiant4Kills, Radiant5Kills,
             Radiant1Deaths, Radiant2Deaths, Radiant3Deaths, Radiant4Deaths, Radiant5Deaths,
             Radiant1Assists, Radiant2Assists, Radiant3Assists, Radiant4Assists, Radiant5Assists;
@@ -121,6 +131,66 @@ public class DisplayMatchDetailsFragment extends Fragment {
         RadiantTeamHeroName3 = (TextView) view.findViewById(R.id.radiantHeroName3);
         RadiantTeamHeroName4 = (TextView) view.findViewById(R.id.radiantHeroName4);
         RadiantTeamHeroName5 = (TextView) view.findViewById(R.id.radiantHeroName5);
+
+        Dire1Level = (TextView) view.findViewById(R.id.dire1level);
+        Dire2Level = (TextView) view.findViewById(R.id.dire2level);
+        Dire3Level = (TextView) view.findViewById(R.id.dire3level);
+        Dire4Level = (TextView) view.findViewById(R.id.dire4level);
+        Dire5Level = (TextView) view.findViewById(R.id.dire5level);
+
+        Radiant1Level = (TextView) view.findViewById(R.id.radiant1level);
+        Radiant2Level = (TextView) view.findViewById(R.id.radiant2level);
+        Radiant3Level = (TextView) view.findViewById(R.id.radiant3level);
+        Radiant4Level = (TextView) view.findViewById(R.id.radiant4level);
+        Radiant5Level = (TextView) view.findViewById(R.id.radiant5level);
+
+        Dire1GPM = (TextView) view.findViewById(R.id.dire1gpm);
+        Dire2GPM = (TextView) view.findViewById(R.id.dire2gpm);
+        Dire3GPM = (TextView) view.findViewById(R.id.dire3gpm);
+        Dire4GPM = (TextView) view.findViewById(R.id.dire4gpm);
+        Dire5GPM = (TextView) view.findViewById(R.id.dire5gpm);
+
+        Dire1XPM = (TextView) view.findViewById(R.id.dire1xpm);
+        Dire2XPM = (TextView) view.findViewById(R.id.dire2xpm);
+        Dire3XPM = (TextView) view.findViewById(R.id.dire3xpm);
+        Dire4XPM = (TextView) view.findViewById(R.id.dire4xpm);
+        Dire5XPM = (TextView) view.findViewById(R.id.dire5xpm);
+
+        Dire1TDMG = (TextView) view.findViewById(R.id.dire1tdmg);
+        Dire2TDMG = (TextView) view.findViewById(R.id.dire2tdmg);
+        Dire3TDMG = (TextView) view.findViewById(R.id.dire3tdmg);
+        Dire4TDMG = (TextView) view.findViewById(R.id.dire4tdmg);
+        Dire5TDMG = (TextView) view.findViewById(R.id.dire5tdmg);
+
+        Dire1HDMG = (TextView) view.findViewById(R.id.dire1hdmg);
+        Dire2HDMG = (TextView) view.findViewById(R.id.dire2hdmg);
+        Dire3HDMG = (TextView) view.findViewById(R.id.dire3hdmg);
+        Dire4HDMG = (TextView) view.findViewById(R.id.dire4hdmg);
+        Dire5HDMG = (TextView) view.findViewById(R.id.dire5hdmg);
+
+        Radiant1GPM = (TextView) view.findViewById(R.id.radiant1gpm);
+        Radiant2GPM = (TextView) view.findViewById(R.id.radiant2gpm);
+        Radiant3GPM = (TextView) view.findViewById(R.id.radiant3gpm);
+        Radiant4GPM = (TextView) view.findViewById(R.id.radiant4gpm);
+        Radiant5GPM = (TextView) view.findViewById(R.id.radiant5gpm);
+
+        Radiant1XPM = (TextView) view.findViewById(R.id.radiant1xpm);
+        Radiant2XPM = (TextView) view.findViewById(R.id.radiant2xpm);
+        Radiant3XPM = (TextView) view.findViewById(R.id.radiant3xpm);
+        Radiant4XPM = (TextView) view.findViewById(R.id.radiant4xpm);
+        Radiant5XPM = (TextView) view.findViewById(R.id.radiant5xpm);
+
+        Radiant1TDMG = (TextView) view.findViewById(R.id.radiant1tdmg);
+        Radiant2TDMG = (TextView) view.findViewById(R.id.radiant2tdmg);
+        Radiant3TDMG = (TextView) view.findViewById(R.id.radiant3tdmg);
+        Radiant4TDMG = (TextView) view.findViewById(R.id.radiant4tdmg);
+        Radiant5TDMG = (TextView) view.findViewById(R.id.radiant5tdmg);
+
+        Radiant1HDMG = (TextView) view.findViewById(R.id.radiant1hdmg);
+        Radiant2HDMG = (TextView) view.findViewById(R.id.radiant2hdmg);
+        Radiant3HDMG = (TextView) view.findViewById(R.id.radiant3hdmg);
+        Radiant4HDMG = (TextView) view.findViewById(R.id.radiant4hdmg);
+        Radiant5HDMG = (TextView) view.findViewById(R.id.radiant5hdmg);
 
         Dire1Kills = (TextView) view.findViewById(R.id.dire1kills);
         Dire2Kills = (TextView) view.findViewById(R.id.dire2kills);
@@ -337,6 +407,11 @@ public class DisplayMatchDetailsFragment extends Fragment {
                                     Dire1Kills.setText(MDPlayer.getKills().toString());
                                     Dire1Deaths.setText(MDPlayer.getDeaths().toString());
                                     Dire1Assists.setText(MDPlayer.getAssists().toString());
+                                    Dire1GPM.setText(MDPlayer.getGoldPerMin().toString());
+                                    Dire1XPM.setText(MDPlayer.getXpPerMin().toString());
+                                    Dire1Level.setText(MDPlayer.getLevel().toString());
+                                    Dire1HDMG.setText(MDPlayer.getHeroDamage().toString());
+                                    Dire1TDMG.setText(MDPlayer.getTowerDamage().toString());
                                     final String heroName = hero.getName();
                                     final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
                                     DireHeroImageView1.setImageResource(heroId);
@@ -346,6 +421,11 @@ public class DisplayMatchDetailsFragment extends Fragment {
                                     Dire2Kills.setText(MDPlayer.getKills().toString());
                                     Dire2Deaths.setText(MDPlayer.getDeaths().toString());
                                     Dire2Assists.setText(MDPlayer.getAssists().toString());
+                                    Dire2GPM.setText(MDPlayer.getGoldPerMin().toString());
+                                    Dire2XPM.setText(MDPlayer.getXpPerMin().toString());
+                                    Dire2Level.setText(MDPlayer.getLevel().toString());
+                                    Dire2HDMG.setText(MDPlayer.getHeroDamage().toString());
+                                    Dire2TDMG.setText(MDPlayer.getTowerDamage().toString());
                                     final String heroName = hero.getName();
                                     final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
                                     DireHeroImageView2.setImageResource(heroId);
@@ -355,6 +435,11 @@ public class DisplayMatchDetailsFragment extends Fragment {
                                     Dire3Kills.setText(MDPlayer.getKills().toString());
                                     Dire3Deaths.setText(MDPlayer.getDeaths().toString());
                                     Dire3Assists.setText(MDPlayer.getAssists().toString());
+                                    Dire3GPM.setText(MDPlayer.getGoldPerMin().toString());
+                                    Dire3XPM.setText(MDPlayer.getXpPerMin().toString());
+                                    Dire3Level.setText(MDPlayer.getLevel().toString());
+                                    Dire3HDMG.setText(MDPlayer.getHeroDamage().toString());
+                                    Dire3TDMG.setText(MDPlayer.getTowerDamage().toString());
                                     final String heroName = hero.getName();
                                     final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
                                     DireHeroImageView3.setImageResource(heroId);
@@ -363,23 +448,38 @@ public class DisplayMatchDetailsFragment extends Fragment {
                                     Dire4Kills.setText(MDPlayer.getKills().toString());
                                     Dire4Deaths.setText(MDPlayer.getDeaths().toString());
                                     Dire4Assists.setText(MDPlayer.getAssists().toString());
+                                    Dire4GPM.setText(MDPlayer.getGoldPerMin().toString());
+                                    Dire4XPM.setText(MDPlayer.getXpPerMin().toString());
+                                    Dire4Level.setText(MDPlayer.getLevel().toString());
+                                    Dire4HDMG.setText(MDPlayer.getHeroDamage().toString());
+                                    Dire4TDMG.setText(MDPlayer.getTowerDamage().toString());
                                     final String heroName = hero.getName();
                                     final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
                                     DireHeroImageView4.setImageResource(heroId);
                                 } else if (MDPlayer.getPlayerSlot() == 132)
                                     DireTeamHeroName5.setText("5. " + hero.getLocalizedName() + ":");
-                                    Dire5Kills.setText(MDPlayer.getKills().toString());
-                                    Dire5Deaths.setText(MDPlayer.getDeaths().toString());
-                                    Dire5Assists.setText(MDPlayer.getAssists().toString());
-                                    final String heroName = hero.getName();
-                                    final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
-                                    DireHeroImageView5.setImageResource(heroId);
+                                Dire5Kills.setText(MDPlayer.getKills().toString());
+                                Dire5Deaths.setText(MDPlayer.getDeaths().toString());
+                                Dire5Assists.setText(MDPlayer.getAssists().toString());
+                                Dire5GPM.setText(MDPlayer.getGoldPerMin().toString());
+                                Dire5XPM.setText(MDPlayer.getXpPerMin().toString());
+                                Dire5Level.setText(MDPlayer.getLevel().toString());
+                                Dire5HDMG.setText(MDPlayer.getHeroDamage().toString());
+                                Dire5TDMG.setText(MDPlayer.getTowerDamage().toString());
+                                final String heroName = hero.getName();
+                                final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
+                                DireHeroImageView5.setImageResource(heroId);
                             } else {
                                 if (MDPlayer.getPlayerSlot() == 0) {
                                     RadiantTeamHeroName1.setText("1. " + hero.getLocalizedName() + ":");
                                     Radiant1Kills.setText(MDPlayer.getKills().toString());
                                     Radiant1Deaths.setText(MDPlayer.getDeaths().toString());
                                     Radiant1Assists.setText(MDPlayer.getAssists().toString());
+                                    Radiant1GPM.setText(MDPlayer.getGoldPerMin().toString());
+                                    Radiant1XPM.setText(MDPlayer.getXpPerMin().toString());
+                                    Radiant1Level.setText(MDPlayer.getLevel().toString());
+                                    Radiant1HDMG.setText(MDPlayer.getHeroDamage().toString());
+                                    Radiant1TDMG.setText(MDPlayer.getTowerDamage().toString());
                                     final String heroName = hero.getName();
                                     final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
                                     RadiantHeroImageView1.setImageResource(heroId);
@@ -388,6 +488,11 @@ public class DisplayMatchDetailsFragment extends Fragment {
                                     Radiant2Kills.setText(MDPlayer.getKills().toString());
                                     Radiant2Deaths.setText(MDPlayer.getDeaths().toString());
                                     Radiant2Assists.setText(MDPlayer.getAssists().toString());
+                                    Radiant2GPM.setText(MDPlayer.getGoldPerMin().toString());
+                                    Radiant2XPM.setText(MDPlayer.getXpPerMin().toString());
+                                    Radiant2Level.setText(MDPlayer.getLevel().toString());
+                                    Radiant2HDMG.setText(MDPlayer.getHeroDamage().toString());
+                                    Radiant2TDMG.setText(MDPlayer.getTowerDamage().toString());
                                     final String heroName = hero.getName();
                                     final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
                                     RadiantHeroImageView2.setImageResource(heroId);
@@ -396,6 +501,11 @@ public class DisplayMatchDetailsFragment extends Fragment {
                                     Radiant3Kills.setText(MDPlayer.getKills().toString());
                                     Radiant3Deaths.setText(MDPlayer.getDeaths().toString());
                                     Radiant3Assists.setText(MDPlayer.getAssists().toString());
+                                    Radiant3GPM.setText(MDPlayer.getGoldPerMin().toString());
+                                    Radiant3XPM.setText(MDPlayer.getXpPerMin().toString());
+                                    Radiant3Level.setText(MDPlayer.getLevel().toString());
+                                    Radiant3HDMG.setText(MDPlayer.getHeroDamage().toString());
+                                    Radiant3TDMG.setText(MDPlayer.getTowerDamage().toString());
                                     final String heroName = hero.getName();
                                     final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
                                     RadiantHeroImageView3.setImageResource(heroId);
@@ -404,17 +514,27 @@ public class DisplayMatchDetailsFragment extends Fragment {
                                     Radiant4Kills.setText(MDPlayer.getKills().toString());
                                     Radiant4Deaths.setText(MDPlayer.getDeaths().toString());
                                     Radiant4Assists.setText(MDPlayer.getAssists().toString());
+                                    Radiant4GPM.setText(MDPlayer.getGoldPerMin().toString());
+                                    Radiant4XPM.setText(MDPlayer.getXpPerMin().toString());
+                                    Radiant4Level.setText(MDPlayer.getLevel().toString());
+                                    Radiant4HDMG.setText(MDPlayer.getHeroDamage().toString());
+                                    Radiant4TDMG.setText(MDPlayer.getTowerDamage().toString());
                                     final String heroName = hero.getName();
                                     final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
                                     RadiantHeroImageView4.setImageResource(heroId);
                                 } else if (MDPlayer.getPlayerSlot() == 4)
                                     RadiantTeamHeroName5.setText("5. " + hero.getLocalizedName() + ":");
-                                    Radiant5Kills.setText(MDPlayer.getKills().toString());
-                                    Radiant5Deaths.setText(MDPlayer.getDeaths().toString());
-                                    Radiant5Assists.setText(MDPlayer.getAssists().toString());
-                                    final String heroName = hero.getName();
-                                    final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
-                                    RadiantHeroImageView5.setImageResource(heroId);
+                                Radiant5Kills.setText(MDPlayer.getKills().toString());
+                                Radiant5Deaths.setText(MDPlayer.getDeaths().toString());
+                                Radiant5Assists.setText(MDPlayer.getAssists().toString());
+                                Radiant5GPM.setText(MDPlayer.getGoldPerMin().toString());
+                                Radiant5XPM.setText(MDPlayer.getXpPerMin().toString());
+                                Radiant5Level.setText(MDPlayer.getLevel().toString());
+                                Radiant5HDMG.setText(MDPlayer.getHeroDamage().toString());
+                                Radiant5TDMG.setText(MDPlayer.getTowerDamage().toString());
+                                final String heroName = hero.getName();
+                                final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
+                                RadiantHeroImageView5.setImageResource(heroId);
                             }
                         }
                     }
