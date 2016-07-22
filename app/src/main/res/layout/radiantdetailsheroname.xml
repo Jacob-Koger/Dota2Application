@@ -4,10 +4,10 @@
     android:id="@+id/radiantTeamDetailsView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_alignEnd="@+id/radiantTeamDetailsTextView"
-    android:layout_alignTop="@+id/radiantHeroImages"
     android:orientation="vertical"
-    android:visibility="gone">
+    android:layout_alignParentTop="true"
+    android:layout_toEndOf="@+id/radiantHeroImages"
+    android:layout_marginTop="18dp">
 
     <TextView
         android:id="@+id/radiantHeroName1"

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fulldiredetails"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="visible"
+    android:background="@drawable/detailsborder">
+
+    <include layout="@layout/diredetailsherostats" />
+
+    <include layout="@layout/diredetailsheroimage" />
+
+    <include layout="@layout/diredetailsheroname" />
+</RelativeLayout>

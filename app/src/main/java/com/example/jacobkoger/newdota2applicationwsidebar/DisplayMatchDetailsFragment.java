@@ -49,13 +49,19 @@ public class DisplayMatchDetailsFragment extends Fragment {
     String url = "https://api.steampowered.com";
     TextView MatchIDTextView, WinningTeamTextView, DireTeamDetailsTextView, RadiantTeamDetailsTextView,
             DireTeamHeroName1, DireTeamHeroName2, DireTeamHeroName3, DireTeamHeroName4, DireTeamHeroName5,
-            RadiantTeamHeroName1, RadiantTeamHeroName2, RadiantTeamHeroName3, RadiantTeamHeroName4, RadiantTeamHeroName5;
-    LinearLayout mProgressContainer, direDetails, radiantDetails;
-    RelativeLayout direHeroImages, radiantHeroImages;
+            RadiantTeamHeroName1, RadiantTeamHeroName2, RadiantTeamHeroName3, RadiantTeamHeroName4, RadiantTeamHeroName5,
+            Dire1Kills, Dire2Kills, Dire3Kills, Dire4Kills, Dire5Kills,
+            Dire1Deaths, Dire2Deaths, Dire3Deaths, Dire4Deaths, Dire5Deaths,
+            Dire1Assists, Dire2Assists, Dire3Assists, Dire4Assists, Dire5Assists,
+            Radiant1Kills, Radiant2Kills, Radiant3Kills, Radiant4Kills, Radiant5Kills,
+            Radiant1Deaths, Radiant2Deaths, Radiant3Deaths, Radiant4Deaths, Radiant5Deaths,
+            Radiant1Assists, Radiant2Assists, Radiant3Assists, Radiant4Assists, Radiant5Assists;
+    LinearLayout mProgressContainer;
     ImageButton OpenDireTeamDetailsButton, OpenRadiantTeamDetailsButton;
     ImageView DireHeroImageView1, DireHeroImageView2, DireHeroImageView3, DireHeroImageView4, DireHeroImageView5,
             RadiantHeroImageView1, RadiantHeroImageView2, RadiantHeroImageView3, RadiantHeroImageView4, RadiantHeroImageView5;
     Boolean isDireDetailsVisible = false, isRadiantDetailsVisible = false;
+    RelativeLayout fullRadiantDetails, fullDireDetails;
 
     public DisplayMatchDetailsFragment() {
     }
@@ -116,6 +122,42 @@ public class DisplayMatchDetailsFragment extends Fragment {
         RadiantTeamHeroName4 = (TextView) view.findViewById(R.id.radiantHeroName4);
         RadiantTeamHeroName5 = (TextView) view.findViewById(R.id.radiantHeroName5);
 
+        Dire1Kills = (TextView) view.findViewById(R.id.dire1kills);
+        Dire2Kills = (TextView) view.findViewById(R.id.dire2kills);
+        Dire3Kills = (TextView) view.findViewById(R.id.dire3kills);
+        Dire4Kills = (TextView) view.findViewById(R.id.dire4kills);
+        Dire5Kills = (TextView) view.findViewById(R.id.dire5kills);
+
+        Dire1Deaths = (TextView) view.findViewById(R.id.dire1deaths);
+        Dire2Deaths = (TextView) view.findViewById(R.id.dire2deaths);
+        Dire3Deaths = (TextView) view.findViewById(R.id.dire3deaths);
+        Dire4Deaths = (TextView) view.findViewById(R.id.dire4deaths);
+        Dire5Deaths = (TextView) view.findViewById(R.id.dire5deaths);
+
+        Dire1Assists = (TextView) view.findViewById(R.id.dire1assists);
+        Dire2Assists = (TextView) view.findViewById(R.id.dire2assists);
+        Dire3Assists = (TextView) view.findViewById(R.id.dire3assists);
+        Dire4Assists = (TextView) view.findViewById(R.id.dire4assists);
+        Dire5Assists = (TextView) view.findViewById(R.id.dire5assists);
+
+        Radiant1Kills = (TextView) view.findViewById(R.id.radiant1kills);
+        Radiant2Kills = (TextView) view.findViewById(R.id.radiant2kills);
+        Radiant3Kills = (TextView) view.findViewById(R.id.radiant3kills);
+        Radiant4Kills = (TextView) view.findViewById(R.id.radiant4kills);
+        Radiant5Kills = (TextView) view.findViewById(R.id.radiant5kills);
+
+        Radiant1Deaths = (TextView) view.findViewById(R.id.radiant1deaths);
+        Radiant2Deaths = (TextView) view.findViewById(R.id.radiant2deaths);
+        Radiant3Deaths = (TextView) view.findViewById(R.id.radiant3deaths);
+        Radiant4Deaths = (TextView) view.findViewById(R.id.radiant4deaths);
+        Radiant5Deaths = (TextView) view.findViewById(R.id.radiant5deaths);
+
+        Radiant1Assists = (TextView) view.findViewById(R.id.radiant1assists);
+        Radiant2Assists = (TextView) view.findViewById(R.id.radiant2assists);
+        Radiant3Assists = (TextView) view.findViewById(R.id.radiant3assists);
+        Radiant4Assists = (TextView) view.findViewById(R.id.radiant4assists);
+        Radiant5Assists = (TextView) view.findViewById(R.id.radiant5assists);
+
         DireHeroImageView1 = (ImageView) view.findViewById(R.id.direHeroImageView1);
         DireHeroImageView2 = (ImageView) view.findViewById(R.id.direHeroImageView2);
         DireHeroImageView3 = (ImageView) view.findViewById(R.id.direHeroImageView3);
@@ -132,12 +174,8 @@ public class DisplayMatchDetailsFragment extends Fragment {
         OpenRadiantTeamDetailsButton = (ImageButton) view.findViewById(R.id.openRadiantTeamDetails);
 
         mProgressContainer = (LinearLayout) view.findViewById(R.id.progressbarLLContainer);
-        direDetails = (LinearLayout) view.findViewById(R.id.direTeamDetailsView);
-        radiantDetails = (LinearLayout) view.findViewById(R.id.radiantTeamDetailsView);
-
-        direHeroImages = (RelativeLayout) view.findViewById(R.id.direHeroImages);
-        radiantHeroImages = (RelativeLayout) view.findViewById(R.id.radiantHeroImages);
-
+        fullRadiantDetails = (RelativeLayout) view.findViewById(R.id.fullradiantdetails);
+        fullDireDetails = (RelativeLayout) view.findViewById(R.id.fulldiredetails);
         setOnClickListenersDire();
         setOnClickListenersRadiant();
         getResult();
@@ -149,20 +187,16 @@ public class DisplayMatchDetailsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (isRadiantDetailsVisible == false && isDireDetailsVisible == false) {
-                    radiantDetails.setVisibility(View.VISIBLE);
-                    radiantHeroImages.setVisibility(View.VISIBLE);
+                    fullRadiantDetails.setVisibility(View.VISIBLE);
                     isRadiantDetailsVisible = true;
                     isDireDetailsVisible = false;
                 } else if (isRadiantDetailsVisible == true && isDireDetailsVisible == false) {
-                    radiantDetails.setVisibility(View.GONE);
-                    radiantHeroImages.setVisibility(View.GONE);
+                    fullRadiantDetails.setVisibility(View.GONE);
                     isRadiantDetailsVisible = false;
                     isDireDetailsVisible = false;
                 } else if (isRadiantDetailsVisible == false && isDireDetailsVisible == true) {
-                    direDetails.setVisibility(View.GONE);
-                    direHeroImages.setVisibility(View.GONE);
-                    radiantDetails.setVisibility(View.VISIBLE);
-                    radiantHeroImages.setVisibility(View.VISIBLE);
+                    fullDireDetails.setVisibility(View.GONE);
+                    fullRadiantDetails.setVisibility(View.VISIBLE);
                     isRadiantDetailsVisible = true;
                     isDireDetailsVisible = false;
                 }
@@ -184,20 +218,16 @@ public class DisplayMatchDetailsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (isDireDetailsVisible == false && isRadiantDetailsVisible == false) {
-                    direDetails.setVisibility(View.VISIBLE);
-                    direHeroImages.setVisibility(View.VISIBLE);
+                    fullDireDetails.setVisibility(View.VISIBLE);
                     isDireDetailsVisible = true;
                     isRadiantDetailsVisible = false;
                 } else if (isDireDetailsVisible == true && isRadiantDetailsVisible == false) {
-                    direDetails.setVisibility(View.GONE);
-                    direHeroImages.setVisibility(View.GONE);
+                    fullDireDetails.setVisibility(View.GONE);
                     isDireDetailsVisible = false;
                     isRadiantDetailsVisible = false;
                 } else if (isDireDetailsVisible == false && isRadiantDetailsVisible == true) {
-                    radiantDetails.setVisibility(View.GONE);
-                    radiantHeroImages.setVisibility(View.GONE);
-                    direDetails.setVisibility(View.VISIBLE);
-                    direHeroImages.setVisibility(View.VISIBLE);
+                    fullRadiantDetails.setVisibility(View.GONE);
+                    fullDireDetails.setVisibility(View.VISIBLE);
 
                     isDireDetailsVisible = true;
                     isRadiantDetailsVisible = false;
@@ -303,58 +333,88 @@ public class DisplayMatchDetailsFragment extends Fragment {
                             if (MDPlayer.getPlayerSlot() > 4) {
                                 Log.d("playerSlot", MDPlayer.getPlayerSlot().toString());
                                 if (MDPlayer.getPlayerSlot() == 128) {
-                                    DireTeamHeroName1.setText("1. " + hero.getLocalizedName());
+                                    DireTeamHeroName1.setText("1. " + hero.getLocalizedName() + ":");
+                                    Dire1Kills.setText(MDPlayer.getKills().toString());
+                                    Dire1Deaths.setText(MDPlayer.getDeaths().toString());
+                                    Dire1Assists.setText(MDPlayer.getAssists().toString());
                                     final String heroName = hero.getName();
                                     final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
                                     DireHeroImageView1.setImageResource(heroId);
 
                                 } else if (MDPlayer.getPlayerSlot() == 129) {
-                                    DireTeamHeroName2.setText("2. " + hero.getLocalizedName());
+                                    DireTeamHeroName2.setText("2. " + hero.getLocalizedName() + ":");
+                                    Dire2Kills.setText(MDPlayer.getKills().toString());
+                                    Dire2Deaths.setText(MDPlayer.getDeaths().toString());
+                                    Dire2Assists.setText(MDPlayer.getAssists().toString());
                                     final String heroName = hero.getName();
                                     final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
                                     DireHeroImageView2.setImageResource(heroId);
 
                                 } else if (MDPlayer.getPlayerSlot() == 130) {
-                                    DireTeamHeroName3.setText("3. " + hero.getLocalizedName());
+                                    DireTeamHeroName3.setText("3. " + hero.getLocalizedName() + ":");
+                                    Dire3Kills.setText(MDPlayer.getKills().toString());
+                                    Dire3Deaths.setText(MDPlayer.getDeaths().toString());
+                                    Dire3Assists.setText(MDPlayer.getAssists().toString());
                                     final String heroName = hero.getName();
                                     final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
                                     DireHeroImageView3.setImageResource(heroId);
                                 } else if (MDPlayer.getPlayerSlot() == 131) {
-                                    DireTeamHeroName4.setText("4. " + hero.getLocalizedName());
+                                    DireTeamHeroName4.setText("4. " + hero.getLocalizedName() + ":");
+                                    Dire4Kills.setText(MDPlayer.getKills().toString());
+                                    Dire4Deaths.setText(MDPlayer.getDeaths().toString());
+                                    Dire4Assists.setText(MDPlayer.getAssists().toString());
                                     final String heroName = hero.getName();
                                     final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
                                     DireHeroImageView4.setImageResource(heroId);
                                 } else if (MDPlayer.getPlayerSlot() == 132)
-                                    DireTeamHeroName5.setText("5. " + hero.getLocalizedName());
-                                final String heroName = hero.getName();
-                                final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
-                                DireHeroImageView5.setImageResource(heroId);
+                                    DireTeamHeroName5.setText("5. " + hero.getLocalizedName() + ":");
+                                    Dire5Kills.setText(MDPlayer.getKills().toString());
+                                    Dire5Deaths.setText(MDPlayer.getDeaths().toString());
+                                    Dire5Assists.setText(MDPlayer.getAssists().toString());
+                                    final String heroName = hero.getName();
+                                    final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
+                                    DireHeroImageView5.setImageResource(heroId);
                             } else {
                                 if (MDPlayer.getPlayerSlot() == 0) {
-                                    RadiantTeamHeroName1.setText("1. " + hero.getLocalizedName());
+                                    RadiantTeamHeroName1.setText("1. " + hero.getLocalizedName() + ":");
+                                    Radiant1Kills.setText(MDPlayer.getKills().toString());
+                                    Radiant1Deaths.setText(MDPlayer.getDeaths().toString());
+                                    Radiant1Assists.setText(MDPlayer.getAssists().toString());
                                     final String heroName = hero.getName();
                                     final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
                                     RadiantHeroImageView1.setImageResource(heroId);
                                 } else if (MDPlayer.getPlayerSlot() == 1) {
-                                    RadiantTeamHeroName2.setText("2. " + hero.getLocalizedName());
+                                    RadiantTeamHeroName2.setText("2. " + hero.getLocalizedName() + ":");
+                                    Radiant2Kills.setText(MDPlayer.getKills().toString());
+                                    Radiant2Deaths.setText(MDPlayer.getDeaths().toString());
+                                    Radiant2Assists.setText(MDPlayer.getAssists().toString());
                                     final String heroName = hero.getName();
                                     final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
                                     RadiantHeroImageView2.setImageResource(heroId);
                                 } else if (MDPlayer.getPlayerSlot() == 2) {
-                                    RadiantTeamHeroName3.setText("3. " + hero.getLocalizedName());
+                                    RadiantTeamHeroName3.setText("3. " + hero.getLocalizedName() + ":");
+                                    Radiant3Kills.setText(MDPlayer.getKills().toString());
+                                    Radiant3Deaths.setText(MDPlayer.getDeaths().toString());
+                                    Radiant3Assists.setText(MDPlayer.getAssists().toString());
                                     final String heroName = hero.getName();
                                     final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
                                     RadiantHeroImageView3.setImageResource(heroId);
                                 } else if (MDPlayer.getPlayerSlot() == 3) {
-                                    RadiantTeamHeroName4.setText("4. " + hero.getLocalizedName());
+                                    RadiantTeamHeroName4.setText("4. " + hero.getLocalizedName() + ":");
+                                    Radiant4Kills.setText(MDPlayer.getKills().toString());
+                                    Radiant4Deaths.setText(MDPlayer.getDeaths().toString());
+                                    Radiant4Assists.setText(MDPlayer.getAssists().toString());
                                     final String heroName = hero.getName();
                                     final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
                                     RadiantHeroImageView4.setImageResource(heroId);
                                 } else if (MDPlayer.getPlayerSlot() == 4)
-                                    RadiantTeamHeroName5.setText("5. " + hero.getLocalizedName());
-                                final String heroName = hero.getName();
-                                final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
-                                RadiantHeroImageView5.setImageResource(heroId);
+                                    RadiantTeamHeroName5.setText("5. " + hero.getLocalizedName() + ":");
+                                    Radiant5Kills.setText(MDPlayer.getKills().toString());
+                                    Radiant5Deaths.setText(MDPlayer.getDeaths().toString());
+                                    Radiant5Assists.setText(MDPlayer.getAssists().toString());
+                                    final String heroName = hero.getName();
+                                    final int heroId = res.getIdentifier(heroName, "drawable", getContext().getPackageName());
+                                    RadiantHeroImageView5.setImageResource(heroId);
                             }
                         }
                     }

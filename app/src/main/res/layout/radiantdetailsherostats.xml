@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentTop="true"
+    android:layout_toEndOf="@id/radiantTeamDetailsView"
+    android:stretchColumns="1">
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:padding="3dp"
+            android:text="K"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="D"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end"
+            android:padding="3dp"
+            android:text="A"
+            android:textAlignment="center"/>
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/radiant1kills"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start"
+            android:padding="3dp"
+            android:text="1PH"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/radiant1deaths"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="1PH"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/radiant1assists"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end"
+            android:padding="3dp"
+            android:text="1PH"
+            android:textAlignment="center"/>
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/radiant2kills"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="20dp"
+            android:gravity="start"
+            android:padding="3dp"
+            android:text="2PH"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/radiant2deaths"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="2PH"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/radiant2assists"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="20dp"
+            android:gravity="end"
+            android:padding="3dp"
+            android:text="2PH"
+            android:textAlignment="center"/>
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/radiant3kills"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="4dp"
+            android:gravity="start"
+            android:padding="3dp"
+            android:text="3PH"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/radiant3deaths"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="3PH"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/radiant3assists"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="4dp"
+            android:gravity="end"
+            android:padding="3dp"
+            android:text="3PH"
+            android:textAlignment="center"/>
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/radiant4kills"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="4dp"
+            android:gravity="start"
+            android:padding="3dp"
+            android:text="4PH"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/radiant4deaths"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="4PH"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/radiant4assists"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="4dp"
+            android:gravity="end"
+            android:padding="3dp"
+            android:text="4PH"
+            android:textAlignment="center"/>
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/radiant5kills"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="4dp"
+            android:gravity="start"
+            android:padding="3dp"
+            android:text="5PH"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/radiant5deaths"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="5PH"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/radiant5assists"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="4dp"
+            android:gravity="end"
+            android:padding="3dp"
+            android:text="5PH"
+            android:textAlignment="center"/>
+
+    </TableRow>
+
+</TableLayout>
