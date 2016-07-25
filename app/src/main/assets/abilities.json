@@ -2279,54 +2279,50 @@
     {
       "name": "winter_wyvern_winters_curse",
       "id": "5654"
-    }
+    },
     {
-      "abilities": [
-        {
-          "name": "death_prophet_spirit_siphon",
-          "id": "5685"
-        },
-        {
-          "name": "doom_bringer_infernal_blade",
-          "id": "5341"
-        },
-        {
-          "name": "faceless_void_time_dilation",
-          "id": "5691"
-        },
-        {
-          "name": "lone_druid_savage_roar",
-          "id": "5414"
-        },
-        {
-          "name": "silencer_arcane_curse",
-          "id": "5377"
-        },
-        {
-          "name": "riki_cloak_and_dagger",
-          "id": "5144"
-        },
-        {
-          "name": "riki_tricks_of_the_trade",
-          "id": "5145"
-        },
-        {
-          "name": "arc_warden_flux",
-          "id": "5677"
-        },
-        {
-          "name": "arc_warden_magnetic_field",
-          "id": "5678"
-        },
-        {
-          "name": "arc_warden_spark_wraith",
-          "id": "5679"
-        },
-        {
-          "name": "arc_warden_tempest_double",
-          "id": "5683"
-        }
-      ]
+      "name": "death_prophet_spirit_siphon",
+      "id": "5685"
+    },
+    {
+      "name": "doom_bringer_infernal_blade",
+      "id": "5341"
+    },
+    {
+      "name": "faceless_void_time_dilation",
+      "id": "5691"
+    },
+    {
+      "name": "lone_druid_savage_roar",
+      "id": "5414"
+    },
+    {
+      "name": "silencer_arcane_curse",
+      "id": "5377"
+    },
+    {
+      "name": "riki_cloak_and_dagger",
+      "id": "5144"
+    },
+    {
+      "name": "riki_tricks_of_the_trade",
+      "id": "5145"
+    },
+    {
+      "name": "arc_warden_flux",
+      "id": "5677"
+    },
+    {
+      "name": "arc_warden_magnetic_field",
+      "id": "5678"
+    },
+    {
+      "name": "arc_warden_spark_wraith",
+      "id": "5679"
+    },
+    {
+      "name": "arc_warden_tempest_double",
+      "id": "5683"
     }
   ]
 }

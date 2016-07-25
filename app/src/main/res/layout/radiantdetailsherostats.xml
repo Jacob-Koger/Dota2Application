@@ -5,13 +5,13 @@
     android:layout_alignParentEnd="true"
     android:layout_alignParentTop="true"
     android:layout_toEndOf="@id/radiantTeamDetailsView">
-
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:stretchColumns="1">
 
         <TableRow>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -66,6 +66,22 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:padding="3dp"
+                android:text="LH"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="D"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="3dp"
                 android:text="HDmg"
                 android:textAlignment="center" />
 
@@ -79,6 +95,7 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
                 android:id="@+id/radiant1level"
                 android:layout_width="match_parent"
@@ -87,6 +104,7 @@
                 android:padding="3dp"
                 android:text="1PH"
                 android:textAlignment="center" />
+
             <TextView
                 android:id="@+id/radiant1kills"
                 android:layout_width="match_parent"
@@ -122,6 +140,7 @@
                 android:padding="3dp"
                 android:text="1PH"
                 android:textAlignment="center" />
+
             <TextView
                 android:id="@+id/radiant1xpm"
                 android:layout_width="match_parent"
@@ -130,6 +149,25 @@
                 android:padding="3dp"
                 android:text="1PH"
                 android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/radiant1lh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="1PH"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/radiant1d"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="1PH"
+                android:textAlignment="center" />
+
             <TextView
                 android:id="@+id/radiant1hdmg"
                 android:layout_width="match_parent"
@@ -206,6 +244,7 @@
                 android:padding="3dp"
                 android:text="2PH"
                 android:textAlignment="center" />
+
             <TextView
                 android:id="@+id/radiant2xpm"
                 android:layout_width="match_parent"
@@ -216,6 +255,29 @@
                 android:padding="3dp"
                 android:text="2PH"
                 android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/radiant2lh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="2PH"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/radiant2d"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="2PH"
+                android:textAlignment="center" />
+
             <TextView
                 android:id="@+id/radiant2hdmg"
                 android:layout_width="match_parent"
@@ -241,6 +303,7 @@
         </TableRow>
 
         <TableRow>
+
             <TextView
                 android:id="@+id/radiant3level"
                 android:layout_width="match_parent"
@@ -251,6 +314,7 @@
                 android:padding="3dp"
                 android:text="3PH"
                 android:textAlignment="center" />
+
             <TextView
                 android:id="@+id/radiant3kills"
                 android:layout_width="match_parent"
@@ -294,8 +358,31 @@
                 android:padding="3dp"
                 android:text="3PH"
                 android:textAlignment="center" />
+
             <TextView
                 android:id="@+id/radiant3xpm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="3PH"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/radiant3lh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="3PH"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/radiant3d"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="16dp"
@@ -328,10 +415,10 @@
                 android:textAlignment="center" />
 
 
-
         </TableRow>
 
         <TableRow>
+
             <TextView
                 android:id="@+id/radiant4level"
                 android:layout_width="match_parent"
@@ -386,6 +473,7 @@
                 android:padding="3dp"
                 android:text="4PH"
                 android:textAlignment="center" />
+
             <TextView
                 android:id="@+id/radiant4xpm"
                 android:layout_width="match_parent"
@@ -396,6 +484,29 @@
                 android:padding="3dp"
                 android:text="4PH"
                 android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/radiant4lh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="4PH"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/radiant4d"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="4PH"
+                android:textAlignment="center" />
+
             <TextView
                 android:id="@+id/radiant4hdmg"
                 android:layout_width="match_parent"
@@ -433,6 +544,7 @@
                 android:padding="3dp"
                 android:text="5PH"
                 android:textAlignment="center" />
+
             <TextView
                 android:id="@+id/radiant5kills"
                 android:layout_width="match_parent"
@@ -476,6 +588,7 @@
                 android:padding="3dp"
                 android:text="2PH"
                 android:textAlignment="center" />
+
             <TextView
                 android:id="@+id/radiant5xpm"
                 android:layout_width="match_parent"
@@ -486,6 +599,29 @@
                 android:padding="3dp"
                 android:text="5PH"
                 android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/radiant5lh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="5PH"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/radiant5d"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:padding="3dp"
+                android:text="5PH"
+                android:textAlignment="center" />
+
 
             <TextView
                 android:id="@+id/radiant5hdmg"
@@ -508,9 +644,6 @@
                 android:padding="3dp"
                 android:text="5PH"
                 android:textAlignment="center" />
-
-
         </TableRow>
-
     </TableLayout>
 </HorizontalScrollView>

@@ -76,14 +76,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/direTeamDetailsTextView" />
+                android:layout_below="@+id/helplabel" />
 
             <include
                 layout="@layout/fullradiantdetails"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/direTeamDetailsTextView" />
+                android:layout_below="@+id/helplabel" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Touch the hero name to view more info (Opens Browser)"
+                android:id="@+id/helplabel"
+                android:layout_below="@+id/direTeamDetailsTextView"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
     </ScrollView>
 

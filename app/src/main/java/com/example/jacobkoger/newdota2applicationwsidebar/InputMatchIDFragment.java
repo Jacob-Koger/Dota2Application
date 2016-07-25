@@ -17,8 +17,7 @@ public class InputMatchIDFragment extends android.support.v4.app.Fragment {
     }
 
     public static InputMatchIDFragment newInstance(String param1, String param2) {
-        InputMatchIDFragment fragment = new InputMatchIDFragment();
-        return fragment;
+        return new InputMatchIDFragment();
     }
 
     @Override
