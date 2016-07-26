@@ -77,7 +77,6 @@ public class RecentMatchesFragment extends android.support.v4.app.Fragment {
         callMH.enqueue(new Callback<MHMatchHistory>() {
             @Override
             public void onResponse(Call<MHMatchHistory> call, Response<MHMatchHistory> response) {
-                Log.d("things", response.body().getMHResult().toString());
                 MHMatchHistory MHMatchHistory = response.body();
                 data = new ArrayList<>(Collections.singletonList(MHMatchHistory));
                 adapter.addData(MHMatchHistory.getMHResult().getMHMatches());

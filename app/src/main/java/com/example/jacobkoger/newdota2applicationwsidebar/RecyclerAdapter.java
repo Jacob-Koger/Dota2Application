@@ -66,7 +66,6 @@ public class RecyclerAdapter extends android.support.v7.widget.RecyclerView.Adap
                         history.add(match);
                     }
                 }
-                Log.d("count", String.valueOf(count.getMHPlayers().size()));
                 result.clear();
                 result.addAll(history);
                 notifyDataSetChanged();
