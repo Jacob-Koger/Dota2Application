@@ -1,6 +1,7 @@
 package com.example.jacobkoger.newdota2applicationwsidebar;
 
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -13,7 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements InputMatchIDFragment.OnMatchSelectionListener, DisplayMatchDetailsFragment.OnFragmentInteractionListener {
+        implements InputMatchIDFragment.OnMatchSelectionListener, DisplayMatchDetailsFragment.OnFragmentInteractionListener, OpenIdFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
@@ -67,7 +68,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_RecentMatches_fragment:
                 fragmentClass = RecentMatchesFragment.class;
                 break;
-
+            case R.id.nav_OpenId_fragment:
+                fragmentClass = OpenIdFragment.class;
+                break;
             default:
                 fragmentClass = InputMatchIDFragment.class;
         }
@@ -113,5 +116,10 @@ public class MainActivity extends AppCompatActivity
                 .replace(R.id.flContent, DisplayMatchDetailsFragment.newInstance(matchId))
                 .addToBackStack(null)
                 .commit();
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

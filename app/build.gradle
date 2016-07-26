@@ -36,8 +36,6 @@ dependencies {
         exclude module: 'asm' //asm is already include in android
 
     }
-
-
     compile 'com.android.support:appcompat-v7:24.1.1'
     compile 'com.android.support:design:24.1.1'
     compile 'com.android.support:recyclerview-v7:24.1.1'
@@ -53,4 +51,7 @@ dependencies {
     compile 'jp.wasabeef:recyclerview-animators:2.2.3'
     compile 'com.bignerdranch.android:expandablerecyclerview:2.1.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.google.oauth-client:google-oauth-client:1.21.0'
+    compile 'com.google.http-client:google-http-client-jackson2:1.21.0'
+    compile 'com.loopj.android:android-async-http:1.4.9'
 }

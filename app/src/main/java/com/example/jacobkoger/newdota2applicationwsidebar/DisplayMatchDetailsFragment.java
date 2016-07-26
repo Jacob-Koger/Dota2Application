@@ -150,106 +150,35 @@ public class DisplayMatchDetailsFragment extends Fragment {
         createTableTitles(view);
         setOnClickListenersDire();
         setOnClickListenersRadiant();
-        setOnClickListenerRadiantHeroName();
-        setOnClickListenerDireHeroName();
+        setOnClickListenerHeroName();
         getResult();
         startAnim();
     }
 
-    private void setOnClickListenerRadiantHeroName() {
-        RadiantTeamHeroName1.setOnClickListener(new View.OnClickListener() {
+    private void setupOnClicks(final TextView name, final int num) {
+        name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String hero_namewnum = RadiantTeamHeroName1.getText().toString();
-                String hero_name = hero_namewnum.replace("1. ", "").replace(":", "").replace(" ", "_");
+                String hero_name_w_num = name.getText().toString();
+                String hero_name = hero_name_w_num.replace(num + ". ", "").replace(":", "").replace(" ", "_");
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dota2.gamepedia.com/" + hero_name));
                 startActivity(intent);
             }
         });
-        RadiantTeamHeroName2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String hero_namewnum = RadiantTeamHeroName2.getText().toString();
-                String hero_name = hero_namewnum.replace("2. ", "").replace(":", "").replace(" ", "_");
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dota2.gamepedia.com/" + hero_name));
-                startActivity(intent);
-            }
-        });
-        RadiantTeamHeroName3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String hero_namewnum = RadiantTeamHeroName3.getText().toString();
-                String hero_name = hero_namewnum.replace("3. ", "").replace(":", "").replace(" ", "_");
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dota2.gamepedia.com/" + hero_name));
-                startActivity(intent);
-            }
-        });
-        RadiantTeamHeroName4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String hero_namewnum = RadiantTeamHeroName4.getText().toString();
-                String hero_name = hero_namewnum.replace("4. ", "").replace(":", "").replace(" ", "_");
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dota2.gamepedia.com/" + hero_name));
-                startActivity(intent);
-            }
-        });
-        RadiantTeamHeroName5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String hero_namewnum = RadiantTeamHeroName5.getText().toString();
-                String hero_name = hero_namewnum.replace("5. ", "").replace(":", "").replace(" ", "_");
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dota2.gamepedia.com/" + hero_name));
-                startActivity(intent);
-            }
-        });
+
     }
 
-    private void setOnClickListenerDireHeroName() {
-        DireTeamHeroName1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String hero_namewnum = DireTeamHeroName1.getText().toString();
-                String hero_name = hero_namewnum.replace("1. ", "").replace(":", "").replace(" ", "_");
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dota2.gamepedia.com/" + hero_name));
-                startActivity(intent);
-            }
-        });
-        DireTeamHeroName2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String hero_namewnum = DireTeamHeroName2.getText().toString();
-                String hero_name = hero_namewnum.replace("2. ", "").replace(":", "").replace(" ", "_");
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dota2.gamepedia.com/" + hero_name));
-                startActivity(intent);
-            }
-        });
-        DireTeamHeroName3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String hero_namewnum = DireTeamHeroName3.getText().toString();
-                String hero_name = hero_namewnum.replace("3. ", "").replace(":", "").replace(" ", "_");
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dota2.gamepedia.com/" + hero_name));
-                startActivity(intent);
-            }
-        });
-        DireTeamHeroName4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String hero_namewnum = DireTeamHeroName4.getText().toString();
-                String hero_name = hero_namewnum.replace("4. ", "").replace(":", "").replace(" ", "_");
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dota2.gamepedia.com/" + hero_name));
-                startActivity(intent);
-            }
-        });
-        DireTeamHeroName5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String hero_namewnum = DireTeamHeroName5.getText().toString();
-                String hero_name = hero_namewnum.replace("5. ", "").replace(":", "").replace(" ", "_");
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://dota2.gamepedia.com/" + hero_name));
-                startActivity(intent);
-            }
-        });
+    private void setOnClickListenerHeroName() {
+        setupOnClicks(RadiantTeamHeroName1, 1);
+        setupOnClicks(RadiantTeamHeroName2, 2);
+        setupOnClicks(RadiantTeamHeroName3, 3);
+        setupOnClicks(RadiantTeamHeroName4, 4);
+        setupOnClicks(RadiantTeamHeroName5, 5);
+        setupOnClicks(DireTeamHeroName1, 1);
+        setupOnClicks(DireTeamHeroName2, 2);
+        setupOnClicks(DireTeamHeroName3, 3);
+        setupOnClicks(DireTeamHeroName4, 4);
+        setupOnClicks(DireTeamHeroName5, 5);
     }
 
     private void setOnClickListenersRadiant() {
