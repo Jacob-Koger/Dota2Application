@@ -52,6 +52,4 @@ dependencies {
     compile 'com.bignerdranch.android:expandablerecyclerview:2.1.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.oauth-client:google-oauth-client:1.21.0'
-    compile 'com.google.http-client:google-http-client-jackson2:1.21.0'
-    compile 'com.loopj.android:android-async-http:1.4.9'
 }
