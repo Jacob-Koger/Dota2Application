@@ -9,8 +9,8 @@
             android:id="@+id/nav_RecentMatches_fragment"
             android:title="Recent Matches" />
         <item
-            android:id = "@+id/nav_OpenId_fragment"
-            android:title="Login with Steam" />
+            android:id = "@+id/nav_AccountDetails_fragment"
+            android:title="Account Details" />
     </group>
 
 </menu>
