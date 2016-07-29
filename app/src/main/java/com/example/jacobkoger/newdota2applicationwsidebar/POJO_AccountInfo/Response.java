@@ -13,18 +13,14 @@ public class Response {
     private List<Player> players = new ArrayList<Player>();
 
     /**
-     *
-     * @return
-     * The players
+     * @return The players
      */
     public List<Player> getPlayers() {
         return players;
     }
 
     /**
-     *
-     * @param players
-     * The players
+     * @param players The players
      */
     public void setPlayers(List<Player> players) {
         this.players = players;

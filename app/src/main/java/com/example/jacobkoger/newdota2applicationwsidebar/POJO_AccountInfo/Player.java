@@ -111,189 +111,147 @@ public class Player {
     }
 
     /**
-     *
-     * @param avatar
-     * The avatar
+     * @param avatar The avatar
      */
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 
     /**
-     *
-     * @return
-     * The avatarmedium
+     * @return The avatarmedium
      */
     public String getAvatarmedium() {
         return avatarmedium;
     }
 
     /**
-     *
-     * @param avatarmedium
-     * The avatarmedium
+     * @param avatarmedium The avatarmedium
      */
     public void setAvatarmedium(String avatarmedium) {
         this.avatarmedium = avatarmedium;
     }
 
     /**
-     *
-     * @return
-     * The avatarfull
+     * @return The avatarfull
      */
     public String getAvatarfull() {
         return avatarfull;
     }
 
     /**
-     *
-     * @param avatarfull
-     * The avatarfull
+     * @param avatarfull The avatarfull
      */
     public void setAvatarfull(String avatarfull) {
         this.avatarfull = avatarfull;
     }
 
     /**
-     *
-     * @return
-     * The personastate
+     * @return The personastate
      */
     public Integer getPersonastate() {
         return personastate;
     }
 
     /**
-     *
-     * @param personastate
-     * The personastate
+     * @param personastate The personastate
      */
     public void setPersonastate(Integer personastate) {
         this.personastate = personastate;
     }
 
     /**
-     *
-     * @return
-     * The realname
+     * @return The realname
      */
     public String getRealname() {
         return realname;
     }
 
     /**
-     *
-     * @param realname
-     * The realname
+     * @param realname The realname
      */
     public void setRealname(String realname) {
         this.realname = realname;
     }
 
     /**
-     *
-     * @return
-     * The primaryclanid
+     * @return The primaryclanid
      */
     public String getPrimaryclanid() {
         return primaryclanid;
     }
 
     /**
-     *
-     * @param primaryclanid
-     * The primaryclanid
+     * @param primaryclanid The primaryclanid
      */
     public void setPrimaryclanid(String primaryclanid) {
         this.primaryclanid = primaryclanid;
     }
 
     /**
-     *
-     * @return
-     * The timecreated
+     * @return The timecreated
      */
     public Integer getTimecreated() {
         return timecreated;
     }
 
     /**
-     *
-     * @param timecreated
-     * The timecreated
+     * @param timecreated The timecreated
      */
     public void setTimecreated(Integer timecreated) {
         this.timecreated = timecreated;
     }
 
     /**
-     *
-     * @return
-     * The personastateflags
+     * @return The personastateflags
      */
     public Integer getPersonastateflags() {
         return personastateflags;
     }
 
     /**
-     *
-     * @param personastateflags
-     * The personastateflags
+     * @param personastateflags The personastateflags
      */
     public void setPersonastateflags(Integer personastateflags) {
         this.personastateflags = personastateflags;
     }
 
     /**
-     *
-     * @return
-     * The loccountrycode
+     * @return The loccountrycode
      */
     public String getLoccountrycode() {
         return loccountrycode;
     }
 
     /**
-     *
-     * @param loccountrycode
-     * The loccountrycode
+     * @param loccountrycode The loccountrycode
      */
     public void setLoccountrycode(String loccountrycode) {
         this.loccountrycode = loccountrycode;
     }
 
     /**
-     *
-     * @return
-     * The locstatecode
+     * @return The locstatecode
      */
     public String getLocstatecode() {
         return locstatecode;
     }
 
     /**
-     *
-     * @param locstatecode
-     * The locstatecode
+     * @param locstatecode The locstatecode
      */
     public void setLocstatecode(String locstatecode) {
         this.locstatecode = locstatecode;
     }
 
     /**
-     *
-     * @return
-     * The loccityid
+     * @return The loccityid
      */
     public Integer getLoccityid() {
         return loccityid;
     }
 
     /**
-     *
-     * @param loccityid
-     * The loccityid
+     * @param loccityid The loccityid
      */
     public void setLoccityid(Integer loccityid) {
         this.loccityid = loccityid;

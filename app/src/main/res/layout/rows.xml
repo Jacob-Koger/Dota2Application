@@ -12,87 +12,82 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/shownFrameLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <RelativeLayout
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:id="@+id/shown"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/matchID_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left|top"
-                android:padding="16dp">
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="MatchID: "
+                android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/matchID_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:text="MatchID: "
-                    android:textSize="14sp" />
+            <TextView
+                android:id="@+id/startTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/matchID_view"
+                android:text="Start Time(Unix): "
+                android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/startTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/matchID_view"
-                    android:text="Start Time(Unix): "
-                    android:textSize="14sp" />
+            <TextView
+                android:id="@+id/lobbyType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/startTime"
+                android:text="Lobby Type: "
+                android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/lobbyType"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/startTime"
-                    android:text="Lobby Type: "
-                    android:textSize="14sp" />
+            <TextView
+                android:id="@+id/radiantTeamId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/lobbyType"
+                android:text="Radiant Team ID: "
+                android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/radiantTeamId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/lobbyType"
-                    android:text="Radiant Team ID: "
-                    android:textSize="14sp" />
+            <TextView
+                android:id="@+id/direTeamId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/radiantTeamId"
+                android:text="Dire Team ID:"
+                android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/direTeamId"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/radiantTeamId"
-                    android:text="Dire Team ID:"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/matchSeqNum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/direTeamId"
-                    android:text="Match Seq. Num.: "
-                    android:textSize="14sp" />
+            <TextView
+                android:id="@+id/matchSeqNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/direTeamId"
+                android:text="Match Seq. Num.: "
+                android:textSize="14sp" />
 
 
-            </RelativeLayout>
-
-        </FrameLayout>
+        </RelativeLayout>
 
         <FrameLayout
             android:id="@+id/hiddenFrameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/shownFrameLayout"
+            android:layout_below="@+id/shown"
             android:visibility="visible">
 
             <RelativeLayout
@@ -105,81 +100,81 @@
                     android:id="@+id/rHeroImageView0"
                     android:layout_width="64dp"
                     android:layout_height="32dp"
-                    android:src="@drawable/blankhero"
+                    android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true" />
+                    android:src="@drawable/blankhero" />
 
                 <ImageView
                     android:id="@+id/rHeroImageView1"
                     android:layout_width="64dp"
                     android:layout_height="32dp"
-                    android:src="@drawable/blankhero"
                     android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/rHeroImageView0" />
+                    android:layout_toEndOf="@+id/rHeroImageView0"
+                    android:src="@drawable/blankhero" />
 
                 <ImageView
                     android:id="@+id/rHeroImageView2"
                     android:layout_width="64dp"
                     android:layout_height="32dp"
-                    android:src="@drawable/blankhero"
                     android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/rHeroImageView1" />
+                    android:layout_toEndOf="@+id/rHeroImageView1"
+                    android:src="@drawable/blankhero" />
 
                 <ImageView
                     android:id="@+id/rHeroImageView3"
                     android:layout_width="64dp"
                     android:layout_height="32dp"
-                    android:src="@drawable/blankhero"
                     android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/rHeroImageView2" />
+                    android:layout_toEndOf="@+id/rHeroImageView2"
+                    android:src="@drawable/blankhero" />
 
                 <ImageView
                     android:id="@+id/rHeroImageView4"
                     android:layout_width="64dp"
                     android:layout_height="32dp"
-                    android:src="@drawable/blankhero"
                     android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/rHeroImageView3" />
+                    android:layout_toEndOf="@+id/rHeroImageView3"
+                    android:src="@drawable/blankhero" />
 
                 <ImageView
                     android:id="@+id/dHeroImageView128"
                     android:layout_width="64dp"
                     android:layout_height="32dp"
-                    android:src="@drawable/blankhero"
+                    android:layout_alignParentStart="true"
                     android:layout_alignTop="@+id/dHeroImageView129"
-                    android:layout_alignParentStart="true" />
+                    android:src="@drawable/blankhero" />
 
                 <ImageView
                     android:id="@+id/dHeroImageView129"
                     android:layout_width="64dp"
                     android:layout_height="32dp"
-                    android:src="@drawable/blankhero"
                     android:layout_below="@+id/rHeroImageView0"
-                    android:layout_toEndOf="@+id/rHeroImageView0" />
+                    android:layout_toEndOf="@+id/rHeroImageView0"
+                    android:src="@drawable/blankhero" />
 
                 <ImageView
                     android:id="@+id/dHeroImageView130"
                     android:layout_width="64dp"
                     android:layout_height="32dp"
-                    android:src="@drawable/blankhero"
                     android:layout_below="@+id/rHeroImageView1"
-                    android:layout_toEndOf="@+id/rHeroImageView1" />
+                    android:layout_toEndOf="@+id/rHeroImageView1"
+                    android:src="@drawable/blankhero" />
 
                 <ImageView
+                    android:id="@+id/dHeroImageView131"
                     android:layout_width="64dp"
                     android:layout_height="32dp"
-                    android:src="@drawable/blankhero"
-                    android:id="@+id/dHeroImageView131"
                     android:layout_below="@+id/rHeroImageView2"
-                    android:layout_toEndOf="@+id/rHeroImageView2" />
+                    android:layout_toEndOf="@+id/rHeroImageView2"
+                    android:src="@drawable/blankhero" />
 
                 <ImageView
                     android:id="@+id/dHeroImageView132"
                     android:layout_width="64dp"
                     android:layout_height="32dp"
-                    android:src="@drawable/blankhero"
                     android:layout_below="@+id/rHeroImageView3"
-                    android:layout_toEndOf="@+id/rHeroImageView3" />
+                    android:layout_toEndOf="@+id/rHeroImageView3"
+                    android:src="@drawable/blankhero" />
 
             </RelativeLayout>
 

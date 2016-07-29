@@ -14,7 +14,6 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -28,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox doNotShowAgainCB;
     Button changeActivityButton;
 
-    Boolean isChecked;
+    boolean isChecked;
     boolean show;
 
     @Override
@@ -43,10 +42,6 @@ public class LoginActivity extends AppCompatActivity {
 
         if (!prefs2.contains("player_id")) {
             if (show) {
-                if (!keyprefs.contains("key")) {
-                    Log.d("ran!", "ran");
-                    setDataBase();
-                }
                 setupView();
             } else {
                 if (!keyprefs.contains("key")) {
@@ -82,13 +77,15 @@ public class LoginActivity extends AppCompatActivity {
 
                     Uri userAccountUrl = Uri.parse(Url.getQueryParameter("openid.identity"));
                     userID = userAccountUrl.getLastPathSegment();
-                    Toast.makeText(LoginActivity.this, userID, Toast.LENGTH_LONG).show();
+//                    Toast.makeText(LoginActivity.this, userID, Toast.LENGTH_LONG).show();
 
                     SharedPreferences sharedPreferences = getSharedPreferences("player_id", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("player_id", userID);
                     editor.apply();
 
+
+                    setDataBase();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
@@ -127,8 +124,10 @@ public class LoginActivity extends AppCompatActivity {
 
     public void setDataBase() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+
         DatabaseReference ref = database.getReference("userid").push();
-        ref.setValue(getSharedPreferences("player_id", Context.MODE_PRIVATE).getString("player_id", "none"));
+        ref.setValue(userID);
         String id = ref.getKey();
         SharedPreferences sharedPreferences = getSharedPreferences("key", MODE_PRIVATE);
         sharedPreferences.edit().putString("key", id).apply();

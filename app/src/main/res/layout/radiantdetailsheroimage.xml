@@ -11,16 +11,16 @@
 
 <ImageView
         android:id="@+id/radiantHeroImageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    android:layout_width="128px"
+    android:layout_height="72px"
         android:layout_marginBottom="14dp"
         android:layout_marginTop="10dp"
         android:src="@drawable/blankhero" />
 
     <ImageView
         android:id="@+id/radiantHeroImageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="128px"
+        android:layout_height="72px"
         android:layout_below="@+id/radiantHeroImageView1"
         android:layout_marginBottom="14dp"
         android:layout_marginTop="10dp"
@@ -28,8 +28,8 @@
 
     <ImageView
         android:id="@+id/radiantHeroImageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="128px"
+        android:layout_height="72px"
         android:layout_below="@+id/radiantHeroImageView2"
         android:layout_marginBottom="14dp"
         android:layout_marginTop="10dp"
@@ -37,8 +37,8 @@
 
     <ImageView
         android:id="@+id/radiantHeroImageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="128px"
+        android:layout_height="72px"
         android:layout_below="@+id/radiantHeroImageView3"
         android:layout_marginBottom="14dp"
         android:layout_marginTop="10dp"
@@ -46,8 +46,8 @@
 
     <ImageView
         android:id="@+id/radiantHeroImageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="128px"
+        android:layout_height="72px"
         android:layout_below="@+id/radiantHeroImageView4"
         android:layout_marginBottom="14dp"
         android:layout_marginTop="10dp"

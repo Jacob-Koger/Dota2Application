@@ -1,4 +1,3 @@
-
 package com.example.jacobkoger.newdota2applicationwsidebar.POJO_Abilities;
 
 import com.google.gson.annotations.Expose;
@@ -14,18 +13,14 @@ public class Ability_List {
     private List<Ability> abilities = new ArrayList<Ability>();
 
     /**
-     *
-     * @return
-     * The abilities
+     * @return The abilities
      */
     public List<Ability> getAbilities() {
         return abilities;
     }
 
     /**
-     *
-     * @param abilities
-     * The abilities
+     * @param abilities The abilities
      */
     public void setAbilities(List<Ability> abilities) {
         this.abilities = abilities;

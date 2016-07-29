@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_InputMatchID_fragment"
+            android:title="Input Match ID"
+            android:checked="true" />
+        <item
+            android:id="@+id/nav_RecentMatches_fragment"
+            android:title="Recent Matches" />
+        <item
+            android:id = "@+id/nav_Login_fragment"
+            android:title="Log In" />
+    </group>
+</menu>

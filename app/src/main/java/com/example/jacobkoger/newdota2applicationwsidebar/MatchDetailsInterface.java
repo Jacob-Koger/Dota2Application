@@ -14,5 +14,4 @@ public interface MatchDetailsInterface {
     Call<MDMatchDetails> getMatchDetails(@Query("match_id") String matchID);
 
     Call<MDMatchDetails> getMatchDetails(@Query("steamids") List<String> ids);
-
 }

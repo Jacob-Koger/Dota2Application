@@ -1,61 +1,1 @@
-package com.example.jacobkoger.newdota2applicationwsidebar;
-
-import android.content.Context;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-
-public class AccountDetailsFragment extends Fragment {
-
-    private OnFragmentInteractionListener mListener;
-
-    public AccountDetailsFragment() {
-
-    }
-
-
-    public static AccountDetailsFragment newInstance() {
-        return new AccountDetailsFragment();
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_account_details, container, false);
-    }
-
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-    }
-}
+package com.example.jacobkoger.newdota2applicationwsidebar;import android.content.Context;import android.net.Uri;import android.os.Bundle;import android.support.annotation.Nullable;import android.support.v4.app.Fragment;import android.util.Log;import android.view.LayoutInflater;import android.view.View;import android.view.ViewGroup;import android.widget.ImageView;import android.widget.TextView;import com.example.jacobkoger.newdota2applicationwsidebar.POJO_GameStats.Game;import com.example.jacobkoger.newdota2applicationwsidebar.POJO_GameStats.GameStats;import com.squareup.picasso.Picasso;import java.io.IOException;import okhttp3.HttpUrl;import okhttp3.Interceptor;import okhttp3.OkHttpClient;import okhttp3.Request;import retrofit2.Call;import retrofit2.Callback;import retrofit2.Response;import retrofit2.Retrofit;import retrofit2.converter.gson.GsonConverterFactory;public class AccountDetailsFragment extends Fragment {    String url = "https://api.steampowered.com";    String Name, AccountName, UserID, Avatar;    ImageView AvatarImage;    TextView RealName, AccountNameTV, UserIDTV, Dota2Hours, Dota2HoursBiweekly;    int TwoWeekHours, Hours;    private OnFragmentInteractionListener mListener;    public AccountDetailsFragment() {    }    public static AccountDetailsFragment newInstance() {        return new AccountDetailsFragment();    }    @Override    public void onCreate(Bundle savedInstanceState) {        super.onCreate(savedInstanceState);    }    @Override    public View onCreateView(LayoutInflater inflater, ViewGroup container,                             Bundle savedInstanceState) {        Bundle bundle = this.getArguments();        Name = bundle.getString("name");        AccountName = bundle.getString("accountname");        UserID = bundle.getString("userid");        Avatar = bundle.getString("avatar");        return inflater.inflate(R.layout.fragment_account_details, container, false);    }    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {        super.onViewCreated(view, savedInstanceState);        AvatarImage = (ImageView) view.findViewById(R.id.avatarDetailsPage);        RealName = (TextView) view.findViewById(R.id.realNameDetailsPage);        AccountNameTV = (TextView) view.findViewById(R.id.accountNameDetailsPage);        UserIDTV = (TextView) view.findViewById(R.id.userIdDetailsPage);        Dota2Hours = (TextView) view.findViewById(R.id.dota2hoursDetailsPage);        Dota2HoursBiweekly = (TextView) view.findViewById(R.id.dota2HoursBiweeklyDetailsPage);        getResult();        Picasso.with(getContext()).load(Avatar).into(AvatarImage);        RealName.setText(Name);        AccountNameTV.setText(AccountName + "  -");        UserIDTV.setText(UserID);    }    @Override    public void onAttach(Context context) {        super.onAttach(context);        if (context instanceof OnFragmentInteractionListener) {            mListener = (OnFragmentInteractionListener) context;        } else {            throw new RuntimeException(context.toString()                    + " must implement OnFragmentInteractionListener");        }    }    @Override    public void onDetach() {        super.onDetach();        mListener = null;    }    public void getResult() {        final OkHttpClient.Builder builder = new OkHttpClient.Builder();        builder.interceptors().add(new Interceptor() {            @Override            public okhttp3.Response intercept(Chain chain) throws IOException {                final Request orig = chain.request();                HttpUrl origUrl = orig.url();                Log.d("done", "done");                return chain.proceed(orig.newBuilder()                        .url(origUrl.newBuilder()                                .addQueryParameter("key", BuildConfig.API_KEY)                                .addQueryParameter("steamid", UserID)                                .addQueryParameter("include_played_free_games", "1")                                .addQueryParameter("format", "JSON")                                .build())                        .build());            }        });        final Retrofit retrofit = new Retrofit.Builder()                .client(builder.build())                .baseUrl(url)                .addConverterFactory(GsonConverterFactory.create())                .build();        GameStatsInterface service = retrofit.create(GameStatsInterface.class);        Call<GameStats> callMH = service.getResponse();        callMH.enqueue(new Callback<GameStats>() {            @Override            public void onResponse(Call<GameStats> call, Response<GameStats> response) {                GameStats gameStats = response.body();                Log.d("game", gameStats.getResponse().getGames().toString());                for (final Game game : gameStats.getResponse().getGames()) {                    if (game.getAppid() == 570) {                        Hours = game.getPlaytimeForever() / 60;                        TwoWeekHours = game.getPlaytime2weeks() / 60;                        Dota2Hours.setText("Hours: " + String.valueOf(Hours));                        Dota2HoursBiweekly.setText("Hours in past 2 Wks: " + String.valueOf(TwoWeekHours));                    }                }            }            @Override            public void onFailure(Call<GameStats> call, Throwable t) {            }        });    }    public interface OnFragmentInteractionListener {        void onFragmentInteraction(Uri uri);    }}

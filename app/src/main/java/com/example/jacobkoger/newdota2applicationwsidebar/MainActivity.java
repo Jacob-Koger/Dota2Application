@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,7 +39,8 @@ public class MainActivity extends AppCompatActivity
         implements InputMatchIDFragment.OnMatchSelectionListener, DisplayMatchDetailsFragment.OnFragmentInteractionListener, AccountDetailsFragment.OnFragmentInteractionListener {
 
     String url = "https://api.steampowered.com";
-    String accountid;
+    String accountid = null;
+    String Name, AccountName, UserID, Avatar;
     TextView RealName, Username, ProfileURL;
     ImageView ProfilePicture;
     private DrawerLayout mDrawer;
@@ -59,18 +61,36 @@ public class MainActivity extends AppCompatActivity
         setupDrawerContent(nvDrawer);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerToggle = setupDrawerToggle();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.flContent, new InputMatchIDFragment())
                 .commit();
-        View headerView = nvDrawer.inflateHeaderView(R.layout.navbar_header);
+        if (accountid == null) {
+            View header = nvDrawer.inflateHeaderView(R.layout.navbar_header);
+            View headerView = nvDrawer.inflateHeaderView(R.layout.navbar_headerwaccount);
 
-        RealName = (TextView) headerView.findViewById(R.id.accountname);
-        Username = (TextView) headerView.findViewById(R.id.username);
-        ProfilePicture = (ImageView) headerView.findViewById(R.id.profilepic);
-        ProfileURL = (TextView) headerView.findViewById(R.id.profileURL);
-        getResult();
+            nvDrawer.removeHeaderView(header);
+            nvDrawer.removeHeaderView(headerView);
+            nvDrawer.inflateMenu(R.menu.drawer_view_nonlogged);
+            nvDrawer.addHeaderView(header);
+            Log.d("header1", String.valueOf(nvDrawer.getHeaderView(0)));
+
+
+        } else {
+            View header = nvDrawer.inflateHeaderView(R.layout.navbar_header);
+            View headerView = nvDrawer.inflateHeaderView(R.layout.navbar_headerwaccount);
+
+            nvDrawer.removeHeaderView(header);
+            nvDrawer.removeHeaderView(headerView);
+            nvDrawer.addHeaderView(headerView);
+            nvDrawer.inflateMenu(R.menu.drawer_view);
+            RealName = (TextView) headerView.findViewById(R.id.accountname);
+            Username = (TextView) headerView.findViewById(R.id.username);
+            ProfilePicture = (ImageView) headerView.findViewById(R.id.profilepic);
+            ProfileURL = (TextView) headerView.findViewById(R.id.profileURL);
+            Log.d("header2", String.valueOf(nvDrawer.getHeaderView(0)));
+            getResult();
+        }
     }
 
     private ActionBarDrawerToggle setupDrawerToggle() {
@@ -94,30 +114,77 @@ public class MainActivity extends AppCompatActivity
     public void selectDrawerItem(MenuItem menuItem) {
         Fragment fragment = null;
         Class fragmentClass;
-        switch (menuItem.getItemId()) {
-            case R.id.nav_InputMatchID_fragment:
-                fragmentClass = InputMatchIDFragment.class;
-                break;
-            case R.id.nav_RecentMatches_fragment:
-                fragmentClass = RecentMatchesFragment.class;
-                break;
-            case R.id.nav_AccountDetails_fragment:
-                fragmentClass = AccountDetailsFragment.class;
-                break;
-            default:
-                fragmentClass = InputMatchIDFragment.class;
-        }
+        if (accountid != null) {
+            switch (menuItem.getItemId()) {
+                case R.id.nav_InputMatchID_fragment:
+                    fragmentClass = InputMatchIDFragment.class;
+                    break;
+                case R.id.nav_RecentMatches_fragment:
+                    fragmentClass = RecentMatchesFragment.class;
+                    break;
+                case R.id.nav_AccountDetails_fragment:
+                    fragmentClass = AccountDetailsFragment.class;
+                    break;
+                default:
+                    fragmentClass = InputMatchIDFragment.class;
+            }
 
-        try {
-            fragment = (Fragment) fragmentClass.newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                fragment = (Fragment) fragmentClass.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            switch (menuItem.getItemId()) {
+                case R.id.nav_InputMatchID_fragment:
+                    fragmentClass = InputMatchIDFragment.class;
+                    break;
+                case R.id.nav_RecentMatches_fragment:
+                    fragmentClass = RecentMatchesFragment.class;
+                    break;
+                case R.id.nav_Login_fragment:
+                    fragmentClass = LoginFragment.class;
+                    break;
+                default:
+                    fragmentClass = InputMatchIDFragment.class;
+            }
+            try {
+                fragment = (Fragment) fragmentClass.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
-        menuItem.setChecked(true);
-        setTitle(menuItem.getTitle());
-        mDrawer.closeDrawers();
+        if (fragmentClass == InputMatchIDFragment.class || fragmentClass == LoginFragment.class) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+            menuItem.setChecked(true);
+            setTitle(menuItem.getTitle());
+            mDrawer.closeDrawers();
+
+        } else if (fragmentClass == AccountDetailsFragment.class) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            Bundle bundle = new Bundle();
+            bundle.putString("name", Name);
+            bundle.putString("accountname", AccountName);
+            bundle.putString("userid", UserID);
+            bundle.putString("avatar", Avatar);
+            fragment.setArguments(bundle);
+
+            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+            setTitle(menuItem.getTitle());
+            menuItem.setChecked(true);
+            mDrawer.closeDrawers();
+        } else if (fragmentClass == RecentMatchesFragment.class) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            Bundle bundle = new Bundle();
+            bundle.putString("userid", UserID);
+            fragment.setArguments(bundle);
+
+            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+            setTitle(menuItem.getTitle());
+            menuItem.setChecked(true);
+            mDrawer.closeDrawers();
+        }
     }
 
     @Override
@@ -180,6 +247,12 @@ public class MainActivity extends AppCompatActivity
                 Player player = accountInfo.getResponse().getPlayers().get(0);
                 if (player.getProfilestate() == 1) {
                     if (player.getCommunityvisibilitystate() == 3) {
+
+                        Name = player.getRealname();
+                        AccountName = player.getPersonaname();
+                        UserID = player.getSteamid();
+                        Avatar = player.getAvatarfull();
+
                         RealName.setText(player.getRealname());
                         Username.setText(player.getPersonaname() + " - ");
                         ProfileURL.setText(player.getProfileurl());

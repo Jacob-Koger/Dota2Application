@@ -1,14 +1,13 @@
 package com.example.jacobkoger.newdota2applicationwsidebar;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 
-public class View_Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class View_Holder extends RecyclerView.ViewHolder {
 
     public View mView;
     TextView textView_MatchNumber, textView_StartTime, textView_LobbyType,
@@ -21,7 +20,6 @@ public class View_Holder extends RecyclerView.ViewHolder implements View.OnClick
     View_Holder(View view) {
         super(view);
         mView = view;
-        itemView.setOnClickListener(this);
         matchID_View = (TextView) itemView.findViewById(R.id.matchID_view);
         textView_StartTime = (TextView) itemView.findViewById(R.id.startTime);
         textView_LobbyType = (TextView) itemView.findViewById(R.id.lobbyType);
@@ -46,21 +44,8 @@ public class View_Holder extends RecyclerView.ViewHolder implements View.OnClick
 
     }
 
-    @Override
-    public void onClick(View view) {
-        Log.d("tag", "onClick " + getAdapterPosition() + " ");
-
-          if(isHidden == true) {
-            hiddenFrameLayout.setVisibility(View.VISIBLE);
-            isHidden = false;
-        } else {
-            hiddenFrameLayout.setVisibility(View.GONE);
-            isHidden = true;
-        }
-    }
-
     public ImageView getSlotView(int slot) {
-        switch (slot){
+        switch (slot) {
             case 0:
                 return imageView_r0;
             case 1:
