@@ -57,6 +57,7 @@ public class RecentMatchesFragment extends android.support.v4.app.Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(adapter);
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("player_id", Context.MODE_PRIVATE);
+
         if (sharedPreferences.contains("player_id")) {
             getResultPersonal();
         } else {
@@ -133,4 +134,5 @@ public class RecentMatchesFragment extends android.support.v4.app.Fragment {
             }
         });
     }
+
 }

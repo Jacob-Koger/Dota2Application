@@ -9,10 +9,9 @@ import java.util.List;
 
 
 public class MDPlayer {
-
     @SerializedName("account_id")
     @Expose
-    private double accountId;
+    private long accountId;
     @SerializedName("player_slot")
     @Expose
     private Integer playerSlot;
@@ -86,14 +85,14 @@ public class MDPlayer {
     /**
      * @return The accountId
      */
-    public double getAccountId() {
+    public long getAccountId() {
         return accountId;
     }
 
     /**
      * @param accountId The account_id
      */
-    public void setAccountId(double accountId) {
+    public void setAccountId(long accountId) {
         this.accountId = accountId;
     }
 

@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MHMatch {
-
+    @SerializedName("match_id")
+    private String matchid;
     @SerializedName("match_seq_num")
     private String matchSeqNum;
     @SerializedName("start_time")
@@ -24,7 +25,8 @@ public class MHMatch {
     @Override
     public String toString() {
         return "MHMatch{" +
-                "matchSeqNum='" + matchSeqNum + '\'' +
+                "matchId='" + matchid + '\'' +
+                "matchSeqNum='" + matchSeqNum +
                 ", startTime=" + startTime +
                 ", lobbyType=" + lobbyType +
                 ", radiantTeamId=" + radiantTeamId +
@@ -32,7 +34,9 @@ public class MHMatch {
                 ", MHPlayers=" + MHPlayers +
                 '}';
     }
-
+    public String getMatchId() {
+        return  matchid;
+    }
     public String getMatchSeqNum() {
         return matchSeqNum;
     }

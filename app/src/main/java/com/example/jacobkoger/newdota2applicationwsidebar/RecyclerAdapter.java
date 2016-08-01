@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.jacobkoger.newdota2applicationwsidebar.POJO_Heroes.Hero;
 import com.example.jacobkoger.newdota2applicationwsidebar.POJO_Heroes.HeroesList;
+import com.example.jacobkoger.newdota2applicationwsidebar.POJO_Lobbies.LobbiesList;
+import com.example.jacobkoger.newdota2applicationwsidebar.POJO_Lobbies.Lobby;
 import com.example.jacobkoger.newdota2applicationwsidebar.POJO_MatchHistory.MHMatch;
 import com.example.jacobkoger.newdota2applicationwsidebar.POJO_MatchHistory.MHPlayer;
 import com.google.gson.Gson;
@@ -22,12 +24,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class RecyclerAdapter extends android.support.v7.widget.RecyclerView.Adapter<View_Holder> {
 
     private final static int FADE_DURATION = 250;
-    public final List<MHMatch> result = new ArrayList<>();
+    public static final List<MHMatch> result = new ArrayList<>();
     public final List<Hero> mHeroes = new ArrayList<>();
+    public final List<Lobby> mLobby = new ArrayList<>();
     private Context mContext;
     private Integer heroID;
     private int playerslot;
@@ -43,6 +47,21 @@ public class RecyclerAdapter extends android.support.v7.widget.RecyclerView.Adap
             in = am.open("Heroes.json");
             final HeroesList hl = gson.fromJson(new InputStreamReader(in), HeroesList.class);
             mHeroes.addAll(hl.getHeroes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        try {
+            in = am.open("Lobbies.json");
+            final LobbiesList ll = gson.fromJson(new InputStreamReader(in), LobbiesList.class);
+            mLobby.addAll(ll.getLobbies());
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -87,14 +106,15 @@ public class RecyclerAdapter extends android.support.v7.widget.RecyclerView.Adap
         setFadeAnimation(holder.textView_DireID);
         setFadeAnimation(holder.textView_MatchNumber);
         setFadeAnimation(holder.matchID_View);
-//        setFadeAnimation(holder.textView_Players);
-
-        holder.textView_LobbyType.setText("Lobby Type:  " + MHMatch.getLobbyType());
+        for (final Lobby lobby : mLobby) {
+            if(Objects.equals(lobby.getId().toString(), MHMatch.getLobbyType()))
+            holder.textView_LobbyType.setText("Lobby Type: " + lobby.getName());
+        }
         holder.textView_StartTime.setText("Start Time:  " + MHMatch.getStartTime());
         holder.textView_RadiantID.setText("Radiant ID: " + MHMatch.getRadiantTeamId());
         holder.textView_DireID.setText("Dire ID " + MHMatch.getDireTeamId());
-//        holder.textView_Players.setText("MDPlayer Count: " + MHMatch.getMDPlayers());
-        holder.textView_MatchNumber.setText("MHMatch Number: " + MHMatch.getMatchSeqNum());
+        holder.textView_MatchNumber.setText("Match Number: " + MHMatch.getMatchSeqNum());
+        holder.matchID_View.setText("Match ID: " + MHMatch.getMatchId());
 
         setImages(holder);
     }

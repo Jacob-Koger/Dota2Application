@@ -247,12 +247,12 @@ public class MainActivity extends AppCompatActivity
                 Player player = accountInfo.getResponse().getPlayers().get(0);
                 if (player.getProfilestate() == 1) {
                     if (player.getCommunityvisibilitystate() == 3) {
-
+                        SharedPreferences sharedPreferences = getSharedPreferences("player_id", Context.MODE_PRIVATE);
                         Name = player.getRealname();
                         AccountName = player.getPersonaname();
                         UserID = player.getSteamid();
                         Avatar = player.getAvatarfull();
-
+                        sharedPreferences.edit().putString("username", player.getPersonaname()).apply();
                         RealName.setText(player.getRealname());
                         Username.setText(player.getPersonaname() + " - ");
                         ProfileURL.setText(player.getProfileurl());
