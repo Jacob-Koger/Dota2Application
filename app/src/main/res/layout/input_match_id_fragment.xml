@@ -1,0 +1,44 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jacobkoger.newdota2applicationwsidebar.MainActivity">
+
+    <Button
+        android:id="@+id/goToMatchDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:text="Find Match" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:hint="Insert Match ID"
+        android:inputType="number"
+        android:text="2511325176"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/matchIdInputTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="50dp"
+        android:paddingBottom="24dp"
+        android:paddingTop="16dp"
+        android:text="Insert Match ID"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>

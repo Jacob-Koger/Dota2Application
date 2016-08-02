@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="125dp"
+    android:background="?attr/colorPrimaryDark"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:text="Dota 2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/profilepic"
+        android:layout_width="128px"
+        android:layout_height="128px"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:padding="3dp" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignTop="@+id/profilepic"
+        android:layout_toEndOf="@+id/profilepic" />
+
+    <TextView
+        android:id="@+id/accountname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignTop="@+id/username"
+        android:layout_toEndOf="@+id/username" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="4pt"
+        android:text=""
+        android:id="@+id/profileURL"
+        android:layout_below="@+id/username"
+        android:layout_toEndOf="@+id/profilepic" />
+
+</RelativeLayout>

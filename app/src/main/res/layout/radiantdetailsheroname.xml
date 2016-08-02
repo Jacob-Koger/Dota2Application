@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/radiantTeamDetailsView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_marginEnd="3dp"
+    android:layout_marginTop="18dp"
+    android:layout_toEndOf="@+id/radiantHeroImages"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/radiantHeroName1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="16dp"
+        android:layout_toEndOf="@+id/radiantHeroImageView1"
+        android:layout_marginTop="10dp"
+        android:text="Hero Name:"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textIsSelectable="true" />
+
+    <TextView
+        android:id="@+id/radiantHeroName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radiantHeroName1"
+        android:layout_marginBottom="16dp"
+        android:layout_toEndOf="@+id/radiantHeroImageView2"
+        android:layout_marginTop="10dp"
+        android:text="Hero Name:"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textIsSelectable="true" />
+
+    <TextView
+        android:id="@+id/radiantHeroName3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radiantHeroName2"
+        android:layout_toEndOf="@+id/radiantHeroImageView3"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="10dp"
+        android:text="Hero Name:"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textIsSelectable="true" />
+
+    <TextView
+        android:id="@+id/radiantHeroName4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radiantHeroName3"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/radiantHeroImageView4"
+        android:text="Hero Name:"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textIsSelectable="true" />
+
+    <TextView
+        android:id="@+id/radiantHeroName5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/radiantHeroName4"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/radiantHeroImageView4"
+        android:text="Hero Name:"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textIsSelectable="true" />
+
+    <ImageView
+        android:id="@+id/radiantHeroImageView1"
+        android:layout_width="128px"
+        android:layout_height="72px"
+        android:src="@drawable/blankhero"
+        android:layout_above="@+id/radiantHeroName2"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/radiantHeroImageView2"
+        android:layout_width="128px"
+        android:layout_height="72px"
+        android:src="@drawable/blankhero"
+        android:layout_below="@+id/radiantHeroName1"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/radiantHeroImageView3"
+        android:layout_width="128px"
+        android:layout_height="72px"
+        android:src="@drawable/blankhero"
+        android:layout_below="@+id/radiantHeroName2"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/radiantHeroImageView4"
+        android:layout_width="128px"
+        android:layout_height="72px"
+        android:src="@drawable/blankhero"
+        android:layout_below="@+id/radiantHeroName3"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/radiantHeroImageView5"
+        android:layout_width="128px"
+        android:layout_height="72px"
+        android:src="@drawable/blankhero"
+        android:layout_below="@+id/radiantHeroName4"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>
