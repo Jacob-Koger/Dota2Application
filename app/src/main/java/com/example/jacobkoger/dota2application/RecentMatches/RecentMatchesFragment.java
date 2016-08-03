@@ -37,6 +37,7 @@ public class RecentMatchesFragment extends Fragment implements RecentMatchesCont
     private String filter;
     private SwipeRefreshLayout refresher;
     private HeroSearchView mSearchView;
+
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
@@ -47,6 +48,7 @@ public class RecentMatchesFragment extends Fragment implements RecentMatchesCont
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.recycler_view, container, false);
+
     }
 
     @Override
@@ -78,15 +80,16 @@ public class RecentMatchesFragment extends Fragment implements RecentMatchesCont
     @Override
     public void fetchMatches(@NonNull CacheStrategy cacheStrategy) {
         requireNonNull(cacheStrategy, "CacheStrategy must not be null");
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("player_id", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getContext().getSharedPreferences("player_id", Context.MODE_PRIVATE);
 
-        if (sharedPreferences.contains("player_id")) {
-            Log.d("client", "loggedinclient");
-            LoggedInClient.with(this).cacheStrategy(cacheStrategy).enqueueMatchHistory(presenter);
-        } else {
-            Log.d("client", "nonloggedinclient");
-            NonLoggedInClient.with(this).cacheStrategy(cacheStrategy).enqueueMatchHistory(presenter);
-        }
+            if (sharedPreferences.contains("player_id")) {
+                Log.d("client", "loggedinclient");
+                LoggedInClient.with(this).cacheStrategy(cacheStrategy).enqueueMatchHistory(presenter);
+            } else {
+                Log.d("client", "nonloggedinclient");
+                NonLoggedInClient.with(this).cacheStrategy(cacheStrategy).enqueueMatchHistory(presenter);
+            }
+
     }
 
     @Override

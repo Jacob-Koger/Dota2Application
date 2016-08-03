@@ -8,12 +8,10 @@ import com.example.jacobkoger.dota2application.CacheStrategy;
 import com.example.jacobkoger.dota2application.Config;
 import com.example.jacobkoger.dota2application.ResponseCallbacks.CallbackWrapper;
 import com.example.jacobkoger.dota2application.ResponseCallbacks.GenericCallback;
-import com.example.jacobkoger.dota2application.data.detail.MDMatchDetails;
-import com.example.jacobkoger.dota2application.data.history.MHMatchHistory;
+import com.example.jacobkoger.dota2application.data.accountinfo.AccountInfo;
+import com.example.jacobkoger.dota2application.interceptors.AccountDetailsInterceptor;
 import com.example.jacobkoger.dota2application.interceptors.CachedInterceptor;
-import com.example.jacobkoger.dota2application.interceptors.KeyInteceptor;
-import com.example.jacobkoger.dota2application.services.MatchDetailsService;
-import com.example.jacobkoger.dota2application.services.RecentMatchService;
+import com.example.jacobkoger.dota2application.services.AccountDetailsService;
 
 import java.io.File;
 
@@ -23,21 +21,21 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public final class NonLoggedInClient {
-
+public class LoggedInDetailsClient {
 
     private static final String CACHE_DIR = "HttpResponseCache";
     private static final long CACHE_SIZE = 10 * 1024 * 1024;
-    private static volatile NonLoggedInClient sClient;
-    private final Interceptor mAuthceptor = new KeyInteceptor();
+    private static volatile LoggedInDetailsClient aClient;
     private final CachedInterceptor mCacheceptor = new CachedInterceptor();
-    private final Retrofit mService;
+    private Retrofit mService;
 
-    private NonLoggedInClient(Context context) {
+    private LoggedInDetailsClient(Context context) {
+        final Interceptor mDetailsceptor = new AccountDetailsInterceptor(context);
+
         final OkHttpClient client = new OkHttpClient.Builder()
                 .cache(new Cache(new File(context.getCacheDir(), CACHE_DIR), CACHE_SIZE))
-                .addInterceptor(mAuthceptor)
                 .addInterceptor(mCacheceptor)
+                .addInterceptor(mDetailsceptor)
                 .addNetworkInterceptor(mCacheceptor)
                 .build();
         mService = new Retrofit.Builder()
@@ -48,31 +46,26 @@ public final class NonLoggedInClient {
                 .build();
     }
 
-    public static synchronized NonLoggedInClient with(Context context) {
-        if (sClient == null) {
-            sClient = new NonLoggedInClient(context.getApplicationContext());
+    public static synchronized LoggedInDetailsClient with(Context context) {
+        if (aClient == null) {
+            aClient = new LoggedInDetailsClient(context.getApplicationContext());
         }
-        return sClient;
+        return aClient;
     }
 
-    public static synchronized NonLoggedInClient with(Fragment fragment) {
+    public static synchronized LoggedInDetailsClient with(Fragment fragment) {
         return with(fragment.getContext());
     }
 
-    public NonLoggedInClient cacheStrategy(CacheStrategy cacheStrategy) {
+    public LoggedInDetailsClient cacheStrategy(CacheStrategy cacheStrategy) {
         mCacheceptor.setCacheStrategy(cacheStrategy);
         return this;
     }
 
-    public void enqueueMatchHistory(GenericCallback<MHMatchHistory> callback) {
-        mService.create(RecentMatchService.class)
-                .getMatchHistory()
+    public void enqueueMatchHistory(GenericCallback<AccountInfo> callback) {
+        mService.create(AccountDetailsService.class)
+                .getResponse()
                 .enqueue(CallbackWrapper.wrap(callback));
     }
-    public void enqueueMatchDetails(String matchId, GenericCallback<MDMatchDetails> callback ) {
-        mService.create(MatchDetailsService.class)
-                .getMatchDetails(matchId)
-                .enqueue(CallbackWrapper.wrap(callback));
-    }
-}
 
+}

@@ -17,7 +17,7 @@ public class MatchDetailsPresenter implements MatchDetailsContract.Presenter {
 
     @Override
     public void onStart() {
-        view.fetchMatchDetails(matchID);
+        view.getResult();
     }
 
     @Override

@@ -5,6 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentTop="true"
+    android:layout_gravity="center_vertical|left"
     android:layout_marginEnd="3dp"
     android:layout_marginTop="18dp"
     android:layout_toEndOf="@+id/radiantHeroImages"
@@ -13,11 +14,12 @@
     <TextView
         android:id="@+id/radiantHeroName1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="28dp"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginTop="4dp"
         android:layout_toEndOf="@+id/radiantHeroImageView1"
-        android:layout_marginTop="10dp"
+        android:gravity="center"
         android:text="Hero Name:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textIsSelectable="true" />
@@ -25,11 +27,12 @@
     <TextView
         android:id="@+id/radiantHeroName2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="28dp"
         android:layout_below="@+id/radiantHeroName1"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginTop="4dp"
         android:layout_toEndOf="@+id/radiantHeroImageView2"
-        android:layout_marginTop="10dp"
+        android:gravity="center"
         android:text="Hero Name:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textIsSelectable="true" />
@@ -37,11 +40,12 @@
     <TextView
         android:id="@+id/radiantHeroName3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="28dp"
         android:layout_below="@+id/radiantHeroName2"
+        android:layout_marginBottom="9dp"
+        android:layout_marginTop="4dp"
         android:layout_toEndOf="@+id/radiantHeroImageView3"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="10dp"
+        android:gravity="center"
         android:text="Hero Name:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textIsSelectable="true" />
@@ -49,11 +53,12 @@
     <TextView
         android:id="@+id/radiantHeroName4"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="28dp"
         android:layout_below="@+id/radiantHeroName3"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginTop="4dp"
         android:layout_toEndOf="@+id/radiantHeroImageView4"
+        android:gravity="center"
         android:text="Hero Name:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textIsSelectable="true" />
@@ -61,11 +66,12 @@
     <TextView
         android:id="@+id/radiantHeroName5"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="28dp"
         android:layout_below="@+id/radiantHeroName4"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="9dp"
+        android:layout_marginTop="4dp"
         android:layout_toEndOf="@+id/radiantHeroImageView4"
+        android:gravity="center"
         android:text="Hero Name:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textIsSelectable="true" />
@@ -73,40 +79,46 @@
     <ImageView
         android:id="@+id/radiantHeroImageView1"
         android:layout_width="128px"
-        android:layout_height="72px"
-        android:src="@drawable/blankhero"
-        android:layout_above="@+id/radiantHeroName2"
-        android:layout_alignParentStart="true" />
+        android:layout_height="14dp"
+        android:layout_alignBottom="@+id/radiantHeroName1"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/radiantHeroName1"
+        android:src="@drawable/blankhero" />
 
     <ImageView
         android:id="@+id/radiantHeroImageView2"
         android:layout_width="128px"
-        android:layout_height="72px"
-        android:src="@drawable/blankhero"
-        android:layout_below="@+id/radiantHeroName1"
-        android:layout_alignParentStart="true" />
+        android:layout_height="14dp"
+        android:layout_alignBottom="@+id/radiantHeroName2"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/radiantHeroName2"
+        android:src="@drawable/blankhero" />
 
     <ImageView
         android:id="@+id/radiantHeroImageView3"
         android:layout_width="128px"
-        android:layout_height="72px"
-        android:src="@drawable/blankhero"
-        android:layout_below="@+id/radiantHeroName2"
-        android:layout_alignParentStart="true" />
+        android:layout_height="14dp"
+        android:layout_alignBottom="@+id/radiantHeroName3"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/radiantHeroName3"
+        android:src="@drawable/blankhero" />
 
     <ImageView
         android:id="@+id/radiantHeroImageView4"
         android:layout_width="128px"
-        android:layout_height="72px"
-        android:src="@drawable/blankhero"
-        android:layout_below="@+id/radiantHeroName3"
-        android:layout_alignParentStart="true" />
+        android:layout_height="14dp"
+        android:layout_alignBottom="@+id/radiantHeroName4"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/radiantHeroName4"
+        android:src="@drawable/blankhero" />
 
     <ImageView
         android:id="@+id/radiantHeroImageView5"
         android:layout_width="128px"
-        android:layout_height="72px"
-        android:src="@drawable/blankhero"
-        android:layout_below="@+id/radiantHeroName4"
-        android:layout_alignParentStart="true" />
+        android:layout_height="14dp"
+        android:layout_alignBottom="@+id/radiantHeroName5"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/radiantHeroName5"
+        android:src="@drawable/blankhero" />
+
 </RelativeLayout>

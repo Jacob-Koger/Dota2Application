@@ -51,7 +51,7 @@ public class MDResult {
         return players;
     }
 
-    public Boolean getRadiantWin() {
+    public boolean getRadiantWin() {
         return radiantWin;
     }
 

@@ -7,7 +7,7 @@ import java.util.List;
 public class MDPlayer {
 
     @SerializedName("account_id")
-    private double accountId;
+    private long accountId;
     @SerializedName("player_slot")
     private int playerSlot;
     @SerializedName("hero_id")
@@ -49,7 +49,7 @@ public class MDPlayer {
     @SerializedName("ability_upgrades")
     private List<MDAbilityUpgrade> abilityUpgrades;
 
-    public double getAccountId() {
+    public long getAccountId() {
         return accountId;
     }
 

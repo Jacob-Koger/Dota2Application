@@ -17,7 +17,6 @@
         <include layout="@layout/tablelayoutradiant" />
     </HorizontalScrollView>
 
-    <include layout="@layout/radiantdetailsheroimage" />
 
     <include layout="@layout/radiantdetailsheroname" />
 </RelativeLayout>

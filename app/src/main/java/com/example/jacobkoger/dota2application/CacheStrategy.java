@@ -16,7 +16,7 @@ public enum CacheStrategy {
     NONE("no-cache");
 
     /** The header value */
-    private final String value;
+    public final String value;
 
     /**
      * Constructor for {@code CacheStrategy}

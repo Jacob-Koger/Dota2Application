@@ -18,7 +18,6 @@ public class RecentMatchesPresenter extends ConnectivityPresenter {
     private final RecentMatchesContract.View mView;
     private CacheStrategy cacheStrategy = CacheStrategy.NONE;
     private boolean mIsConnected;
-
     public RecentMatchesPresenter(@NonNull Context context,
                                   @NonNull RecentMatchesContract.View view) {
         super(context);

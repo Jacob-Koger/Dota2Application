@@ -26,8 +26,9 @@ public final class LoggedInClient {
     private static final String CACHE_DIR = "HttpResponseCache";
     private static final long CACHE_SIZE = 10 * 1024 * 1024;
     private static volatile LoggedInClient sClient;
+
     private final CachedInterceptor mCacheceptor = new CachedInterceptor();
-    private final Retrofit mService;
+    private Retrofit mService;
 
     private LoggedInClient(Context context) {
         final Interceptor mAccountceptor = new AccountIdInterceptor(context);

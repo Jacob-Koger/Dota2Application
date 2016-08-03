@@ -8,7 +8,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -37,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences prefs = this.getSharedPreferences("show", Context.MODE_PRIVATE);
         SharedPreferences keyprefs = this.getSharedPreferences("key", Context.MODE_PRIVATE);
 
-        Log.d("prefs", prefs2.getString("player_id", "none"));
         show = prefs.getBoolean("show", true);
 
         if (!prefs2.contains("player_id")) {
@@ -45,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
                 setupView();
             } else {
                 if (!keyprefs.contains("key")) {
-                    Log.d("ran!", "ran2");
                 }
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -74,13 +71,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     Uri userAccountUrl = Uri.parse(Url.getQueryParameter("openid.identity"));
                     userID = userAccountUrl.getLastPathSegment();
-
                     SharedPreferences sharedPreferences = getSharedPreferences("player_id", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("player_id", userID);
-                    editor.apply();
-
-
+                    sharedPreferences.edit().putString("player_id", userID).apply();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 }

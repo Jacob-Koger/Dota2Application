@@ -1,14 +1,17 @@
 package com.example.jacobkoger.dota2application.MatchDetails;
 
-import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
+import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,9 +24,13 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.jacobkoger.dota2application.CacheStrategy;
 import com.example.jacobkoger.dota2application.R;
+import com.example.jacobkoger.dota2application.ResponseCallbacks.GenericCallback;
 import com.example.jacobkoger.dota2application.clients.NonLoggedInClient;
 import com.example.jacobkoger.dota2application.data.detail.MDMatchDetails;
+import com.example.jacobkoger.dota2application.data.detail.MDPlayer;
+import com.example.jacobkoger.dota2application.data.detail.MDResult;
 import com.example.jacobkoger.dota2application.data.hero.Hero;
 import com.example.jacobkoger.dota2application.data.hero.HeroesList;
 import com.google.gson.Gson;
@@ -31,23 +38,22 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-import static com.example.jacobkoger.dota2application.util.Utils.requireNonNull;
-
-
-public class MatchDetailsFragment extends Fragment
-        implements MatchDetailsContract.View{
-    private MatchDetailsContract.Presenter presenter;
+public class MatchDetailsFragment extends Fragment {
 
     private static final String TAG = MatchDetailsFragment.class.getSimpleName();
     private static final String KEY_MATCH_ID = TAG + ":matchId";
-    public final List<Hero> mHeroes = new ArrayList<>();
-    public boolean didRadiantWin;
-    TextView HelpLabel;
-    TextView MatchIDTextView;
-    TextView WinningTeamTextView;
+    final List<Hero> mHeroes = new ArrayList<>();
+    private final HeroClickListener mHeroClickListener = new HeroClickListener();
+    boolean mRadiantWon;
+    Boolean isDireDetailsVisible = false;
+    Boolean isRadiantDetailsVisible = false;
+    TextView mMatchId;
+    TextView mWinTeam;
     TextView DireTeamDetailsTextView;
     TextView RadiantTeamDetailsTextView;
     TextView DireTeamHeroName1;
@@ -62,10 +68,8 @@ public class MatchDetailsFragment extends Fragment
     TextView RadiantTeamHeroName5;
 
     LinearLayout mProgressContainer;
-
     ImageButton OpenDireTeamDetailsButton;
     ImageButton OpenRadiantTeamDetailsButton;
-
     ImageView DireHeroImageView1;
     ImageView DireHeroImageView2;
     ImageView DireHeroImageView3;
@@ -77,15 +81,10 @@ public class MatchDetailsFragment extends Fragment
     ImageView RadiantHeroImageView4;
     ImageView RadiantHeroImageView5;
 
-    Boolean isDireDetailsVisible = false;
-    Boolean isRadiantDetailsVisible = false;
-
     RelativeLayout fullRadiantDetails;
     RelativeLayout fullDireDetails;
     TableLayout direTable;
     TableLayout radiantTable;
-    public MatchDetailsFragment() {
-    }
 
     public static MatchDetailsFragment newInstance(String matchId) {
         final Bundle args = new Bundle();
@@ -123,11 +122,12 @@ public class MatchDetailsFragment extends Fragment
         return inflater.inflate(R.layout.fragment_display_match_details, container, false);
     }
 
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        MatchIDTextView = (TextView) view.findViewById(R.id.MatchIDTextView);
-        WinningTeamTextView = (TextView) view.findViewById(R.id.WinningTeamTextView);
+        mMatchId = (TextView) view.findViewById(R.id.MatchIDTextView);
+        mWinTeam = (TextView) view.findViewById(R.id.WinningTeamTextView);
         DireTeamDetailsTextView = (TextView) view.findViewById(R.id.direTeamDetailsTextView);
         RadiantTeamDetailsTextView = (TextView) view.findViewById(R.id.radiantTeamDetailsTextView);
 
@@ -163,12 +163,372 @@ public class MatchDetailsFragment extends Fragment
         fullDireDetails = (RelativeLayout) view.findViewById(R.id.fulldiredetails);
         direTable = (TableLayout) view.findViewById(R.id.tablelayoutdire);
         radiantTable = (TableLayout) view.findViewById(R.id.tablelayoutradiant);
-        createTableTitles();
+        createTableTitles(view);
         setOnClickListenersDire();
         setOnClickListenersRadiant();
-        fetchMatchDetails(getArguments().getString(KEY_MATCH_ID));
-        startAnim();
+        setOnClickListenerRadiantHeroName();
+        setOnClickListenerDireHeroName();
+        getResult();
     }
+
+    private void setOnClickListenerRadiantHeroName() {
+        RadiantTeamHeroName1.setOnClickListener(mHeroClickListener);
+        RadiantTeamHeroName2.setOnClickListener(mHeroClickListener);
+        RadiantTeamHeroName3.setOnClickListener(mHeroClickListener);
+        RadiantTeamHeroName4.setOnClickListener(mHeroClickListener);
+        RadiantTeamHeroName5.setOnClickListener(mHeroClickListener);
+    }
+
+    private void setOnClickListenerDireHeroName() {
+        DireTeamHeroName1.setOnClickListener(mHeroClickListener);
+        DireTeamHeroName2.setOnClickListener(mHeroClickListener);
+        DireTeamHeroName3.setOnClickListener(mHeroClickListener);
+        DireTeamHeroName4.setOnClickListener(mHeroClickListener);
+        DireTeamHeroName5.setOnClickListener(mHeroClickListener);
+    }
+
+    private void setOnClickListenersRadiant() {
+        OpenRadiantTeamDetailsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isRadiantDetailsVisible == false && isDireDetailsVisible == false) {
+                    fullRadiantDetails.setVisibility(View.VISIBLE);
+                    isRadiantDetailsVisible = true;
+                    isDireDetailsVisible = false;
+                } else if (isRadiantDetailsVisible == true && isDireDetailsVisible == false) {
+                    fullRadiantDetails.setVisibility(View.GONE);
+                    isRadiantDetailsVisible = false;
+                    isDireDetailsVisible = false;
+                } else if (isRadiantDetailsVisible == false && isDireDetailsVisible == true) {
+                    fullDireDetails.setVisibility(View.GONE);
+                    fullRadiantDetails.setVisibility(View.VISIBLE);
+                    isRadiantDetailsVisible = true;
+                    isDireDetailsVisible = false;
+                }
+
+                ObjectAnimator.ofFloat(OpenDireTeamDetailsButton, "rotation",
+                        isDireDetailsVisible ? 180 : 0)
+                        .setDuration(500)
+                        .start();
+                ObjectAnimator.ofFloat(OpenRadiantTeamDetailsButton, "rotation",
+                        isRadiantDetailsVisible ? 180 : 0)
+                        .setDuration(500)
+                        .start();
+            }
+        });
+    }
+
+    private void setOnClickListenersDire() {
+        OpenDireTeamDetailsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isDireDetailsVisible == false && isRadiantDetailsVisible == false) {
+                    fullDireDetails.setVisibility(View.VISIBLE);
+                    isDireDetailsVisible = true;
+                    isRadiantDetailsVisible = false;
+                } else if (isDireDetailsVisible == true && isRadiantDetailsVisible == false) {
+                    fullDireDetails.setVisibility(View.GONE);
+                    isDireDetailsVisible = false;
+                    isRadiantDetailsVisible = false;
+                } else if (isDireDetailsVisible == false && isRadiantDetailsVisible == true) {
+                    fullRadiantDetails.setVisibility(View.GONE);
+                    fullDireDetails.setVisibility(View.VISIBLE);
+
+                    isDireDetailsVisible = true;
+                    isRadiantDetailsVisible = false;
+                }
+
+                ObjectAnimator.ofFloat(OpenDireTeamDetailsButton, "rotation",
+                        isDireDetailsVisible ? 180 : 0)
+                        .setDuration(500)
+                        .start();
+                ObjectAnimator.ofFloat(OpenRadiantTeamDetailsButton, "rotation",
+                        isRadiantDetailsVisible ? 180 : 0)
+                        .setDuration(500)
+                        .start();
+            }
+        });
+    }
+
+    private void getResult() {
+        final String matchId = getArguments().getString(KEY_MATCH_ID);
+        if (TextUtils.isEmpty(matchId)) {
+            return;
+        }
+
+        NonLoggedInClient.with(this)
+                .cacheStrategy(CacheStrategy.SOFT)
+                .enqueueMatchDetails(matchId, new GenericCallback<MDMatchDetails>() {
+
+                    @Override
+                    public void onSuccess(MDMatchDetails response) {
+                        MDResult result = response.getResult();
+                        mMatchId.setText(result.getMatchId());
+                        mRadiantWon = result.getRadiantWin();
+                        SharedPreferences sharedPreferences = getContext().getSharedPreferences("player_id", Context.MODE_PRIVATE);
+                        String playerid = sharedPreferences.getString("player_id", "none");
+                        String username = sharedPreferences.getString("username", "none");
+                        if (mRadiantWon) {
+                            mWinTeam.setText(R.string.radiantWin);
+                        } else {
+                            mWinTeam.setText(R.string.direWin);
+                        }
+                        final Resources res = getContext().getResources();
+                        for (final MDPlayer MDPlayer : result.getPlayers()) {
+                            for (final Hero hero : mHeroes) {
+                                if (MDPlayer.getHeroId() == hero.getId()) {
+                                    if (MDPlayer.getPlayerSlot() > 4) {
+                                        if (MDPlayer.getPlayerSlot() == 128) {
+                                            TableRow row1d = new TableRow(getContext());
+                                            addTableRows(direTable, row1d, MDPlayer, 7, 7, 3);
+                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                DireTeamHeroName1.setText("1. " + username);
+                                            } else {
+                                                DireTeamHeroName1.setText("1. " + hero.getLocalizedName() + ":");
+                                            }
+                                            final String heroName = hero.getName();
+                                            final int heroId = res.getIdentifier(heroName, "drawable",
+                                                    getContext().getPackageName());
+                                            DireHeroImageView1.setImageResource(heroId);
+
+
+                                        } else if (MDPlayer.getPlayerSlot() == 129) {
+                                            TableRow row2d = new TableRow(getContext());
+                                            addTableRows(direTable, row2d, MDPlayer, 23, 19, 3);
+                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                DireTeamHeroName2.setText("2. " + username);
+                                            } else {
+                                                DireTeamHeroName2.setText("2. " + hero.getLocalizedName() + ":");
+                                            }
+                                            final String heroName = hero.getName();
+                                            final int heroId = res.getIdentifier(heroName, "drawable",
+                                                    getContext().getPackageName());
+                                            DireHeroImageView2.setImageResource(heroId);
+
+
+                                        } else if (MDPlayer.getPlayerSlot() == 130) {
+                                            TableRow row3d = new TableRow(getContext());
+                                            addTableRows(direTable, row3d, MDPlayer, 7, 19, 3);
+                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                DireTeamHeroName3.setText("3. " + username);
+                                            } else {
+                                                DireTeamHeroName3.setText("3. " + hero.getLocalizedName() + ":");
+                                            }
+                                            final String heroName = hero.getName();
+                                            final int heroId = res.getIdentifier(heroName, "drawable",
+                                                    getContext().getPackageName());
+                                            DireHeroImageView3.setImageResource(heroId);
+
+
+                                        } else if (MDPlayer.getPlayerSlot() == 131) {
+                                            TableRow row4d = new TableRow(getContext());
+                                            addTableRows(direTable, row4d, MDPlayer, 7, 19, 3);
+                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                DireTeamHeroName4.setText("4. " + username);
+                                            } else {
+                                                DireTeamHeroName4.setText("4. " + hero.getLocalizedName() + ":");
+                                            }
+                                            final String heroName = hero.getName();
+                                            final int heroId = res.getIdentifier(heroName, "drawable",
+                                                    getContext().getPackageName());
+                                            DireHeroImageView4.setImageResource(heroId);
+
+
+                                        } else if (MDPlayer.getPlayerSlot() == 132) {
+                                            TableRow row5d = new TableRow(getContext());
+                                            addTableRows(direTable, row5d, MDPlayer, 7, 19, 3);
+                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                DireTeamHeroName1.setText("5. " + username);
+                                            } else {
+                                                DireTeamHeroName5.setText("5. " + hero.getLocalizedName() + ":");
+                                            }
+                                            final String heroName = hero.getName();
+                                            final int heroId = res.getIdentifier(heroName, "drawable",
+                                                    getContext().getPackageName());
+                                            DireHeroImageView5.setImageResource(heroId);
+
+
+                                        }
+                                    } else {
+                                        if (MDPlayer.getPlayerSlot() == 0) {
+                                            TableRow row1r = new TableRow(getContext());
+                                            addTableRows(radiantTable, row1r, MDPlayer, 7, 7, 3);
+                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                DireTeamHeroName1.setText("5. " + username);
+                                            } else {
+                                                RadiantTeamHeroName1.setText("1. " + hero.getLocalizedName() + ":");
+                                            }
+                                            final String heroName = hero.getName();
+                                            final int heroId = res.getIdentifier(heroName, "drawable",
+                                                    getContext().getPackageName());
+                                            RadiantHeroImageView1.setImageResource(heroId);
+
+
+                                        } else if (MDPlayer.getPlayerSlot() == 1) {
+                                            TableRow row2r = new TableRow(getContext());
+                                            addTableRows(radiantTable, row2r, MDPlayer, 23, 19, 3);
+                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                DireTeamHeroName1.setText("5. " + username);
+                                            } else {
+                                                RadiantTeamHeroName2.setText("2. " + hero.getLocalizedName() + ":");
+                                            }
+                                            final String heroName = hero.getName();
+                                            final int heroId = res.getIdentifier(heroName, "drawable",
+                                                    getContext().getPackageName());
+                                            RadiantHeroImageView2.setImageResource(heroId);
+
+
+                                        } else if (MDPlayer.getPlayerSlot() == 2) {
+                                            TableRow row3r = new TableRow(getContext());
+                                            addTableRows(radiantTable, row3r, MDPlayer, 7, 19, 3);
+                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                DireTeamHeroName1.setText("5. " + username);
+                                            } else {
+                                                RadiantTeamHeroName3.setText("3. " + hero.getLocalizedName() + ":");
+                                            }
+                                            final String heroName = hero.getName();
+                                            final int heroId = res.getIdentifier(heroName, "drawable",
+                                                    getContext().getPackageName());
+                                            RadiantHeroImageView3.setImageResource(heroId);
+
+
+                                        } else if (MDPlayer.getPlayerSlot() == 3) {
+                                            TableRow row4r = new TableRow(getContext());
+                                            addTableRows(radiantTable, row4r, MDPlayer, 7, 19, 3);
+                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                DireTeamHeroName1.setText("5. " + username);
+                                            } else {
+                                                RadiantTeamHeroName4.setText("4. " + hero.getLocalizedName() + ":");
+                                            }
+                                            final String heroName = hero.getName();
+                                            final int heroId = res.getIdentifier(heroName, "drawable",
+                                                    getContext().getPackageName());
+                                            RadiantHeroImageView4.setImageResource(heroId);
+
+
+                                        } else if (MDPlayer.getPlayerSlot() == 4) {
+                                            TableRow row5r = new TableRow(getContext());
+                                            addTableRows(radiantTable, row5r, MDPlayer, 7, 19, 3);
+                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                DireTeamHeroName1.setText("5. " + username);
+                                            } else {
+                                                RadiantTeamHeroName5.setText("5. " + hero.getLocalizedName() + ":");
+                                            }
+                                            final String heroName = hero.getName();
+                                            final int heroId = res.getIdentifier(heroName, "drawable",
+                                                    getContext().getPackageName());
+                                            RadiantHeroImageView5.setImageResource(heroId);
+
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        final ProgressHolder xp = new ProgressHolder();
+                        final ProgressHolder gpm = new ProgressHolder();
+                        final ProgressHolder gold = new ProgressHolder();
+
+                        for (MDPlayer player : result.getPlayers()) {
+                            final int currXpm = player.getXpPerMin();
+                            final int currGpm = player.getGoldPerMin();
+                            final int currGold = player.getGoldSpent();
+                            final int slot = player.getPlayerSlot();
+                            if (slot >= 0 && slot <= 4) {
+                                xp.radiant += currXpm;
+                                gpm.radiant += currGpm;
+                                gold.radiant += currGold;
+                            } else {
+                                xp.dire += currXpm;
+                                gpm.dire += currGpm;
+                                gold.dire += currGold;
+                            }
+                        }
+
+                        final MatchDetailsView killProgress = inflateProgressView();
+                        killProgress.bindKills(result);
+                        mProgressContainer.addView(killProgress);
+
+                        final MatchDetailsView xpProgress = inflateProgressView();
+                        xpProgress.bindXpmAverage(xp.radiant, xp.dire);
+                        mProgressContainer.addView(xpProgress);
+
+                        final MatchDetailsView gpmProgress = inflateProgressView();
+                        gpmProgress.bindGpmAverage(gpm.radiant, gpm.dire);
+                        mProgressContainer.addView(gpmProgress);
+
+                        final MatchDetailsView goldProgress = inflateProgressView();
+                        goldProgress.bindGoldSpent(gold.radiant, gold.dire);
+                        mProgressContainer.addView(goldProgress);
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                        Log.d("mData", "fail", t);
+                    }
+
+                });
+
+    }
+    private void addTableRows(TableLayout tablename, TableRow row, MDPlayer MDPlayer,
+                              int paddingt, int paddingb, int paddinglr) {
+        float ikills = MDPlayer.getKills();
+        float iassists = MDPlayer.getAssists();
+        float ideaths = MDPlayer.getDeaths();
+        float ka = ikills + iassists;
+        double ikda = ka / ideaths;
+        DecimalFormat decimalformat = new DecimalFormat("##.00");
+        String rkda = decimalformat.format(ikda);
+        TextView level = new TextView(getContext());
+        setTableText(level, String.valueOf(MDPlayer.getLevel()), Gravity.START,
+                paddingt, paddingb, paddinglr, row);
+        TextView kills = new TextView(getContext());
+        setTableText(kills, String.valueOf(MDPlayer.getKills()), Gravity.CENTER,
+                paddingt, paddingb, paddinglr, row);
+        TextView deaths = new TextView(getContext());
+        setTableText(deaths, String.valueOf(MDPlayer.getDeaths()), Gravity.CENTER,
+                paddingt, paddingb, paddinglr, row);
+        TextView assists = new TextView(getContext());
+        setTableText(assists, String.valueOf(MDPlayer.getAssists()), Gravity.CENTER,
+                paddingt, paddingb, paddinglr, row);
+        TextView kda = new TextView(getContext());
+        setTableText(kda, rkda, Gravity.CENTER, paddingt, paddingb, paddinglr, row);
+        TextView GPM = new TextView(getContext());
+        setTableText(GPM, String.valueOf(MDPlayer.getGoldPerMin()), Gravity.CENTER,
+                paddingt, paddingb, paddinglr, row);
+        TextView XPM = new TextView(getContext());
+        setTableText(XPM, String.valueOf(MDPlayer.getXpPerMin()), Gravity.CENTER,
+                paddingt, paddingb, paddinglr, row);
+        TextView LH = new TextView(getContext());
+        setTableText(LH, String.valueOf(MDPlayer.getLastHits()), Gravity.CENTER,
+                paddingt, paddingb, paddinglr, row);
+        TextView DN = new TextView(getContext());
+        setTableText(DN, String.valueOf(MDPlayer.getDenies()), Gravity.CENTER,
+                paddingt, paddingb, paddinglr, row);
+        TextView HDmg = new TextView(getContext());
+        setTableText(HDmg, String.valueOf(MDPlayer.getHeroDamage()), Gravity.CENTER,
+                paddingt, paddingb, paddinglr, row);
+        TextView HHl = new TextView(getContext());
+        setTableText(HHl, String.valueOf(MDPlayer.getHeroHealing()), Gravity.CENTER,
+                paddingt, paddingb, paddinglr, row);
+        TextView TDmg = new TextView(getContext());
+        setTableText(TDmg, String.valueOf(MDPlayer.getTowerDamage()), Gravity.END,
+                paddingt, paddingb, paddinglr, row);
+        tablename.addView(row);
+    }
+    private void setTableText(TextView view, String text, int gravity, int paddingt, int paddingb,
+                              int paddinglr, TableRow tablerow) {
+        int paddingtpx = dpToPx(paddingt);
+        int paddinglrpx = dpToPx(paddinglr);
+        int paddingbpx = dpToPx(paddingb);
+        view.setText(text);
+        view.setGravity(gravity);
+        view.setPadding(paddinglrpx, paddingtpx, paddinglrpx, paddingbpx);
+        view.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        tablerow.addView(view);
+    }
+
     private void setTableTitleText(TextView view, String text, int gravity, int padding,
                                    TableRow tablerow) {
         view.setText(text);
@@ -178,7 +538,7 @@ public class MatchDetailsFragment extends Fragment
         tablerow.addView(view);
     }
 
-    private void createTableTitles() {
+    private void createTableTitles(View view) {
 
         TableRow dtitles = new TableRow(getContext());
 
@@ -238,136 +598,39 @@ public class MatchDetailsFragment extends Fragment
 
         radiantTable.addView(rtitles);
     }
-    private void setOnClickListenersRadiant() {
-        OpenRadiantTeamDetailsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isRadiantDetailsVisible == false && isDireDetailsVisible == false) {
-                    fullRadiantDetails.setVisibility(View.VISIBLE);
-                    isRadiantDetailsVisible = true;
-                    isDireDetailsVisible = false;
-                } else if (isRadiantDetailsVisible == true && isDireDetailsVisible == false) {
-                    fullRadiantDetails.setVisibility(View.GONE);
-                    isRadiantDetailsVisible = false;
-                    isDireDetailsVisible = false;
-                } else if (isRadiantDetailsVisible == false && isDireDetailsVisible == true) {
-                    fullDireDetails.setVisibility(View.GONE);
-                    fullRadiantDetails.setVisibility(View.VISIBLE);
-                    isRadiantDetailsVisible = true;
-                    isDireDetailsVisible = false;
-                }
 
-                ObjectAnimator.ofFloat(OpenDireTeamDetailsButton, "rotation",
-                        isDireDetailsVisible ? 180 : 0)
-                        .setDuration(500)
-                        .start();
-                ObjectAnimator.ofFloat(OpenRadiantTeamDetailsButton, "rotation",
-                        isRadiantDetailsVisible ? 180 : 0)
-                        .setDuration(500)
-                        .start();
-            }
-        });
-    }
-    private void setOnClickListenersDire() {
-        OpenDireTeamDetailsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isDireDetailsVisible == false && isRadiantDetailsVisible == false) {
-                    fullDireDetails.setVisibility(View.VISIBLE);
-                    isDireDetailsVisible = true;
-                    isRadiantDetailsVisible = false;
-                } else if (isDireDetailsVisible == true && isRadiantDetailsVisible == false) {
-                    fullDireDetails.setVisibility(View.GONE);
-                    isDireDetailsVisible = false;
-                    isRadiantDetailsVisible = false;
-                } else if (isDireDetailsVisible == false && isRadiantDetailsVisible == true) {
-                    fullRadiantDetails.setVisibility(View.GONE);
-                    fullDireDetails.setVisibility(View.VISIBLE);
-
-                    isDireDetailsVisible = true;
-                    isRadiantDetailsVisible = false;
-                }
-                ObjectAnimator.ofFloat(OpenDireTeamDetailsButton, "rotation",
-                        isDireDetailsVisible ? 180 : 0)
-                        .setDuration(500)
-                        .start();
-                ObjectAnimator.ofFloat(OpenRadiantTeamDetailsButton, "rotation",
-                        isRadiantDetailsVisible ? 180 : 0)
-                        .setDuration(500)
-                        .start();
-            }
-        });
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
-    public void startAnim() {
-        DireTeamDetailsTextView.setAlpha(0f);
-        OpenDireTeamDetailsButton.setAlpha(0f);
-        RadiantTeamDetailsTextView.setAlpha(0f);
-        OpenRadiantTeamDetailsButton.setAlpha(0f);
-        HelpLabel.setAlpha(0f);
-
-        ObjectAnimator fadeInDTV = ObjectAnimator.ofFloat(DireTeamDetailsTextView, "alpha", 0f, 1f);
-        fadeInDTV.setDuration(1000);
-        ObjectAnimator fadeInDButton = ObjectAnimator.ofFloat(OpenDireTeamDetailsButton, "alpha", 0f, 1f);
-        fadeInDButton.setDuration(900);
-        ObjectAnimator fadeInRTV = ObjectAnimator.ofFloat(RadiantTeamDetailsTextView, "alpha", 0f, 1f);
-        fadeInRTV.setDuration(1000);
-        ObjectAnimator fadeInRButton = ObjectAnimator.ofFloat(OpenRadiantTeamDetailsButton, "alpha", 0f, 1f);
-        fadeInRButton.setDuration(900);
-        ObjectAnimator fadeInHL = ObjectAnimator.ofFloat(HelpLabel, "alpha", 0f, 1f);
-        fadeInHL.setDuration(1000);
-
-        final AnimatorSet mAnimationSet = new AnimatorSet();
-
-        mAnimationSet.play(fadeInDTV).
-                with(fadeInDButton)
-                .with(fadeInRButton)
-                .with(fadeInRTV)
-                .with(fadeInHL)
-                .after(500);
-
-        mAnimationSet.start();
-    }
-
-    @Override
-    public void setPresenter(@NonNull MatchDetailsContract.Presenter mPresenter) {
-        presenter = requireNonNull(mPresenter, "Presenter can't be Null");
-    }
-
-    @Override
-    public void fetchMatchDetails(String matchId) {
-        final String aID;
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("player_id", Context.MODE_PRIVATE);
-        aID = sharedPreferences.getString("player_id", null);
-        NonLoggedInClient.with(this).enqueueMatchDetails(presenter, aID);
-    }
-
-    @Override
-    public void bindMatches(List<MDMatchDetails> MatchDetails) {
-
+    MatchDetailsView inflateProgressView() {
+        final LayoutInflater inflater = LayoutInflater.from(getContext());
+        return (MatchDetailsView) inflater.inflate(R.layout.progressbar, mProgressContainer, false);
     }
 
     private long getNewAccountID(long id) {
-        long accountChange = 76561197960265728L;
-        long newId = accountChange + id;
-        return newId;
+        long accountchange = 76561197960265728L;
+        long newid = accountchange + id;
+        return newid;
     }
 
-    public interface OnFragmentInteractionListener {
+    static class ProgressHolder {
+
+        int dire;
+        int radiant;
+
+    }
+
+    private int dpToPx(int dp) {
+        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
+    }
+    static class HeroClickListener implements View.OnClickListener {
+
+        private static final String GAME_PEDIA = "http://dota2.gamepedia.com/%s";
+
+        @Override
+        public void onClick(View view) {
+            final String hero = String.valueOf(((TextView) view).getText());
+            final String num = String.valueOf(hero.charAt(hero.indexOf('.') + 1));
+            final String name = hero.replace(num, "").replace(":", "").replace(" ", "_");
+            view.getContext().startActivity(
+                    new Intent(Intent.ACTION_VIEW, Uri.parse(String.format(GAME_PEDIA, name))));
+        }
     }
 }
