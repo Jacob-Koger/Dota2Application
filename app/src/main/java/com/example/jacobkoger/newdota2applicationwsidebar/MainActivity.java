@@ -226,7 +226,8 @@ public class MainActivity extends AppCompatActivity
                 final Request orig = chain.request();
                 HttpUrl origUrl = orig.url();
                 return chain.proceed(orig.newBuilder()
-                        .url(origUrl.newBuilder().addQueryParameter("key", BuildConfig.API_KEY).addQueryParameter("steamids", accountid)
+                        .url(origUrl.newBuilder().addQueryParameter("key", BuildConfig.API_KEY)
+                                .addQueryParameter("steamids", accountid)
                                 .build())
                         .build());
             }
