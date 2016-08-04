@@ -1,34 +1,54 @@
-package com.example.jacobkoger.dota2application;
+package com.example.jacobkoger.dota2application.activities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.jacobkoger.dota2application.CacheStrategy;
+import com.example.jacobkoger.dota2application.R;
 import com.example.jacobkoger.dota2application.RecentMatches.RecentMatchesContract;
 import com.example.jacobkoger.dota2application.RecentMatches.RecentMatchesFragment;
 import com.example.jacobkoger.dota2application.RecentMatches.RecentMatchesPresenter;
 import com.example.jacobkoger.dota2application.ResponseCallbacks.GenericCallback;
+import com.example.jacobkoger.dota2application.Wiki.WikiFragment;
 import com.example.jacobkoger.dota2application.clients.LoggedInDetailsClient;
 import com.example.jacobkoger.dota2application.data.accountinfo.AccountInfo;
 import com.example.jacobkoger.dota2application.data.accountinfo.Player;
+import com.example.jacobkoger.dota2application.data.hero.Hero;
+import com.example.jacobkoger.dota2application.data.hero.HeroesList;
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
 
 import static com.example.jacobkoger.dota2application.util.NetworkUtils.isConnected;
 
 public class MainActivity extends AppCompatActivity {
+    final List<Hero> mHeroes = new ArrayList<>();
     TextView RealName;
     TextView Username;
     TextView ProfileURL;
@@ -38,10 +58,37 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private RecentMatchesContract.Presenter presenter;
     private String accountid;
-
+    NavigationView nvDrawer;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final Gson gson = new Gson();
+        final AssetManager am = this.getAssets();
+
+        InputStream in = null;
+        try {
+            in = am.open("Heroes.json");
+            final HeroesList hl = gson.fromJson(new InputStreamReader(in), HeroesList.class);
+            mHeroes.addAll(hl.getHeroes());
+            Collections.sort(mHeroes, new Comparator<Hero>() {
+                @Override
+                public int compare(Hero h1, Hero h2) {
+                    return h1.getLocalizedName().compareTo(h2.getLocalizedName());
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
         SharedPreferences sharedPreferences = getSharedPreferences("player_id", Context.MODE_PRIVATE);
         accountid = sharedPreferences.getString("player_id", null);
 
@@ -55,14 +102,60 @@ public class MainActivity extends AppCompatActivity {
 
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        NavigationView nvDrawer = (NavigationView) findViewById(R.id.navView);
-        setupDrawerContent(nvDrawer);
+        nvDrawer = (NavigationView) findViewById(R.id.navView);
 
+        nvDrawer.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem item) {
+                        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
+                            mDrawer.closeDrawers();
+                        }
+                        String title = item.getTitle().toString();
+                        Log.d("title", title);
+                        if (Objects.equals(title, "Recent Matches")) {
+
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.flContent, recentMatches)
+                                    .commit();
+                            onStart();
+                            item.setCheckable(true);
+                            item.setChecked(true);
+                            setTitle(item.getTitle());
+
+                        } else {
+                            Fragment fragment = null;
+                            Class fragmentClass;
+                            fragmentClass = WikiFragment.class;
+                            try {
+                                fragment = (Fragment) fragmentClass.newInstance();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            item.setCheckable(true);
+                            item.setChecked(true);
+                            FragmentManager fragmentManager = getSupportFragmentManager();
+                            Bundle bundle = new Bundle();
+                            bundle.putString("hero", item.getTitle().toString());
+                            fragment.setArguments(bundle);
+                            fragmentManager.beginTransaction().addToBackStack(null)
+                                    .replace(R.id.flContent, fragment).commit();
+                            setTitle(item.getTitle());
+                        }
+                        return false;
+                    }
+                }
+        );
         mDrawerToggle = setupDrawerToggle();
+
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.flContent, recentMatches)
                 .commit();
+        Menu m = nvDrawer.getMenu();
 
+        for (final Hero hero : mHeroes) {
+            m.add(R.id.group2, 0, 0, hero.getLocalizedName());
+        }
         if (accountid == null) {
             View header = nvDrawer.inflateHeaderView(R.layout.navbar_header);
             View headerView = nvDrawer.inflateHeaderView(R.layout.navbar_headerwaccount);
@@ -117,19 +210,6 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem item) {
-                        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
-                            mDrawer.closeDrawers();
-                        }
-                        return true;
-                    }
-                }
-        );
-    }
 
     private ActionBarDrawerToggle setupDrawerToggle() {
         return new ActionBarDrawerToggle(this, mDrawer, toolbar,
@@ -174,5 +254,16 @@ public class MainActivity extends AppCompatActivity {
         presenter.onStop();
     }
 
+    public void setActionBarTitle(String title) {
+        setTitle(title);
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Menu menu = nvDrawer.getMenu();
+        MenuItem item = menu.findItem(R.id.menu_nav_recent);
+        item.setCheckable(true);
+        item.setChecked(true);
+    }
 }

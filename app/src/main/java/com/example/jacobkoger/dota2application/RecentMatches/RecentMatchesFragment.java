@@ -21,6 +21,7 @@ import com.example.jacobkoger.dota2application.CacheStrategy;
 import com.example.jacobkoger.dota2application.R;
 import com.example.jacobkoger.dota2application.RecentMatches.adapter.HeroSearchView;
 import com.example.jacobkoger.dota2application.RecentMatches.adapter.MatchAdapter;
+import com.example.jacobkoger.dota2application.activities.MainActivity;
 import com.example.jacobkoger.dota2application.clients.LoggedInClient;
 import com.example.jacobkoger.dota2application.clients.NonLoggedInClient;
 import com.example.jacobkoger.dota2application.data.history.MHMatch;
@@ -47,6 +48,7 @@ public class RecentMatchesFragment extends Fragment implements RecentMatchesCont
     @Override
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ((MainActivity) getActivity()).setActionBarTitle("Recent Matches");
         return inflater.inflate(R.layout.recycler_view, container, false);
 
     }

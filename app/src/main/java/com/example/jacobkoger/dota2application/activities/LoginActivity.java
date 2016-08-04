@@ -1,4 +1,4 @@
-package com.example.jacobkoger.dota2application;
+package com.example.jacobkoger.dota2application.activities;
 
 
 import android.content.Context;
@@ -14,6 +14,8 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+
+import com.example.jacobkoger.dota2application.R;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -45,13 +47,17 @@ public class LoginActivity extends AppCompatActivity {
                 if (!keyprefs.contains("key")) {
                 }
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
+                finish();
             }
         } else {
             if (!keyprefs.contains("key")) {
             }
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
+            finish();
         }
     }
 
@@ -74,7 +80,9 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences("player_id", Context.MODE_PRIVATE);
                     sharedPreferences.edit().putString("player_id", userID).apply();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -83,10 +91,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (isChecked) {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     startActivity(intent);
+                    finish();
                 } else {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

@@ -1,4 +1,4 @@
-package com.example.jacobkoger.dota2application;
+package com.example.jacobkoger.dota2application.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.example.jacobkoger.dota2application.R;
 
 public class SplashScreen extends Activity {
     /**
