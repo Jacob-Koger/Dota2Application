@@ -5,7 +5,7 @@
         android:id="@+id/menu_search"
         android:icon="@drawable/ic_action_search"
         android:title="Search"
-        app:actionViewClass="com.example.jacobkoger.dota2application.RecentMatches.adapter.HeroSearchView"
+        app:actionViewClass="com.jacob.jacobkoger.dota2Application.RecentMatches.adapter.HeroSearchView"
         app:showAsAction="collapseActionView|ifRoom"/>
 
 </menu>

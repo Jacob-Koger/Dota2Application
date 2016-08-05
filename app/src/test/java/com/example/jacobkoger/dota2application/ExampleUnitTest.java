@@ -1,4 +1,4 @@
-package com.example.jacobkoger.dota2application;
+package com.example.jacobkoger.dota2Application;
 
 import org.junit.Test;
 

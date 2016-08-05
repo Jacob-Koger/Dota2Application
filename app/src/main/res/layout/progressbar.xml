@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.jacobkoger.dota2application.MatchDetails.MatchDetailsView
+<com.jacob.jacobkoger.dota2Application.MatchDetails.MatchDetailsView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="48dp"
@@ -47,4 +47,4 @@
         android:text="Kills"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
-</com.example.jacobkoger.dota2application.MatchDetails.MatchDetailsView>
+</com.jacob.jacobkoger.dota2Application.MatchDetails.MatchDetailsView>
