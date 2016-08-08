@@ -24,8 +24,9 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.jacob.dota2.dota2Application.CacheStrategy;
 import com.example.jacobkoger.dota2Application.R;
+import com.google.gson.Gson;
+import com.jacob.dota2.dota2Application.CacheStrategy;
 import com.jacob.dota2.dota2Application.ResponseCallbacks.GenericCallback;
 import com.jacob.dota2.dota2Application.clients.NonLoggedInClient;
 import com.jacob.dota2.dota2Application.data.detail.MDMatchDetails;
@@ -33,7 +34,6 @@ import com.jacob.dota2.dota2Application.data.detail.MDPlayer;
 import com.jacob.dota2.dota2Application.data.detail.MDResult;
 import com.jacob.dota2.dota2Application.data.hero.Hero;
 import com.jacob.dota2.dota2Application.data.hero.HeroesList;
-import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -265,161 +265,162 @@ public class MatchDetailsFragment extends Fragment {
                         MDResult result = response.getResult();
                         mMatchId.setText(result.getMatchId());
                         mRadiantWon = result.getRadiantWin();
-                        SharedPreferences sharedPreferences = getContext().getSharedPreferences("player_id", Context.MODE_PRIVATE);
-                        String playerid = sharedPreferences.getString("player_id", "none");
-                        String username = sharedPreferences.getString("username", "none");
-                        if (mRadiantWon) {
-                            mWinTeam.setText(R.string.radiantWin);
-                        } else {
-                            mWinTeam.setText(R.string.direWin);
-                        }
-                        final Resources res = getContext().getResources();
-                        for (final com.jacob.dota2.dota2Application.data.detail.MDPlayer MDPlayer : result.getPlayers()) {
-                            for (final Hero hero : mHeroes) {
-                                if (MDPlayer.getHeroId() == hero.getId()) {
-                                    if (MDPlayer.getPlayerSlot() > 4) {
-                                        if (MDPlayer.getPlayerSlot() == 128) {
-                                            TableRow row1d = new TableRow(getContext());
-                                            addTableRows(direTable, row1d, MDPlayer, 7, 7, 3);
-                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
-                                                DireTeamHeroName1.setText("1. " + username);
-                                            } else {
-                                                DireTeamHeroName1.setText("1. " + hero.getLocalizedName() + ":");
+                        if (getContext() != null) {
+                            SharedPreferences sharedPreferences = getContext().getSharedPreferences("player_id", Context.MODE_PRIVATE);
+                            String playerid = sharedPreferences.getString("player_id", "none");
+                            String username = sharedPreferences.getString("username", "none");
+                            if (mRadiantWon) {
+                                mWinTeam.setText(R.string.radiantWin);
+                            } else {
+                                mWinTeam.setText(R.string.direWin);
+                            }
+                            final Resources res = getContext().getResources();
+                            for (final com.jacob.dota2.dota2Application.data.detail.MDPlayer MDPlayer : result.getPlayers()) {
+                                for (final Hero hero : mHeroes) {
+                                    if (MDPlayer.getHeroId() == hero.getId()) {
+                                        if (MDPlayer.getPlayerSlot() > 4) {
+                                            if (MDPlayer.getPlayerSlot() == 128) {
+                                                TableRow row1d = new TableRow(getContext());
+                                                addTableRows(direTable, row1d, MDPlayer, 7, 7, 3);
+                                                if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                    DireTeamHeroName1.setText("1. " + username);
+                                                } else {
+                                                    DireTeamHeroName1.setText("1. " + hero.getLocalizedName() + ":");
+                                                }
+                                                final String heroName = hero.getName();
+                                                final int heroId = res.getIdentifier(heroName, "drawable",
+                                                        getContext().getPackageName());
+                                                DireHeroImageView1.setImageResource(heroId);
+
+
+                                            } else if (MDPlayer.getPlayerSlot() == 129) {
+                                                TableRow row2d = new TableRow(getContext());
+                                                addTableRows(direTable, row2d, MDPlayer, 23, 19, 3);
+                                                if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                    DireTeamHeroName2.setText("2. " + username);
+                                                } else {
+                                                    DireTeamHeroName2.setText("2. " + hero.getLocalizedName() + ":");
+                                                }
+                                                final String heroName = hero.getName();
+                                                final int heroId = res.getIdentifier(heroName, "drawable",
+                                                        getContext().getPackageName());
+                                                DireHeroImageView2.setImageResource(heroId);
+
+
+                                            } else if (MDPlayer.getPlayerSlot() == 130) {
+                                                TableRow row3d = new TableRow(getContext());
+                                                addTableRows(direTable, row3d, MDPlayer, 7, 19, 3);
+                                                if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                    DireTeamHeroName3.setText("3. " + username);
+                                                } else {
+                                                    DireTeamHeroName3.setText("3. " + hero.getLocalizedName() + ":");
+                                                }
+                                                final String heroName = hero.getName();
+                                                final int heroId = res.getIdentifier(heroName, "drawable",
+                                                        getContext().getPackageName());
+                                                DireHeroImageView3.setImageResource(heroId);
+
+
+                                            } else if (MDPlayer.getPlayerSlot() == 131) {
+                                                TableRow row4d = new TableRow(getContext());
+                                                addTableRows(direTable, row4d, MDPlayer, 7, 19, 3);
+                                                if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                    DireTeamHeroName4.setText("4. " + username);
+                                                } else {
+                                                    DireTeamHeroName4.setText("4. " + hero.getLocalizedName() + ":");
+                                                }
+                                                final String heroName = hero.getName();
+                                                final int heroId = res.getIdentifier(heroName, "drawable",
+                                                        getContext().getPackageName());
+                                                DireHeroImageView4.setImageResource(heroId);
+
+
+                                            } else if (MDPlayer.getPlayerSlot() == 132) {
+                                                TableRow row5d = new TableRow(getContext());
+                                                addTableRows(direTable, row5d, MDPlayer, 7, 19, 3);
+                                                if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                    DireTeamHeroName1.setText("5. " + username);
+                                                } else {
+                                                    DireTeamHeroName5.setText("5. " + hero.getLocalizedName() + ":");
+                                                }
+                                                final String heroName = hero.getName();
+                                                final int heroId = res.getIdentifier(heroName, "drawable",
+                                                        getContext().getPackageName());
+                                                DireHeroImageView5.setImageResource(heroId);
+
+
                                             }
-                                            final String heroName = hero.getName();
-                                            final int heroId = res.getIdentifier(heroName, "drawable",
-                                                    getContext().getPackageName());
-                                            DireHeroImageView1.setImageResource(heroId);
+                                        } else {
+                                            if (MDPlayer.getPlayerSlot() == 0) {
+                                                TableRow row1r = new TableRow(getContext());
+                                                addTableRows(radiantTable, row1r, MDPlayer, 7, 7, 3);
+                                                if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                    DireTeamHeroName1.setText("5. " + username);
+                                                } else {
+                                                    RadiantTeamHeroName1.setText("1. " + hero.getLocalizedName() + ":");
+                                                }
+                                                final String heroName = hero.getName();
+                                                final int heroId = res.getIdentifier(heroName, "drawable",
+                                                        getContext().getPackageName());
+                                                RadiantHeroImageView1.setImageResource(heroId);
 
 
-                                        } else if (MDPlayer.getPlayerSlot() == 129) {
-                                            TableRow row2d = new TableRow(getContext());
-                                            addTableRows(direTable, row2d, MDPlayer, 23, 19, 3);
-                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
-                                                DireTeamHeroName2.setText("2. " + username);
-                                            } else {
-                                                DireTeamHeroName2.setText("2. " + hero.getLocalizedName() + ":");
+                                            } else if (MDPlayer.getPlayerSlot() == 1) {
+                                                TableRow row2r = new TableRow(getContext());
+                                                addTableRows(radiantTable, row2r, MDPlayer, 23, 19, 3);
+                                                if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                    DireTeamHeroName1.setText("5. " + username);
+                                                } else {
+                                                    RadiantTeamHeroName2.setText("2. " + hero.getLocalizedName() + ":");
+                                                }
+                                                final String heroName = hero.getName();
+                                                final int heroId = res.getIdentifier(heroName, "drawable",
+                                                        getContext().getPackageName());
+                                                RadiantHeroImageView2.setImageResource(heroId);
+
+
+                                            } else if (MDPlayer.getPlayerSlot() == 2) {
+                                                TableRow row3r = new TableRow(getContext());
+                                                addTableRows(radiantTable, row3r, MDPlayer, 7, 19, 3);
+                                                if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                    DireTeamHeroName1.setText("5. " + username);
+                                                } else {
+                                                    RadiantTeamHeroName3.setText("3. " + hero.getLocalizedName() + ":");
+                                                }
+                                                final String heroName = hero.getName();
+                                                final int heroId = res.getIdentifier(heroName, "drawable",
+                                                        getContext().getPackageName());
+                                                RadiantHeroImageView3.setImageResource(heroId);
+
+
+                                            } else if (MDPlayer.getPlayerSlot() == 3) {
+                                                TableRow row4r = new TableRow(getContext());
+                                                addTableRows(radiantTable, row4r, MDPlayer, 7, 19, 3);
+                                                if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                    DireTeamHeroName1.setText("5. " + username);
+                                                } else {
+                                                    RadiantTeamHeroName4.setText("4. " + hero.getLocalizedName() + ":");
+                                                }
+                                                final String heroName = hero.getName();
+                                                final int heroId = res.getIdentifier(heroName, "drawable",
+                                                        getContext().getPackageName());
+                                                RadiantHeroImageView4.setImageResource(heroId);
+
+
+                                            } else if (MDPlayer.getPlayerSlot() == 4) {
+                                                TableRow row5r = new TableRow(getContext());
+                                                addTableRows(radiantTable, row5r, MDPlayer, 7, 19, 3);
+                                                if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
+                                                    DireTeamHeroName1.setText("5. " + username);
+                                                } else {
+                                                    RadiantTeamHeroName5.setText("5. " + hero.getLocalizedName() + ":");
+                                                }
+                                                final String heroName = hero.getName();
+                                                final int heroId = res.getIdentifier(heroName, "drawable",
+                                                        getContext().getPackageName());
+                                                RadiantHeroImageView5.setImageResource(heroId);
+
                                             }
-                                            final String heroName = hero.getName();
-                                            final int heroId = res.getIdentifier(heroName, "drawable",
-                                                    getContext().getPackageName());
-                                            DireHeroImageView2.setImageResource(heroId);
-
-
-                                        } else if (MDPlayer.getPlayerSlot() == 130) {
-                                            TableRow row3d = new TableRow(getContext());
-                                            addTableRows(direTable, row3d, MDPlayer, 7, 19, 3);
-                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
-                                                DireTeamHeroName3.setText("3. " + username);
-                                            } else {
-                                                DireTeamHeroName3.setText("3. " + hero.getLocalizedName() + ":");
-                                            }
-                                            final String heroName = hero.getName();
-                                            final int heroId = res.getIdentifier(heroName, "drawable",
-                                                    getContext().getPackageName());
-                                            DireHeroImageView3.setImageResource(heroId);
-
-
-                                        } else if (MDPlayer.getPlayerSlot() == 131) {
-                                            TableRow row4d = new TableRow(getContext());
-                                            addTableRows(direTable, row4d, MDPlayer, 7, 19, 3);
-                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
-                                                DireTeamHeroName4.setText("4. " + username);
-                                            } else {
-                                                DireTeamHeroName4.setText("4. " + hero.getLocalizedName() + ":");
-                                            }
-                                            final String heroName = hero.getName();
-                                            final int heroId = res.getIdentifier(heroName, "drawable",
-                                                    getContext().getPackageName());
-                                            DireHeroImageView4.setImageResource(heroId);
-
-
-                                        } else if (MDPlayer.getPlayerSlot() == 132) {
-                                            TableRow row5d = new TableRow(getContext());
-                                            addTableRows(direTable, row5d, MDPlayer, 7, 19, 3);
-                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
-                                                DireTeamHeroName1.setText("5. " + username);
-                                            } else {
-                                                DireTeamHeroName5.setText("5. " + hero.getLocalizedName() + ":");
-                                            }
-                                            final String heroName = hero.getName();
-                                            final int heroId = res.getIdentifier(heroName, "drawable",
-                                                    getContext().getPackageName());
-                                            DireHeroImageView5.setImageResource(heroId);
-
-
-                                        }
-                                    } else {
-                                        if (MDPlayer.getPlayerSlot() == 0) {
-                                            TableRow row1r = new TableRow(getContext());
-                                            addTableRows(radiantTable, row1r, MDPlayer, 7, 7, 3);
-                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
-                                                DireTeamHeroName1.setText("5. " + username);
-                                            } else {
-                                                RadiantTeamHeroName1.setText("1. " + hero.getLocalizedName() + ":");
-                                            }
-                                            final String heroName = hero.getName();
-                                            final int heroId = res.getIdentifier(heroName, "drawable",
-                                                    getContext().getPackageName());
-                                            RadiantHeroImageView1.setImageResource(heroId);
-
-
-                                        } else if (MDPlayer.getPlayerSlot() == 1) {
-                                            TableRow row2r = new TableRow(getContext());
-                                            addTableRows(radiantTable, row2r, MDPlayer, 23, 19, 3);
-                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
-                                                DireTeamHeroName1.setText("5. " + username);
-                                            } else {
-                                                RadiantTeamHeroName2.setText("2. " + hero.getLocalizedName() + ":");
-                                            }
-                                            final String heroName = hero.getName();
-                                            final int heroId = res.getIdentifier(heroName, "drawable",
-                                                    getContext().getPackageName());
-                                            RadiantHeroImageView2.setImageResource(heroId);
-
-
-                                        } else if (MDPlayer.getPlayerSlot() == 2) {
-                                            TableRow row3r = new TableRow(getContext());
-                                            addTableRows(radiantTable, row3r, MDPlayer, 7, 19, 3);
-                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
-                                                DireTeamHeroName1.setText("5. " + username);
-                                            } else {
-                                                RadiantTeamHeroName3.setText("3. " + hero.getLocalizedName() + ":");
-                                            }
-                                            final String heroName = hero.getName();
-                                            final int heroId = res.getIdentifier(heroName, "drawable",
-                                                    getContext().getPackageName());
-                                            RadiantHeroImageView3.setImageResource(heroId);
-
-
-                                        } else if (MDPlayer.getPlayerSlot() == 3) {
-                                            TableRow row4r = new TableRow(getContext());
-                                            addTableRows(radiantTable, row4r, MDPlayer, 7, 19, 3);
-                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
-                                                DireTeamHeroName1.setText("5. " + username);
-                                            } else {
-                                                RadiantTeamHeroName4.setText("4. " + hero.getLocalizedName() + ":");
-                                            }
-                                            final String heroName = hero.getName();
-                                            final int heroId = res.getIdentifier(heroName, "drawable",
-                                                    getContext().getPackageName());
-                                            RadiantHeroImageView4.setImageResource(heroId);
-
-
-                                        } else if (MDPlayer.getPlayerSlot() == 4) {
-                                            TableRow row5r = new TableRow(getContext());
-                                            addTableRows(radiantTable, row5r, MDPlayer, 7, 19, 3);
-                                            if (Objects.equals(playerid, String.valueOf(getNewAccountID(MDPlayer.getAccountId())))) {
-                                                DireTeamHeroName1.setText("5. " + username);
-                                            } else {
-                                                RadiantTeamHeroName5.setText("5. " + hero.getLocalizedName() + ":");
-                                            }
-                                            final String heroName = hero.getName();
-                                            final int heroId = res.getIdentifier(heroName, "drawable",
-                                                    getContext().getPackageName());
-                                            RadiantHeroImageView5.setImageResource(heroId);
-
-
                                         }
                                     }
                                 }
@@ -471,6 +472,7 @@ public class MatchDetailsFragment extends Fragment {
                 });
 
     }
+
     private void addTableRows(TableLayout tablename, TableRow row, MDPlayer MDPlayer,
                               int paddingt, int paddingb, int paddinglr) {
         float ikills = MDPlayer.getKills();
@@ -517,6 +519,7 @@ public class MatchDetailsFragment extends Fragment {
                 paddingt, paddingb, paddinglr, row);
         tablename.addView(row);
     }
+
     private void setTableText(TextView view, String text, int gravity, int paddingt, int paddingb,
                               int paddinglr, TableRow tablerow) {
         int paddingtpx = dpToPx(paddingt);
@@ -610,6 +613,10 @@ public class MatchDetailsFragment extends Fragment {
         return newid;
     }
 
+    private int dpToPx(int dp) {
+        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
+    }
+
     static class ProgressHolder {
 
         int dire;
@@ -617,9 +624,6 @@ public class MatchDetailsFragment extends Fragment {
 
     }
 
-    private int dpToPx(int dp) {
-        return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
-    }
     static class HeroClickListener implements View.OnClickListener {
 
         private static final String GAME_PEDIA = "http://dota2.gamepedia.com/%s";
