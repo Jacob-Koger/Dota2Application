@@ -5,18 +5,18 @@
     android:layout_height="wrap_content"
     android:layout_alignParentStart="true"
     android:layout_below="@+id/openRadiantTeamDetails"
+    android:layout_marginEnd="6dp"
     android:layout_marginStart="16dp"
-    android:layout_marginTop="18dp"
-    android:layout_marginEnd="6dp">
+    android:layout_marginTop="18dp">
 
     <ImageView
         android:id="@+id/direHeroImageView1"
         android:layout_width="128px"
         android:layout_height="72px"
+        android:layout_alignParentEnd="false"
         android:layout_marginBottom="14dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/blankhero"
-        android:layout_alignParentEnd="false" />
+        android:src="@drawable/blankhero" />
 
     <ImageView
         android:id="@+id/direHeroImageView2"

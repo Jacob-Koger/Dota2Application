@@ -14,7 +14,7 @@
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:id="@+id/logo"
-        android:background="@drawable/dota2logo"
+        android:background="@drawable/logo"
         android:layout_weight="0.26" />
 
 </LinearLayout>

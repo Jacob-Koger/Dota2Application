@@ -17,7 +17,5 @@
         <include layout="@layout/tablelayoutdire" />
     </HorizontalScrollView>
 
-    <include layout="@layout/diredetailsheroimage" />
-
     <include layout="@layout/diredetailsheroname" />
 </RelativeLayout>

@@ -77,7 +77,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall" />
         </RelativeLayout>
 
-        <com.jacob.jacobkoger.dota2Application.RecentMatches.HeroIconContainer
+        <com.jacob.dota2.dota2Application.RecentMatches.HeroIconContainer
             android:id="@+id/adapter_match_history_icon_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

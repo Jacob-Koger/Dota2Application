@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jacob.jacobkoger.dota2Application.activities.LoginActivity"
+    tools:context="com.jacob.dota2.dota2Application.activities.LoginActivity"
     android:background="@color/carbon_black">
 
     <WebView

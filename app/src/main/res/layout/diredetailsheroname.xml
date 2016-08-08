@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/direTeamDetailsView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:layout_alignParentTop="true"
-    android:layout_toEndOf="@+id/direHeroImages"
+    android:layout_gravity="center_vertical|left"
+    android:layout_marginEnd="3dp"
     android:layout_marginTop="18dp"
-    android:layout_marginEnd="3dp">
+    android:layout_toEndOf="@+id/direHeroImages"
+    android:orientation="vertical">
+
     <TextView
         android:id="@+id/direHeroName1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="28dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="9dp"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@+id/direHeroImageView1"
+        android:gravity="center"
         android:text="Hero Name:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textIsSelectable="true" />
@@ -22,9 +26,12 @@
     <TextView
         android:id="@+id/direHeroName2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="28dp"
+        android:layout_below="@+id/direHeroName1"
+        android:layout_marginBottom="9dp"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@+id/direHeroImageView2"
+        android:gravity="center"
         android:text="Hero Name:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textIsSelectable="true" />
@@ -32,9 +39,12 @@
     <TextView
         android:id="@+id/direHeroName3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="28dp"
+        android:layout_below="@+id/direHeroName2"
+        android:layout_marginBottom="9dp"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@+id/direHeroImageView3"
+        android:gravity="center"
         android:text="Hero Name:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textIsSelectable="true" />
@@ -42,9 +52,12 @@
     <TextView
         android:id="@+id/direHeroName4"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="28dp"
+        android:layout_below="@+id/direHeroName3"
+        android:layout_marginBottom="9dp"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@+id/direHeroImageView4"
+        android:gravity="center"
         android:text="Hero Name:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textIsSelectable="true" />
@@ -52,9 +65,68 @@
     <TextView
         android:id="@+id/direHeroName5"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_height="28dp"
+        android:layout_below="@+id/direHeroName4"
+        android:layout_marginBottom="9dp"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@+id/direHeroImageView4"
+        android:gravity="center"
         android:text="Hero Name:"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textIsSelectable="true" />
-</LinearLayout>
+
+    <ImageView
+        android:id="@+id/direHeroImageView1"
+        android:layout_width="128px"
+        android:layout_height="14dp"
+        android:layout_alignBottom="@+id/direHeroName1"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/direHeroName1"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/blankhero" />
+
+    <ImageView
+        android:id="@+id/direHeroImageView2"
+        android:layout_width="128px"
+        android:layout_height="14dp"
+        android:layout_alignBottom="@+id/direHeroName2"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/direHeroName2"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/blankhero" />
+
+    <ImageView
+        android:id="@+id/direHeroImageView3"
+        android:layout_width="128px"
+        android:layout_height="14dp"
+        android:layout_alignBottom="@+id/direHeroName3"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/direHeroName3"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/blankhero" />
+
+    <ImageView
+        android:id="@+id/direHeroImageView4"
+        android:layout_width="128px"
+        android:layout_height="14dp"
+        android:layout_alignBottom="@+id/direHeroName4"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/direHeroName4"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/blankhero" />
+
+    <ImageView
+        android:id="@+id/direHeroImageView5"
+        android:layout_width="128px"
+        android:layout_height="14dp"
+        android:layout_alignBottom="@+id/direHeroName5"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/direHeroName5"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/blankhero" />
+</RelativeLayout>

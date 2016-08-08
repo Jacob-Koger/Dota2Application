@@ -10,14 +10,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme">
-        <activity android:name="com.jacob.jacobkoger.dota2Application.activities.LoginActivity">
+        <activity android:name="com.jacob.dota2.dota2Application.activities.LoginActivity">
             android:noHistory="true"
         </activity>
 
-        <activity android:name="com.jacob.jacobkoger.dota2Application.activities.MainActivity">
+        <activity android:name="com.jacob.dota2.dota2Application.activities.MainActivity">
 
         </activity>
-        <activity android:name="com.jacob.jacobkoger.dota2Application.activities.SplashScreen">
+        <activity android:name="com.jacob.dota2.dota2Application.activities.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
