@@ -163,12 +163,14 @@ public class MatchDetailsFragment extends Fragment {
         fullDireDetails = (RelativeLayout) view.findViewById(R.id.fulldiredetails);
         direTable = (TableLayout) view.findViewById(R.id.tablelayoutdire);
         radiantTable = (TableLayout) view.findViewById(R.id.tablelayoutradiant);
-        createTableTitles(view);
-        setOnClickListenersDire();
-        setOnClickListenersRadiant();
-        setOnClickListenerRadiantHeroName();
-        setOnClickListenerDireHeroName();
-        getResult();
+        if (view != null) {
+            createTableTitles(view);
+            setOnClickListenersDire();
+            setOnClickListenersRadiant();
+            setOnClickListenerRadiantHeroName();
+            setOnClickListenerDireHeroName();
+            getResult();
+        }
     }
 
     private void setOnClickListenerRadiantHeroName() {
@@ -446,24 +448,24 @@ public class MatchDetailsFragment extends Fragment {
                                 gold.dire += currGold;
                             }
                         }
+                        if (inflateProgressView() != null) {
+                            final MatchDetailsView killProgress = inflateProgressView();
+                            killProgress.bindKills(result);
+                            mProgressContainer.addView(killProgress);
 
-                        final MatchDetailsView killProgress = inflateProgressView();
-                        killProgress.bindKills(result);
-                        mProgressContainer.addView(killProgress);
+                            final MatchDetailsView xpProgress = inflateProgressView();
+                            xpProgress.bindXpmAverage(xp.radiant, xp.dire);
+                            mProgressContainer.addView(xpProgress);
 
-                        final MatchDetailsView xpProgress = inflateProgressView();
-                        xpProgress.bindXpmAverage(xp.radiant, xp.dire);
-                        mProgressContainer.addView(xpProgress);
+                            final MatchDetailsView gpmProgress = inflateProgressView();
+                            gpmProgress.bindGpmAverage(gpm.radiant, gpm.dire);
+                            mProgressContainer.addView(gpmProgress);
 
-                        final MatchDetailsView gpmProgress = inflateProgressView();
-                        gpmProgress.bindGpmAverage(gpm.radiant, gpm.dire);
-                        mProgressContainer.addView(gpmProgress);
-
-                        final MatchDetailsView goldProgress = inflateProgressView();
-                        goldProgress.bindGoldSpent(gold.radiant, gold.dire);
-                        mProgressContainer.addView(goldProgress);
+                            final MatchDetailsView goldProgress = inflateProgressView();
+                            goldProgress.bindGoldSpent(gold.radiant, gold.dire);
+                            mProgressContainer.addView(goldProgress);
+                        }
                     }
-
                     @Override
                     public void onFailure(Throwable t) {
                         Log.d("mData", "fail", t);
@@ -603,8 +605,12 @@ public class MatchDetailsFragment extends Fragment {
     }
 
     MatchDetailsView inflateProgressView() {
-        final LayoutInflater inflater = LayoutInflater.from(getContext());
-        return (MatchDetailsView) inflater.inflate(R.layout.progressbar, mProgressContainer, false);
+        if (getContext() != null) {
+            final LayoutInflater inflater = LayoutInflater.from(getContext());
+            return (MatchDetailsView) inflater.inflate(R.layout.progressbar, mProgressContainer, false);
+        } else {
+            return null;
+        }
     }
 
     private long getNewAccountID(long id) {

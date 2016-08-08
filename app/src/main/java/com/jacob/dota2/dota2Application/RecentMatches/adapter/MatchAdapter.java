@@ -14,7 +14,6 @@ import com.google.gson.Gson;
 import com.jacob.dota2.dota2Application.data.hero.Hero;
 import com.jacob.dota2.dota2Application.data.hero.HeroesList;
 import com.jacob.dota2.dota2Application.data.history.MHMatch;
-import com.jacob.dota2.dota2Application.data.lobbies.Lobby;
 import com.jacob.dota2.dota2Application.util.filter.HeroPredicate;
 
 import java.io.IOException;
@@ -31,6 +30,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchHolder> {
 
     private final List<Hero> mHeroes = new ArrayList<>(0);
     private final SortedList<MHMatch> mData;
+
     public MatchAdapter(Context context) {
         mData = new SortedList<>(MHMatch.class, new SortedMatchCallback(this));
         try (InputStream in = context.getAssets().open("Heroes.json")) {
@@ -60,9 +60,9 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchHolder> {
 
     public void filterMatches(String query) {
         final Collection<MHMatch> target = new ArrayList<>(getItemCount());
-            for (int i = 0, len = getItemCount(); i < len; i++) {
-                target.add(mData.get(i));
-            }
+        for (int i = 0, len = getItemCount(); i < len; i++) {
+            target.add(mData.get(i));
+        }
 
 
         mData.clear();

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -44,9 +45,10 @@ class MatchHolder extends RecyclerView.ViewHolder implements View.OnClickListene
     private final String playerid;
     private final SharedPreferences sharedPreferences;
     private final List<Lobby> mLobby = new ArrayList<>(0);
-
+    private final CardView cardView;
+    private final int red;
+    private final int cardDefault;
     MatchHolder(View view) {
-
         super(view);
         mContext = view.getContext();
         mRes = view.getResources();
@@ -66,6 +68,9 @@ class MatchHolder extends RecyclerView.ViewHolder implements View.OnClickListene
         mIconContainer = view.findViewById(R.id.adapter_match_history_icon_container);
         sharedPreferences = mContext.getSharedPreferences("player_id", Context.MODE_PRIVATE);
         playerid = sharedPreferences.getString("player_id", "none");
+        cardView = (CardView) itemView;
+        red = mContext.getColor(R.color.offRed);
+        cardDefault = mContext.getColor(R.color.cardDefault);
     }
 
     void bind(MHMatch match, Iterable<Hero> heroes) {
@@ -73,11 +78,16 @@ class MatchHolder extends RecyclerView.ViewHolder implements View.OnClickListene
             if(Objects.equals(lobby.getId().toString(), match.getLobbyType()))
                 lobbyType.setText("Lobby Type: " + lobby.getName());
         }
+
         matchId.setText("Match ID: " + match.getMatchid());
         startTime.setText("Start Time:  " + match.getStartTime());
         matchNum.setText("Match Number: " + match.getMatchSeqNum());
-
         setImages(match, heroes);
+        if (Objects.equals(match.getLobbyType(), "7")) {
+            cardView.setCardBackgroundColor(red);
+        } else {
+            cardView.setCardBackgroundColor(cardDefault);
+        }
     }
 
     private void setImages(MHMatch match, Iterable<Hero> heroes) {

@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#870000</color>
     <color name="colorAccent">#000000</color>
     <color name="colorRadiantBlue">#009FFF</color>
+    <color name="offRed">#3b0000</color>
+    <color name="cardDefault">#424242</color>
 </resources>
