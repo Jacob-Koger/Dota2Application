@@ -36,6 +36,7 @@ import com.jacob.dota2.dota2Application.data.accountinfo.Player;
 import com.jacob.dota2.dota2Application.data.hero.Hero;
 import com.jacob.dota2.dota2Application.data.hero.HeroesList;
 import com.google.gson.Gson;
+import com.jacob.dota2.dota2Application.shopkeepersquiz.ShopkeepersQuizFragment;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -99,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
         final RecentMatchesFragment recentMatches = new RecentMatchesFragment();
         presenter = new RecentMatchesPresenter(this, recentMatches);
 
+        final ShopkeepersQuizFragment shopkeepersQuizFragment = new ShopkeepersQuizFragment();
+
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -126,7 +129,13 @@ public class MainActivity extends AppCompatActivity {
                             item.setCheckable(true);
                             item.setChecked(true);
                             setTitle(item.getTitle());
-
+                        } else if(Objects.equals(title, "Shopkeeper's Quiz")){
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.flContent, shopkeepersQuizFragment)
+                                    .commit();
+                            item.setCheckable(true);
+                            item.setChecked(true);
+                            setTitle(item.getTitle());
                         } else {
                             Fragment fragment = null;
                             Class fragmentClass;

@@ -142,7 +142,21 @@
     },
     {
       "id": 34,
-      "name": "magic_stick"
+      "name": "magic_stick",
+      "build": [
+        {
+          "item1": "circlet"
+        },
+        {
+          "item2": "branches"
+        },
+        {
+          "item3": "branches"
+        },
+        {
+          "item4": "recipe_magic_wand"
+        }
+      ]
     },
     {
       "id": 35,

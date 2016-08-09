@@ -276,6 +276,7 @@ public class MatchDetailsFragment extends Fragment {
                             } else {
                                 mWinTeam.setText(R.string.direWin);
                             }
+                            Log.d("username", username);
                             final Resources res = getContext().getResources();
                             for (final com.jacob.dota2.dota2Application.data.detail.MDPlayer MDPlayer : result.getPlayers()) {
                                 for (final Hero hero : mHeroes) {

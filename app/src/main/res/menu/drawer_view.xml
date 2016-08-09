@@ -3,16 +3,21 @@
     <group
         android:id="@+id/overallgroup"
         android:checkableBehavior="single">
-        <group
-            android:id="@+id/group1">
+        <group android:id="@+id/group1">
 
             <item
                 android:id="@+id/menu_nav_recent"
                 android:checkable="true"
                 android:checked="true"
                 android:title="Recent Matches" />
+            <item
+                android:id="@+id/menu_nav_quiz"
+                android:checkable="true"
+                android:title="Shopkeeper's Quiz" />
         </group>
-        <group android:title="Hero List" android:id="@+id/group2">
+        <group
+            android:id="@+id/group2"
+            android:title="Hero List">
 
         </group>
     </group>

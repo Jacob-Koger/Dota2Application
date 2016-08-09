@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:text="Shopkeeper's Quiz" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="64dp"
+        android:layout_height="32dp"
+        android:layout_alignStart="@+id/textView4"
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/magic_wand" />
+
+    <TextView
+        android:id="@+id/item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView"
+        android:text="Magic Wand"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/completed_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:text="Completed: "
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <com.jacob.dota2.dota2Application.shopkeepersquiz.ItemAnswerContainer
+        android:id="@+id/item_answer_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/completed_count"
+        android:layout_centerHorizontal="true" />
+
+    <com.jacob.dota2.dota2Application.shopkeepersquiz.ItemChoiceContainer
+        android:id="@+id/item_choice_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_answer_container"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:columnCount="6"
+        android:rowCount="1"/>
+</RelativeLayout>
