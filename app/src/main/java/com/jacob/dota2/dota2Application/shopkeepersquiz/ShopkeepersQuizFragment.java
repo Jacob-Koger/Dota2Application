@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.jacobkoger.dota2Application.R;
 import com.google.gson.Gson;
@@ -22,58 +21,35 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 
 public class ShopkeepersQuizFragment extends Fragment {
     private static Context mContext;
     private final List<Items> itemsList = new ArrayList<>(0);
     private final List<Build> buildList = new ArrayList<>(0);
+    private final List<Integer> recipeList = new ArrayList<>(0);
     private ItemAnswerContainer itemAnswerContainer;
     private ItemChoiceContainer itemChoiceContainer;
     private Resources mRes;
     private String mPkgName;
 
-    public static View.OnClickListener onClickChoice(final int index) {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                switch (index) {
-                    case 0: {
-                        Toast.makeText(mContext, "1", Toast.LENGTH_SHORT).show();
-                    }
-                    case 1: {
-                        Toast.makeText(mContext, "2", Toast.LENGTH_SHORT).show();
-                    }
-                    case 2: {
-                        Toast.makeText(mContext, "3", Toast.LENGTH_SHORT).show();
-                    }
-                    case 3: {
-                        Toast.makeText(mContext, "4", Toast.LENGTH_SHORT).show();
-                    }
-                    case 4: {
-                        Toast.makeText(mContext, "5", Toast.LENGTH_SHORT).show();
-                    }
-                    case 5: {
-                        Toast.makeText(mContext, "6", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-            }
-        };
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         mContext = getContext();
+
         try (InputStream in = mContext.getAssets().open("Items.json")) {
             final ItemsList Il = new Gson().fromJson(new InputStreamReader(in), ItemsList.class);
             itemsList.addAll(Il.getItems());
             for (Items items : itemsList) {
                 buildList.addAll(items.getBuild());
+                if (Objects.equals(items.getName(), "recipe")) {
+                    for (Items i : itemsList) {
+                        recipeList.add(i.getId());
+                    }
+                }
             }
-            Log.d("build", String.valueOf(buildList.size()));
-            Log.d("items", String.valueOf(itemsList.size()));
         } catch (IOException ignored) {
 
         }
@@ -90,31 +66,132 @@ public class ShopkeepersQuizFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mPkgName = mContext.getPackageName();
         mRes = view.getResources();
-
         super.onViewCreated(view, savedInstanceState);
+
         itemAnswerContainer = (ItemAnswerContainer) view.findViewById(R.id.item_answer_container);
         itemAnswerContainer.setColumnCount(4);
         itemAnswerContainer.setRowCount(1);
         itemChoiceContainer = (ItemChoiceContainer) view.findViewById(R.id.item_choice_container);
-        setImages();
+        randomizeImages();
     }
 
-    private void setImages() {
-        for (int i = 0, col = itemAnswerContainer.getColumnCount() *
-                itemAnswerContainer.getRowCount(); i < col; i++) {
-            itemAnswerContainer.BindIcons(i);
+    private void randomizeImages() {
+        Build build = buildList.get(0);
+        Random random = new Random();
+        int randomInt = random.nextInt(3) + 1;
+        switch (randomInt) {
+            case 1:
+                setImages(build.getItem1(), build.getItem2(), build.getItem3(),
+                        build.getItem4(), build.getItem5(), build.getItem6());
+                break;
+            case 2:
+                setImages(build.getItem1(), build.getItem3(), build.getItem4(),
+                        build.getItem5(), build.getItem6(), build.getItem2());
+                break;
+            case 3:
+                setImages(build.getItem1(), build.getItem2(), build.getItem4(),
+                        build.getItem5(), build.getItem6(), build.getItem3());
+                break;
         }
-        for (Items items : itemsList) {
-                Build build = buildList.get(0);
-                final int resId1 = mRes.getIdentifier(build.getItem1(), "drawable", mPkgName);
-                for (int i = 0, col = itemChoiceContainer.getColumnCount() *
-                        itemChoiceContainer.getRowCount(); i < col; i++) {
-                    itemChoiceContainer.BindIcons(resId1, i);
-                }
+    }
+
+    private int getRandomInt() {
+        Random random = new Random();
+        int o = random.nextInt(242) + 1;
+        boolean isRecipe = checkRecipe(o);
+        if (isRecipe) {
+            getRandomInt();
+        }
+            return o;
+
+    }
+
+    private boolean checkRecipe(int id) {
+        return recipeList.contains(id);
+    }
+
+    private void getRandomItem(int index) {
+        Log.d("getRandom", "ran");
+        int id = getRandomInt();
+        for (int i = 0, list = 242; i < list; i++) {
+            Items items = itemsList.get(i);
+            Log.d("random", id + " " + items.getId());
+            if (id == items.getId()) {
+                Log.d("item name", items.getName());
+                final int resRandomID = mRes.getIdentifier(items.getName(), "drawable", mPkgName);
+                itemChoiceContainer.BindRandom(resRandomID, index);
+            } else {
+                getRandomItem(index);
             }
         }
     }
 
+    private void setImages(String item1, String item2, String item3,
+                           String item4, String item5, String item6) {
+        for (int i = 0, col = itemAnswerContainer.getColumnCount() *
+                itemAnswerContainer.getRowCount(); i < col; i++) {
+            itemAnswerContainer.BindIcons(i);
+        }
+
+        if (item1 != null) {
+            final int resId1 = mRes.getIdentifier(item1, "drawable", mPkgName);
+            itemChoiceContainer.Bind1(resId1);
+            itemChoiceContainer.getChildAt(0).setOnClickListener(new OnChoiceClickListener(item1,
+                    getContext()));
+
+        } else {
+            getRandomItem(0);
+        }
+
+        if (item2 != null) {
+            final int resId2 = mRes.getIdentifier(item2, "drawable", mPkgName);
+            itemChoiceContainer.Bind2(resId2);
+            itemChoiceContainer.getChildAt(1).setOnClickListener(new OnChoiceClickListener(item2,
+                    getContext()));
+
+        } else {
+            getRandomItem(1);
+        }
+
+        if (item3 != null) {
+            final int resId3 = mRes.getIdentifier(item3, "drawable", mPkgName);
+            itemChoiceContainer.Bind3(resId3);
+            itemChoiceContainer.getChildAt(2).setOnClickListener(new OnChoiceClickListener(item3,
+                    getContext()));
+
+        } else {
+            getRandomItem(2);
+        }
+
+        if (item4 != null) {
+            final int resId4 = mRes.getIdentifier(item4, "drawable", mPkgName);
+            itemChoiceContainer.Bind4(resId4);
+            itemChoiceContainer.getChildAt(3).setOnClickListener(new OnChoiceClickListener(item4,
+                    getContext()));
+
+        } else {
+            getRandomItem(3);
+        }
+
+        if (item5 != null) {
+            final int resId5 = mRes.getIdentifier(item5, "drawable", mPkgName);
+            itemChoiceContainer.Bind5(resId5);
+            itemChoiceContainer.getChildAt(4).setOnClickListener(new OnChoiceClickListener(item5,
+                    getContext()));
 
 
+        } else {
+            getRandomItem(4);
+        }
 
+        if (item6 != null) {
+            final int resId6 = mRes.getIdentifier(item6, "drawable", mPkgName);
+            itemChoiceContainer.Bind6(resId6);
+            itemChoiceContainer.getChildAt(5).setOnClickListener(new OnChoiceClickListener(item6,
+                    getContext()));
+
+        } else {
+            getRandomItem(5);
+        }
+    }
+}

@@ -3,7 +3,7 @@ package com.jacob.dota2.dota2Application.shopkeepersquiz;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridLayout;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.jacobkoger.dota2Application.R;
@@ -28,6 +28,6 @@ public class ItemAnswerContainer extends GridLayout {
                 .fitCenter()
                 .placeholder(R.drawable.emptyitembg)
                 .error(R.drawable.emptyitembg)
-                .into((ImageButton) getChildAt(index));
+                .into((ImageView) getChildAt(index));
     }
 }
