@@ -3,7 +3,6 @@ package com.jacob.dota2.dota2Application.shopkeepersquiz;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 
@@ -45,6 +44,5 @@ public class ItemChoiceContainer extends GridLayout{
     public void BindIcons(int ResID, int index){
         ImageView imageView = ((ImageView) getChildAt(index));
         imageView.setImageResource(ResID);
-        Log.d("ran", String.valueOf(index));
     }
 }

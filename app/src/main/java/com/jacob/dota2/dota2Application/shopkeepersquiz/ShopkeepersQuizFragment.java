@@ -5,10 +5,10 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.jacobkoger.dota2Application.R;
 import com.google.gson.Gson;
@@ -21,16 +21,17 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 public class ShopkeepersQuizFragment extends Fragment {
     private static Context mContext;
+
     private final List<Items> itemsList = new ArrayList<>(0);
     private final List<Build> buildList = new ArrayList<>(0);
-    private final List<Integer> recipeList = new ArrayList<>(0);
+
     private ItemAnswerContainer itemAnswerContainer;
     private ItemChoiceContainer itemChoiceContainer;
+
     private Resources mRes;
     private String mPkgName;
 
@@ -44,11 +45,6 @@ public class ShopkeepersQuizFragment extends Fragment {
             itemsList.addAll(Il.getItems());
             for (Items items : itemsList) {
                 buildList.addAll(items.getBuild());
-                if (Objects.equals(items.getName(), "recipe")) {
-                    for (Items i : itemsList) {
-                        recipeList.add(i.getId());
-                    }
-                }
             }
         } catch (IOException ignored) {
 
@@ -69,7 +65,7 @@ public class ShopkeepersQuizFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         itemAnswerContainer = (ItemAnswerContainer) view.findViewById(R.id.item_answer_container);
-        itemAnswerContainer.setColumnCount(4);
+        itemAnswerContainer.setColumnCount(6);
         itemAnswerContainer.setRowCount(1);
         itemChoiceContainer = (ItemChoiceContainer) view.findViewById(R.id.item_choice_container);
         randomizeImages();
@@ -98,30 +94,16 @@ public class ShopkeepersQuizFragment extends Fragment {
     private int getRandomInt() {
         Random random = new Random();
         int o = random.nextInt(242) + 1;
-        boolean isRecipe = checkRecipe(o);
-        if (isRecipe) {
-            getRandomInt();
-        }
-            return o;
-
-    }
-
-    private boolean checkRecipe(int id) {
-        return recipeList.contains(id);
+        return o;
     }
 
     private void getRandomItem(int index) {
-        Log.d("getRandom", "ran");
         int id = getRandomInt();
         for (int i = 0, list = 242; i < list; i++) {
             Items items = itemsList.get(i);
-            Log.d("random", id + " " + items.getId());
             if (id == items.getId()) {
-                Log.d("item name", items.getName());
                 final int resRandomID = mRes.getIdentifier(items.getName(), "drawable", mPkgName);
                 itemChoiceContainer.BindRandom(resRandomID, index);
-            } else {
-                getRandomItem(index);
             }
         }
     }
@@ -130,14 +112,14 @@ public class ShopkeepersQuizFragment extends Fragment {
                            String item4, String item5, String item6) {
         for (int i = 0, col = itemAnswerContainer.getColumnCount() *
                 itemAnswerContainer.getRowCount(); i < col; i++) {
-            itemAnswerContainer.BindIcons(i);
+            itemAnswerContainer.BindIcons(R.drawable.emptyitembg, i);
         }
 
         if (item1 != null) {
             final int resId1 = mRes.getIdentifier(item1, "drawable", mPkgName);
             itemChoiceContainer.Bind1(resId1);
             itemChoiceContainer.getChildAt(0).setOnClickListener(new OnChoiceClickListener(item1,
-                    getContext()));
+                    getContext(), (ImageView) itemChoiceContainer.getChildAt(0), itemAnswerContainer));
 
         } else {
             getRandomItem(0);
@@ -147,7 +129,7 @@ public class ShopkeepersQuizFragment extends Fragment {
             final int resId2 = mRes.getIdentifier(item2, "drawable", mPkgName);
             itemChoiceContainer.Bind2(resId2);
             itemChoiceContainer.getChildAt(1).setOnClickListener(new OnChoiceClickListener(item2,
-                    getContext()));
+                    getContext(), (ImageView) itemChoiceContainer.getChildAt(1), itemAnswerContainer));
 
         } else {
             getRandomItem(1);
@@ -157,7 +139,7 @@ public class ShopkeepersQuizFragment extends Fragment {
             final int resId3 = mRes.getIdentifier(item3, "drawable", mPkgName);
             itemChoiceContainer.Bind3(resId3);
             itemChoiceContainer.getChildAt(2).setOnClickListener(new OnChoiceClickListener(item3,
-                    getContext()));
+                    getContext(), (ImageView) itemChoiceContainer.getChildAt(2), itemAnswerContainer));
 
         } else {
             getRandomItem(2);
@@ -167,7 +149,7 @@ public class ShopkeepersQuizFragment extends Fragment {
             final int resId4 = mRes.getIdentifier(item4, "drawable", mPkgName);
             itemChoiceContainer.Bind4(resId4);
             itemChoiceContainer.getChildAt(3).setOnClickListener(new OnChoiceClickListener(item4,
-                    getContext()));
+                    getContext(), (ImageView) itemChoiceContainer.getChildAt(3), itemAnswerContainer));
 
         } else {
             getRandomItem(3);
@@ -177,7 +159,7 @@ public class ShopkeepersQuizFragment extends Fragment {
             final int resId5 = mRes.getIdentifier(item5, "drawable", mPkgName);
             itemChoiceContainer.Bind5(resId5);
             itemChoiceContainer.getChildAt(4).setOnClickListener(new OnChoiceClickListener(item5,
-                    getContext()));
+                    getContext(), (ImageView) itemChoiceContainer.getChildAt(4), itemAnswerContainer));
 
 
         } else {
@@ -188,7 +170,7 @@ public class ShopkeepersQuizFragment extends Fragment {
             final int resId6 = mRes.getIdentifier(item6, "drawable", mPkgName);
             itemChoiceContainer.Bind6(resId6);
             itemChoiceContainer.getChildAt(5).setOnClickListener(new OnChoiceClickListener(item6,
-                    getContext()));
+                    getContext(), (ImageView) itemChoiceContainer.getChildAt(5), itemAnswerContainer));
 
         } else {
             getRandomItem(5);

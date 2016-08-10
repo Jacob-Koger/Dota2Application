@@ -15,15 +15,32 @@ public class ItemAnswerContainer extends GridLayout {
 
  public ItemAnswerContainer(Context context, AttributeSet attrs){
         super(context, attrs);
-        for (int i = 0, size = 4; i < size; i++) {
+        for (int i = 0, size = 6; i < size; i++) {
             addView(from(context).inflate(R.layout.itembutton, this, false));
         }
     }
-
-    public void BindIcons(int index) {
+    public void Bind1(int ResID){
+        BindIcons(ResID, 0);
+    }
+    public void Bind2(int ResID){
+        BindIcons(ResID, 1);
+    }
+    public void Bind3(int ResID){
+        BindIcons(ResID, 2);
+    }
+    public void Bind4(int ResID){
+        BindIcons(ResID, 3);
+    }
+    public void Bind5(int ResID){
+        BindIcons(ResID, 4);
+    }
+    public void Bind6(int ResID){
+        BindIcons(ResID, 5);
+    }
+    public void BindIcons(int ResID, int index) {
 
         Glide.with(getContext())
-                .load(R.drawable.emptyitembg)
+                .load(ResID)
                 .crossFade()
                 .fitCenter()
                 .placeholder(R.drawable.emptyitembg)
