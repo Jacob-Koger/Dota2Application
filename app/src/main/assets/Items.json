@@ -789,7 +789,8 @@
       "cd": 45,
       "lore": "Winged boots that grant omnipresence.",
       "components": [
-        "boots"
+        "boots",
+        "recipe"
       ],
       "created": true
     },
@@ -807,7 +808,7 @@
       "lore": "",
       "components": [
         "travel_boots",
-        "recipe_travel_boots"
+        "recipe"
       ],
       "created": true
     },
@@ -1027,7 +1028,8 @@
       "cd": 100,
       "lore": "Preserved through unknown magical means, the Hand of Midas is a weapon of greed, sacrificing animals to line the owner's pockets.",
       "components": [
-        "gloves"
+        "gloves",
+        "recipe"
       ],
       "created": true
     },
@@ -1101,7 +1103,8 @@
       "lore": "The bracer is a common choice to toughen up defenses and increase longevity.",
       "components": [
         "circlet",
-        "gauntlets"
+        "gauntlets",
+        "recipe"
       ],
       "created": true
     },
@@ -1119,7 +1122,8 @@
       "lore": "A circlet with faint whispers echoing about it.",
       "components": [
         "circlet",
-        "slippers"
+        "slippers",
+        "recipe"
       ],
       "created": true
     },
@@ -1137,7 +1141,8 @@
       "lore": "A small gemstone attached to several chains.",
       "components": [
         "circlet",
-        "mantle"
+        "mantle",
+        "recipe"
       ],
       "created": true
     },
@@ -1155,7 +1160,8 @@
       "lore": "A glowing jewel formed out of assorted parts that somehow fit together perfectly.",
       "components": [
         "headdress",
-        "buckler"
+        "buckler",
+        "recipe"
       ],
       "created": true
     },
@@ -1174,7 +1180,8 @@
       "components": [
         "headdress",
         "ring_of_basilius",
-        "lifesteal"
+        "lifesteal",
+        "recipe"
       ],
       "created": true
     },
@@ -1207,7 +1214,8 @@
       "lore": "A powerful shield that imbues the bearer with the strength of heroes past, it is capable of protecting entire armies in battle.",
       "components": [
         "chainmail",
-        "branches"
+        "branches",
+        "recipe"
       ],
       "created": true
     },
@@ -1244,7 +1252,8 @@
       "lore": "A powerful artifact of mysterious origin, it creates barriers against magical forces.",
       "components": [
         "hood_of_defiance",
-        "headdress"
+        "headdress",
+        "recipe"
       ],
       "created": true
     },
@@ -1263,7 +1272,8 @@
       "components": [
         "sobi_mask",
         "gauntlets",
-        "gauntlets"
+        "gauntlets",
+        "recipe"
       ],
       "created": true
     },
@@ -1282,7 +1292,8 @@
       "lore": "Creates a soothing aura that restores allies in battle.",
       "components": [
         "ring_of_regen",
-        "branches"
+        "branches",
+        "recipe"
       ],
       "created": true
     },
@@ -1319,7 +1330,8 @@
       "lore": "A garnet rod constructed from the essence of a fire demon.",
       "components": [
         "oblivion_staff",
-        "oblivion_staff"
+        "oblivion_staff",
+        "recipe"
       ],
       "created": true
     },
@@ -1375,7 +1387,8 @@
       "lore": "Allows you to manipulate others, for good or evil.",
       "components": [
         "staff_of_wizardry",
-        "ring_of_regen"
+        "ring_of_regen",
+        "recipe"
       ],
       "created": true
     },
@@ -1393,7 +1406,8 @@
       "lore": "A lesser wand that grows in power the longer it is used, it brings magic to the fingertips of the user.",
       "components": [
         "staff_of_wizardry",
-        "null_talisman"
+        "null_talisman",
+        "recipe"
       ],
       "created": true
     },
@@ -1411,7 +1425,7 @@
       "lore": "A lesser wand that grows in power the longer it is used, it brings magic to the fingertips of the user.",
       "components": [
         "dagon",
-        "recipe_dagon"
+        "recipe"
       ],
       "created": true
     },
@@ -1429,7 +1443,7 @@
       "lore": "A lesser wand that grows in power the longer it is used, it brings magic to the fingertips of the user.",
       "components": [
         "dagon_2",
-        "recipe_dagon"
+        "recipe"
       ],
       "created": true
     },
@@ -1447,7 +1461,7 @@
       "lore": "A lesser wand that grows in power the longer it is used, it brings magic to the fingertips of the user.",
       "components": [
         "dagon_3",
-        "recipe_dagon"
+        "recipe"
       ],
       "created": true
     },
@@ -1465,7 +1479,7 @@
       "lore": "A lesser wand that grows in power the longer it is used, it brings magic to the fingertips of the user.",
       "components": [
         "dagon_4",
-        "recipe_dagon"
+        "recipe"
       ],
       "created": true
     },
@@ -1483,7 +1497,8 @@
       "lore": "Considered the ultimate in necromancy and demonology, a powerful malefic force is locked within its pages.",
       "components": [
         "staff_of_wizardry",
-        "belt_of_strength"
+        "belt_of_strength",
+        "recipe"
       ],
       "created": true
     },
@@ -1501,7 +1516,7 @@
       "lore": "Considered the ultimate in necromancy and demonology, a powerful malefic force is locked within its pages.",
       "components": [
         "necronomicon",
-        "recipe_necronomicon"
+        "recipe"
       ],
       "created": true
     },
@@ -1519,7 +1534,7 @@
       "lore": "Considered the ultimate in necromancy and demonology, a powerful malefic force is locked within its pages.",
       "components": [
         "necronomicon_2",
-        "recipe_necronomicon"
+        "recipe"
       ],
       "created": true
     },
@@ -1557,7 +1572,8 @@
       "lore": "A powerful artifact created for wizards.",
       "components": [
         "pers",
-        "pers"
+        "pers",
+        "recipe"
       ],
       "created": true
     },
@@ -1577,7 +1593,8 @@
       "components": [
         "platemail",
         "hyperstone",
-        "chainmail"
+        "chainmail",
+        "recipe"
       ],
       "created": true
     },
@@ -1596,7 +1613,8 @@
       "lore": "Preserved heart of an extinct monster, it bolsters the bearer's fortitude.",
       "components": [
         "reaver",
-        "vitality_booster"
+        "vitality_booster",
+        "recipe"
       ],
       "created": true
     },
@@ -1614,7 +1632,8 @@
       "lore": "A powerful staff imbued with the strength of giants.",
       "components": [
         "ogre_axe",
-        "mithril_hammer"
+        "mithril_hammer",
+        "recipe"
       ],
       "created": true
     },
@@ -1648,7 +1667,8 @@
       "lore": "Said to have belonged to a goddess, today it retains much of its former power.",
       "components": [
         "platemail",
-        "mystic_staff"
+        "mystic_staff",
+        "recipe"
       ],
       "created": true
     },
@@ -1666,7 +1686,8 @@
       "lore": "The Bloodstone's bright ruby color is unmistakable on the battlefield, as the owner seems to have infinite vitality and spirit.",
       "components": [
         "soul_ring",
-        "soul_booster"
+        "soul_booster",
+        "recipe"
       ],
       "created": true
     },
@@ -1684,7 +1705,8 @@
       "lore": "This magical sphere once protected one of the most famous heroes in history.",
       "components": [
         "ultimate_orb",
-        "pers"
+        "pers",
+        "recipe"
       ],
       "created": true
     },
@@ -1702,7 +1724,8 @@
       "lore": "The jewel at its center still reflects a pale image of its creator.",
       "components": [
         "pers",
-        "platemail"
+        "platemail",
+        "energy_booster"
       ],
       "created": true
     },
@@ -1741,7 +1764,8 @@
       "lore": "A cuirass originally built to protect against the dreaded Year Beast.",
       "components": [
         "vanguard",
-        "buckler"
+        "buckler",
+        "recipe"
       ],
       "created": true
     },
@@ -1854,7 +1878,8 @@
       "cd": false,
       "lore": "A divine weapon that causes damage and a bright burning effect that lays waste to nearby enemies.",
       "components": [
-        "relic"
+        "relic",
+        "recipe"
       ],
       "created": true
     },
@@ -1892,7 +1917,8 @@
       "lore": "A weapon of incredible power that is difficult for even the strongest of warriors to control.",
       "components": [
         "lesser_crit",
-        "demon_edge"
+        "demon_edge",
+        "recipe"
       ],
       "created": true
     },
@@ -1910,7 +1936,8 @@
       "lore": "A feared weapon in the right hands, this maul's ability to shatter the defenses of its opponents should not be underestimated.",
       "components": [
         "belt_of_strength",
-        "javelin"
+        "javelin",
+        "recipe"
       ],
       "created": true
     },
@@ -1948,7 +1975,8 @@
       "lore": "An axe made of reflective materials that causes confusion amongst enemy ranks.",
       "components": [
         "yasha",
-        "ultimate_orb"
+        "ultimate_orb",
+        "recipe"
       ],
       "created": true
     },
@@ -1966,7 +1994,8 @@
       "lore": "A blade forged from rare crystals, it seeks weak points in enemy armor.",
       "components": [
         "broadsword",
-        "blades_of_attack"
+        "blades_of_attack",
+        "recipe"
       ],
       "created": true
     },
@@ -1983,8 +2012,10 @@
       "cd": false,
       "lore": "",
       "components": [
-        "quarterstaff",
-        "ogre_axe"
+        "ogre_axe",
+        "boots_of_elves",
+        "boots_of_elves"
+
       ],
       "created": true
     },
@@ -2003,7 +2034,8 @@
       "components": [
         "helm_of_iron_will",
         "gloves",
-        "blades_of_attack"
+        "blades_of_attack",
+        "recipe"
       ],
       "created": true
     },
@@ -2040,7 +2072,8 @@
       "lore": "Once used to slay an unjust king, only to have the kingdom erupt into civil war in the aftermath.",
       "components": [
         "invis_sword",
-        "sange"
+        "ultimate_orb",
+        "recipe"
       ],
       "created": true
     },
@@ -2076,7 +2109,8 @@
       "lore": "Immense power at the cost of your soul.",
       "components": [
         "reaver",
-        "helm_of_the_dominator"
+        "helm_of_the_dominator",
+        "recipe"
       ],
       "created": true
     },
@@ -2094,7 +2128,8 @@
       "lore": "Thor's magical hammer, made for him by the dwarves Brok and Eitri.",
       "components": [
         "maelstrom",
-        "hyperstone"
+        "hyperstone",
+        "recipe"
       ],
       "created": true
     },
@@ -2132,7 +2167,8 @@
       "lore": "Sange is an unusually accurate weapon, seeking weak points automatically.",
       "components": [
         "ogre_axe",
-        "belt_of_strength"
+        "belt_of_strength",
+        "recipe"
       ],
       "created": true
     },
@@ -2169,7 +2205,8 @@
       "lore": "A hammer forged for the gods themselves, Maelstrom allows its user to harness the power of lightning.",
       "components": [
         "mithril_hammer",
-        "gloves"
+        "gloves",
+        "recipe"
       ],
       "created": true
     },
@@ -2187,9 +2224,25 @@
       "lore": "A wicked weapon, used in torturing political criminals.",
       "components": [
         "mithril_hammer",
-        "mithril_hammer"
+        "mithril_hammer",
+        "blight_stone"
+
       ],
       "created": true
+    },
+    {
+      "id":169,
+      "img": "blight_stone_lg.png",
+      "dname": "Blight Stone",
+      "qual": "component",
+      "cost": 300,
+      "desc": "Passive: Your attacks reduce target's armor for 8.0 seconds. Blight Stone is a Unique Attack Modifier, and does not stack with other Unique Attack Modifiers.",
+      "attrib": "ARMOR REDUCTION: 2 DURATION: 8",
+      "mc": false,
+      "cd": false,
+      "lore": "",
+      "components": null,
+      "created": false
     },
     {
       "id": 170,
@@ -2205,7 +2258,8 @@
       "lore": "Yasha is regarded as the swiftest weapon ever created.",
       "components": [
         "blade_of_alacrity",
-        "boots_of_elves"
+        "boots_of_elves",
+        "recipe"
       ],
       "created": true
     },
@@ -2222,7 +2276,8 @@
       "cd": 25,
       "lore": "Once this mask is worn, its bearer becomes an uncontrollable aggressive force.",
       "components": [
-        "lifesteal"
+        "lifesteal",
+        "recipe"
       ],
       "created": true
     },
@@ -2241,7 +2296,8 @@
       "components": [
         "blade_of_alacrity",
         "blade_of_alacrity",
-        "robe"
+        "robe",
+        "recipe"
       ],
       "created": true
     },
@@ -2259,7 +2315,7 @@
       "lore": "An enchanted blade that allows the user to cut straight into the enemy's soul.",
       "components": [
         "diffusal_blade",
-        "recipe_diffusal_blade"
+        "recipe"
       ],
       "created": true
     },
@@ -2295,7 +2351,8 @@
       "lore": "A ring that feeds on the souls of those who wear it.",
       "components": [
         "ring_of_regen",
-        "sobi_mask"
+        "sobi_mask",
+        "recipe"
       ],
       "created": true
     },
@@ -2366,9 +2423,17 @@
       "lore": "A relic that enchants the bodies of those around it for swifter movement in times of crisis.",
       "components": [
         "robe",
-        "bracer"
+        "bracer",
+        "wind_lace",
+        "recipe"
       ],
       "created": true
+    },
+    {
+      "id": 186,
+      "img": "wind_lace_lg.png",
+      "components": null,
+      "created": false
     },
     {
       "id": 187,
@@ -2384,7 +2449,8 @@
       "lore": "The bearer has no fear of combat.",
       "components": [
         "chainmail",
-        "sobi_mask"
+        "sobi_mask",
+        "blight_stone"
       ],
       "created": true
     },
@@ -2436,8 +2502,8 @@
       "components": [
         "helm_of_iron_will",
         "null_talisman",
-        "robe",
-        "robe"
+        "null_talisman",
+        "recipe"
       ],
       "created": true
     },
@@ -2455,7 +2521,8 @@
       "lore": "One of many holy instruments constructed to honor the Omniscience.",
       "components": [
         "mekansm",
-        "arcane_boots"
+        "arcane_boots",
+        "recipe"
       ],
       "created": true
     },
@@ -2492,7 +2559,8 @@
       "lore": "",
       "components": [
         "quelling_blade",
-        "ring_of_protection"
+        "ring_of_protection",
+        "recipe"
       ],
       "created": true
     },
@@ -2510,7 +2578,8 @@
       "lore": "The lost blade of the Commander of the Abyss, this edge cuts into an enemy's soul.",
       "components": [
         "basher",
-        "relic"
+        "vanguard",
+        "recipe"
       ],
       "created": true
     },
@@ -2546,7 +2615,8 @@
       "lore": "The ring of the fallen Warlord Aquila continues to support armies in battle.",
       "components": [
         "wraith_band",
-        "ring_of_basilius"
+        "ring_of_basilius",
+        "recipe"
       ],
       "created": true
     },
