@@ -8,68 +8,22 @@ import java.util.List;
 
 public class Items {
 
-    @SerializedName("id")
+    @SerializedName("itemdata")
     @Expose
-    private Integer id;
-    @SerializedName("name")
-    @Expose
-    private String name;
-    @SerializedName("build")
-    @Expose
-    private List<Build> build = new ArrayList<>();
+    private List<ItemData> itemData = new ArrayList<ItemData>();
 
     /**
-     *
-     * @return
-     * The id
+     * @return The itemdata
      */
-    public Integer getId() {
-        return id;
+    public List<ItemData> getItemData() {
+        return itemData;
     }
 
     /**
-     *
-     * @param id
-     * The id
+     * @param itemdata The itemdata
      */
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    /**
-     *
-     * @return
-     * The name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     *
-     * @param name
-     * The name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     *
-     * @return
-     * The build
-     */
-    public List<Build> getBuild() {
-        return build;
-    }
-
-    /**
-     *
-     * @param build
-     * The build
-     */
-    public void setBuild(List<Build> build) {
-        this.build = build;
+    public void setItemdata(List<ItemData> itemdata) {
+        this.itemData = itemdata;
     }
 
 }
